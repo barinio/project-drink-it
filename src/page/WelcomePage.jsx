@@ -1,5 +1,3 @@
-import {} from './Welcome.styled';
-
 const Welcome = () => {
   return <></>;
 };

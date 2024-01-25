@@ -1,4 +1,3 @@
-import Welcome from 'components/Welcome/Welcome';
 import PrivateRoute from 'components/PrivateRoute/PrivateRoute';
 import RestictedRoute from 'components/RestictedRoute/RestictedRoute';
 import { Suspense, lazy, useEffect } from 'react';
@@ -10,6 +9,7 @@ import { refreshThunk } from 'redux/auth/thunk';
 
 const Layout = lazy(() => import('./components/Layout/Layout'));
 const HomePage = lazy(() => import('./page/HomePage'));
+const WelcomePage = lazy(() => import('./page/WelcomePage'));
 const RegistrationPage = lazy(() => import('./page/RegistrationPage'));
 const LogInPage = lazy(() => import('./page/LoginPage'));
 
@@ -24,7 +24,7 @@ export const App = () => {
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
           <Route path="/" element={<Layout />}>
-            <Route index element={<Welcome />} />
+            <Route index element={<WelcomePage />} />
             <Route
               path="/home"
               element={
