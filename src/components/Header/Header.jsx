@@ -3,9 +3,7 @@ import {
   HeaderSection,
   HeaderContainer,
   NavLinkLogo,
-  // NavLinkSignin,
   PrivatNav,
-  // UserSvg,
 } from './Header.styled';
 import { selectAuthAuthenticated } from 'redux/auth/auth.selectors';
 import UserMenu from 'components/UserMenu/UserMenu';
