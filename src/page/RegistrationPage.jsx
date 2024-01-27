@@ -1,10 +1,15 @@
 import { Section } from 'components/Section/Section';
 import SignUpForm from 'components/SignUpForm/SignUp';
+import { SignupPage, SignupWrapper } from './RegistrationPage.styled';
 
 const RegistrationPage = () => {
   return (
-    <Section title="SignUpForm">
-      <SignUpForm />
+    <Section>
+      <SignupWrapper>
+        <SignupPage>
+          <SignUpForm />
+        </SignupPage>
+      </SignupWrapper>
     </Section>
   );
 };

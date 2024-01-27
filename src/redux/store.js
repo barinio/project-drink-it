@@ -12,6 +12,7 @@ import {
 } from 'redux-persist';
 
 import storage from 'redux-persist/lib/storage';
+import { waterReducer } from './waterDetails/waterSlice';
 
 const authConfig = {
   key: 'auth',
@@ -20,6 +21,7 @@ const authConfig = {
 };
 const rootReducer = combineReducers({
   auth: persistReducer(authConfig, authReducer),
+  waterDetails: waterReducer,
 });
 export const store = configureStore({
   reducer: rootReducer,
