@@ -42,7 +42,7 @@ export const App = () => {
               }
             />
             <Route
-              path="/sigup"
+              path="/signup"
               element={
                 <RestictedRoute>
                   <RegistrationPage />

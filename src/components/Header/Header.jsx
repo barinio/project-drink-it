@@ -3,9 +3,7 @@ import {
   HeaderSection,
   HeaderContainer,
   NavLinkLogo,
-  NavLinkSignin,
   PrivatNav,
-  UserSvg,
 } from './Header.styled';
 import { selectAuthAuthenticated } from 'redux/auth/auth.selectors';
 import UserMenu from 'components/UserMenu/UserMenu';
@@ -28,7 +26,6 @@ export const Header = () => {
                   </svg>
                   Tracker of water
                 </NavLinkLogo>
-                <UserMenu />
               </PrivatNav>
             ) : (
               <>
@@ -38,14 +35,9 @@ export const Header = () => {
                   </svg>
                   <span>Tracker of water</span>
                 </NavLinkLogo>
-                <NavLinkSignin to="signin">
-                  Sign in
-                  <UserSvg width="28" height="28">
-                    <use href={icons + '#icon-user'}></use>
-                  </UserSvg>
-                </NavLinkSignin>
               </>
             )}
+            <UserMenu />
           </nav>
         </HeaderContainer>
       </HeaderSection>

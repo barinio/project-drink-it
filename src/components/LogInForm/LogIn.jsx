@@ -1,15 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import { FormStyle } from './LogIn.styled';
 import * as Yup from 'yup';
 import { NavLink } from 'react-router-dom';
+import icons from '../../img/icons.svg';
+import { useDispatch } from 'react-redux';
+import { loginThunk } from 'redux/auth/thunk';
 
 const LogInForm = () => {
+  const [visible, setVisible] = useState(false);
+
+  const dispatch = useDispatch();
+
   const validationSchema = Yup.object({
     email: Yup.string()
       .required('Email is required')
       .email('Invalid email address'),
-    password: Yup.string().required('Password is requird'),
+    password: Yup.string()
+      .min(8, 'Password must be at least 8 characters')
+      .max(64, 'Password is too long')
+      .required('Password is requird'),
   });
 
   const formik = useFormik({
@@ -17,38 +27,91 @@ const LogInForm = () => {
       email: '',
       password: '',
     },
-    onSubmit: values => {
+    onSubmit: (values, { resetForm }) => {
       console.log('onSubmit', values);
+      dispatch(loginThunk(values));
+      resetForm();
     },
     validationSchema: validationSchema,
   });
   return (
     <FormStyle onSubmit={formik.handleSubmit}>
       <h3>Sing In</h3>
-      <div>
+      <div className="inputWrapper">
         <label>Enter your email</label>
-        <input
-          type="email"
-          placeholder="E-mail"
-          name="email"
-          value={formik.values.email}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-        />
+        <div
+          style={{
+            borderColor:
+              formik.errors.email && formik.touched.email && formik.errors.email
+                ? '#ef5050'
+                : '#9ebbff',
+            marginBottom: 4,
+            color: '#ef5050',
+          }}
+        >
+          <input
+            type="email"
+            placeholder="E-mail"
+            name="email"
+            value={formik.values.email}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            style={{
+              color:
+                formik.errors.email &&
+                formik.touched.email &&
+                formik.errors.email
+                  ? '#ef5050'
+                  : '#407bff',
+            }}
+          />
+        </div>
         <span>
           {formik.errors.email && formik.touched.email && formik.errors.email}
         </span>
       </div>
-      <div>
+      <div className="inputWrapper">
         <label>Enter your password</label>
-        <input
-          type="password"
-          placeholder="Password"
-          name="password"
-          value={formik.values.password}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-        />
+        <div
+          style={{
+            borderColor:
+              formik.errors.password &&
+              formik.touched.password &&
+              formik.errors.password
+                ? '#ef5050'
+                : '#9ebbff',
+            marginBottom: 4,
+            color: '#ef5050',
+          }}
+        >
+          <input
+            type={visible ? 'text' : 'password'}
+            placeholder="Password"
+            name="password"
+            value={formik.values.password}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            style={{
+              color:
+                formik.errors.password &&
+                formik.touched.password &&
+                formik.errors.password
+                  ? '#ef5050'
+                  : '#407bff',
+            }}
+          />
+          <div className="icon-wrapper" onClick={() => setVisible(!visible)}>
+            {visible ? (
+              <svg width="16" height="16">
+                <use href={icons + '#icon-opend-eye'}></use>
+              </svg>
+            ) : (
+              <svg width="16" height="16">
+                <use href={icons + '#icon-closed-eye'}></use>
+              </svg>
+            )}
+          </div>
+        </div>
         <span>
           {formik.errors.password &&
             formik.touched.password &&

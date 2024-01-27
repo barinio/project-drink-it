@@ -46,15 +46,3 @@ export const NavLinkLogo = styled(NavLink)`
     width: 58px;
   }
 `;
-
-export const NavLinkSignin = styled(NavLink)`
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  line-height: 1.25;
-`;
-
-export const UserSvg = styled.svg`
-  fill: none;
-  stroke: var(--primery-color-black);
-`;
