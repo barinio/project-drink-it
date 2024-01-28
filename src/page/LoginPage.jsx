@@ -1,16 +1,16 @@
 import LogInForm from 'components/LogInForm/LogIn';
 import { Section } from 'components/Section/Section';
-import { LoginSection } from './LoginPage.styled';
+import { LoginSection, LoginContainer } from './LoginPage.styled';
 
 const LogInPage = () => {
   return (
-    <>
+    <LoginSection>
       <Section>
-        <LoginSection>
+        <LoginContainer>
           <LogInForm />
-        </LoginSection>
+        </LoginContainer>
       </Section>
-    </>
+    </LoginSection>
   );
 };
 

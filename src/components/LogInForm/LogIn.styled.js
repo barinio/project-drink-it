@@ -4,6 +4,7 @@ export const FormStyle = styled.form`
     display: flex;
     flex-direction: column;
     max-width: 280px;
+    margin: 0 auto;
     h3 {
       margin: 0 0 16px 0;
       font-family: 'Roboto', sans-serif;
@@ -117,7 +118,7 @@ export const FormStyle = styled.form`
     display: flex;
     flex-direction: column;
     max-width: 280px;
-
+    margin: 0 auto;
     h3 {
       margin: 0 0 16px 0;
       font-family: 'Roboto', sans-serif;
@@ -228,7 +229,7 @@ export const FormStyle = styled.form`
   }
   @media screen and (min-width: 768px) {
     max-width: 336px;
-    margin-top: 40px;
+    margin: 0;
     input {
       width: 290px;
     }
@@ -251,8 +252,9 @@ export const FormStyle = styled.form`
     }
   }
   @media screen and (min-width: 1440px) {
-    max-width: 384px;
+    min-width: 384px;
     margin-top: 140px;
+    margin-right: 112px;
     input {
       width: 334px;
     }
