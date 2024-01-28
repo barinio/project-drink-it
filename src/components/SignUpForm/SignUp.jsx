@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { NavLink } from "react-router-dom";
@@ -28,16 +28,22 @@ const SignUpForm = () => {
         .oneOf([Yup.ref('password'), null], 'Passwords must match')
         .required('Password is required'),
     }),
-    onSubmit: async (values) => {
+    onSubmit: async ({ email, password }) => {
       try {
-        console.log('Form data submitted:', values);
-        dispatch(signupThunk(values));
-        navigate("/signin");
+        console.log('Form data submitted:', { email, password });
+        dispatch(signupThunk({ email, password }));
+        // navigate("/signin");
       } catch (error) {
         console.error('Error:', error);
       }
     },
   });
+
+  useEffect(() => {
+    if (formik.status && formik.status.success) {
+      navigate.push("/signin");
+    }
+  }, [formik.status, navigate]);
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
