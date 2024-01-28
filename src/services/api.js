@@ -11,13 +11,13 @@ export const setToken = token => {
 // ----------- auth-service -------------------
 
 export const requestSignup = async body => {
-  const { data } = await instance.post('/api/auth/register', body);
+  const { data } = await instance.post('/api/users/register', body);
   setToken(data.token);
   return data;
 };
 
 export const requestLogin = async body => {
-  const { data } = await instance.post('/api/auth/login', body);
+  const { data } = await instance.post('/api/users/login', body);
   setToken(data.token);
   return data;
 };
