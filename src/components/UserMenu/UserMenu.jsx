@@ -16,9 +16,6 @@ const UserMenu = () => {
         <NavLinkSignin to="signin">
           {UserName}
           <img src={avatar} alt={UserName} width="28" height="28" />
-          <UserSvg width="28" height="28">
-            <use href={icons + '#icon-user'}></use>
-          </UserSvg>
           <ArrowDownSvg width="16" height="16">
             <use href={icons + '#icon-arrow-down'}></use>
           </ArrowDownSvg>
