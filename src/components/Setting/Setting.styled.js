@@ -6,7 +6,7 @@ export const Backdrop = styled.div`
   left: 0;
   background: rgba(0, 0, 0, 0.8);
   width: 100%;
-  height: 100%;
+  min-height: 100%;
   opacity: 1;
   visibility: visible;
   transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1),
@@ -21,7 +21,13 @@ export const Backdrop = styled.div`
     display: none;
   }
 `;
+export const ContaineWrapper = styled.div``;
+
 export const Modal = styled.div`
+  display: flex;
+  gap: 24px;
+
+  flex-direction: column;
   position: absolute;
   top: 40px;
   left: 50%;
@@ -45,7 +51,6 @@ export const CaptionBlock = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 24px;
   h2 {
     color: var(--primery-color-black);
     font-size: 26px;
@@ -94,10 +99,23 @@ export const PhotoBlock = styled.div`
     stroke: var(--primery-color-blue);
   }
 `;
-export const FormStyle = styled.form``;
+export const FormStyle = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+`;
 
-export const GenderPart = styled.div`
+export const GenderBlock = styled.div`
   div {
     display: flex;
   }
+`;
+
+export const UserName = styled.div``;
+export const UserEmail = styled.div``;
+
+export const PasswordBlock = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 `;
