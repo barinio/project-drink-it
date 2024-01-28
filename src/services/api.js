@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const instance = axios.create({
-  baseURL: '',
+  baseURL: 'https://project-drink-it-backend.onrender.com/',
 });
 
 export const setToken = token => {
@@ -11,13 +11,13 @@ export const setToken = token => {
 // ----------- auth-service -------------------
 
 export const requestSignup = async body => {
-  const { data } = await instance.post('/users/signup', body);
+  const { data } = await instance.post('/api/auth/register', body);
   setToken(data.token);
   return data;
 };
 
 export const requestLogin = async body => {
-  const { data } = await instance.post('/users/login', body);
+  const { data } = await instance.post('/api/auth/login', body);
   setToken(data.token);
   return data;
 };
