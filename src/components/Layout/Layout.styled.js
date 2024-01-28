@@ -22,13 +22,6 @@ export const Main = styled.main`
     background-image: url(${imgTablet});
   }
   @media screen and (min-width: 1440px) {
-    /* display: flex;
-    gap: 81px;
-    justify-content: center;
-    align-items: end; */
-
-    /* min-width: 1440px; */
-
     /* padding-top: 31px; */
     /* padding-bottom: 294px; */
 

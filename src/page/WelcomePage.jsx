@@ -1,6 +1,5 @@
 import {
   Btn,
-  Circle,
   Home,
   ItemLeft,
   ItemRight,
@@ -52,28 +51,16 @@ const Welcome = () => {
         <RightSide>
           <TitleRight>Why drink water</TitleRight>
           <ListRight>
+            <ItemRight>Supply of nutrients to all organs</ItemRight>
+            <ItemRight>Providing oxygen to the lungs</ItemRight>
+            <ItemRight>Maintaining the work of the heart</ItemRight>
+            <ItemRight>Release of processed substances</ItemRight>
             <ItemRight>
-              <Circle></Circle>Supply of nutrients to all organs
+              Ensuring the stability of the internal environment
             </ItemRight>
+            <ItemRight>Maintaining within the normal temperature</ItemRight>
             <ItemRight>
-              <Circle></Circle>Providing oxygen to the lungs
-            </ItemRight>
-            <ItemRight>
-              <Circle></Circle>Maintaining the work of the heart
-            </ItemRight>
-            <ItemRight>
-              <Circle></Circle>Release of processed substances
-            </ItemRight>
-            <ItemRight>
-              <Circle></Circle>Ensuring the stability of the internal
-              environment
-            </ItemRight>
-            <ItemRight>
-              <Circle></Circle>Maintaining within the normal temperature
-            </ItemRight>
-            <ItemRight>
-              <Circle></Circle>Maintaining an immune system capable of resisting
-              disease
+              Maintaining an immune system capable of resisting disease
             </ItemRight>
           </ListRight>
         </RightSide>
