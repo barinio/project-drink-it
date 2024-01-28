@@ -90,7 +90,7 @@ export const Btn = styled.button`
   align-items: center;
   justify-content: center;
 
-  min-width: 100%;
+  min-width: 280px;
   height: 36px;
   padding: 8px 30px;
   font-size: 16px;
@@ -113,6 +113,9 @@ export const Btn = styled.button`
     min-width: 336px;
     height: 44px;
     margin-bottom: 60px;
+
+    font-size: 18px;
+    line-height: 1.33;
   }
 
   @media screen and (min-width: 1440px) {
@@ -173,19 +176,19 @@ export const ItemRight = styled.li`
 export const Home = styled.div`
   padding-left: 20px;
   padding-right: 20px;
-  padding-bottom: 40px;
-  background-image: url(${imgMobile});
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: bottom;
+  /* padding-bottom: 40px; */
+  /* background-image: url(${imgMobile}); */
+  /* background-size: cover; */
+  /* background-repeat: no-repeat; */
+  /* background-position: bottom; */
 
   @media screen and (min-width: 320px) {
     /* background-image: url(${imgMobile}); */
   }
   @media screen and (min-width: 768px) {
-    padding-top: 40px;
+    /* padding-top: 40px; */
 
-    background-image: url(${imgTablet});
+    /* background-image: url(${imgTablet}); */
   }
   @media screen and (min-width: 1440px) {
     display: flex;
@@ -193,21 +196,20 @@ export const Home = styled.div`
     justify-content: center;
     align-items: end;
 
-    min-width: 1440px;
+    /* min-width: 1440px; */
 
-    padding-top: 31px;
-    padding-bottom: 294px;
+    /* padding-top: 31px; */
+    /* padding-bottom: 294px; */
 
-    background-image: url(${imgDesktop});
+    /* background-image: url(${imgDesktop}); */
   }
 `;
 
 export const Circle = styled.div`
-  display: block;
   width: 8px;
   height: 8px;
+  clip-path: circle(50%);
 
-  border-radius: 50%;
   background-color: var(--primery-color-blue);
 `;
 

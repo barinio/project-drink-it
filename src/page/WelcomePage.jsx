@@ -15,6 +15,7 @@ import {
   TitleRight,
 } from './WelcomePage.styled';
 import icons from '../img/icons.svg';
+import { NavLink } from 'react-router-dom';
 
 const Welcome = () => {
   return (
@@ -44,13 +45,15 @@ const Welcome = () => {
               Personal rate setting
             </ItemLeft>
           </ListLeft>
-          <Btn type="button">Try tracker</Btn>
+          <NavLink to="/signup">
+            <Btn type="button">Try tracker</Btn>
+          </NavLink>
         </LeftSide>
         <RightSide>
           <TitleRight>Why drink water</TitleRight>
           <ListRight>
             <ItemRight>
-              <Circle></Circle> Supply of nutrients to all organs
+              <Circle></Circle>Supply of nutrients to all organs
             </ItemRight>
             <ItemRight>
               <Circle></Circle>Providing oxygen to the lungs
@@ -62,15 +65,15 @@ const Welcome = () => {
               <Circle></Circle>Release of processed substances
             </ItemRight>
             <ItemRight>
-              <Circle></Circle>
-              Ensuring the stability of the internal environment
+              <Circle></Circle>Ensuring the stability of the internal
+              environment
             </ItemRight>
             <ItemRight>
               <Circle></Circle>Maintaining within the normal temperature
             </ItemRight>
             <ItemRight>
-              <Circle></Circle>
-              Maintaining an immune system capable of resisting disease
+              <Circle></Circle>Maintaining an immune system capable of resisting
+              disease
             </ItemRight>
           </ListRight>
         </RightSide>
