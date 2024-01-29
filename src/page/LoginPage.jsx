@@ -4,13 +4,13 @@ import { LoginSection, LoginContainer } from './LoginPage.styled';
 
 const LogInPage = () => {
   return (
-    <LoginSection>
-      <Section>
-        <LoginContainer>
-          <LogInForm />
-        </LoginContainer>
-      </Section>
-    </LoginSection>
+    // <LoginSection>
+    <Section>
+      <LoginContainer>
+        <LogInForm />
+      </LoginContainer>
+    </Section>
+    // </LoginSection>
   );
 };
 
