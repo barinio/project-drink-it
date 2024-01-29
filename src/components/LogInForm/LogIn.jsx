@@ -42,7 +42,7 @@ const LogInForm = () => {
         <div
           style={{
             borderColor:
-              formik.errors.email && formik.touched.email && formik.errors.email
+              formik.errors.email && formik.touched.email
                 ? '#ef5050'
                 : '#9ebbff',
             marginBottom: 4,
@@ -58,9 +58,7 @@ const LogInForm = () => {
             onBlur={formik.handleBlur}
             style={{
               color:
-                formik.errors.email &&
-                formik.touched.email &&
-                formik.errors.email
+                formik.errors.email && formik.touched.email
                   ? '#ef5050'
                   : '#407bff',
             }}
@@ -75,9 +73,7 @@ const LogInForm = () => {
         <div
           style={{
             borderColor:
-              formik.errors.password &&
-              formik.touched.password &&
-              formik.errors.password
+              formik.errors.password && formik.touched.password
                 ? '#ef5050'
                 : '#9ebbff',
             marginBottom: 4,
@@ -93,24 +89,22 @@ const LogInForm = () => {
             onBlur={formik.handleBlur}
             style={{
               color:
-                formik.errors.password &&
-                formik.touched.password &&
-                formik.errors.password
+                formik.errors.password && formik.touched.password
                   ? '#ef5050'
                   : '#407bff',
             }}
           />
-          <div className="icon-wrapper" onClick={() => setVisible(!visible)}>
-            {visible ? (
-              <svg width="16" height="16">
-                <use href={icons + '#icon-opend-eye'}></use>
-              </svg>
-            ) : (
-              <svg width="16" height="16">
-                <use href={icons + '#icon-closed-eye'}></use>
-              </svg>
-            )}
-          </div>
+          <button className="icon-wrapper" onClick={() => setVisible(!visible)}>
+            <svg width="16" height="16">
+              <use
+                href={
+                  visible
+                    ? icons + '#icon-opend-eye'
+                    : icons + '#icon-closed-eye'
+                }
+              ></use>
+            </svg>
+          </button>
         </div>
         <span>
           {formik.errors.password &&

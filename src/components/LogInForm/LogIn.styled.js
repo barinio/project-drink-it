@@ -4,6 +4,7 @@ export const FormStyle = styled.form`
     display: flex;
     flex-direction: column;
     max-width: 280px;
+    margin: 0 auto;
     h3 {
       margin: 0 0 16px 0;
       font-family: 'Roboto', sans-serif;
@@ -83,6 +84,11 @@ export const FormStyle = styled.form`
     button:active {
       box-shadow: none;
     }
+    .icon-wrapper,
+    .icon-wrapper:hover,
+    .icon-wrapper:focus {
+      box-shadow: none;
+    }
     a {
       color: var(--primery-color-blue);
       text-decoration: none;
@@ -117,7 +123,7 @@ export const FormStyle = styled.form`
     display: flex;
     flex-direction: column;
     max-width: 280px;
-
+    margin: 0 auto;
     h3 {
       margin: 0 0 16px 0;
       font-family: 'Roboto', sans-serif;
@@ -197,6 +203,11 @@ export const FormStyle = styled.form`
     button:active {
       box-shadow: none;
     }
+    .icon-wrapper,
+    .icon-wrapper:hover,
+    .icon-wrapper:focus {
+      box-shadow: none;
+    }
     a {
       color: var(--primery-color-blue);
       text-decoration: none;
@@ -228,7 +239,7 @@ export const FormStyle = styled.form`
   }
   @media screen and (min-width: 768px) {
     max-width: 336px;
-    margin-top: 40px;
+    margin: 0;
     input {
       width: 290px;
     }
@@ -249,12 +260,23 @@ export const FormStyle = styled.form`
       color: var(--primery-color-white);
       margin-bottom: 16px;
     }
+    .icon-wrapper,
+    .icon-wrapper:hover,
+    .icon-wrapper:focus {
+      box-shadow: none;
+    }
   }
-  @media screen and (min-width: 1440px) {
-    max-width: 384px;
+  @media screen and (min-width: 1200px) {
+    min-width: 384px;
     margin-top: 140px;
+    margin-right: 112px;
     input {
       width: 334px;
+    }
+    .icon-wrapper,
+    .icon-wrapper:hover,
+    .icon-wrapper:focus {
+      box-shadow: none;
     }
   }
 `;

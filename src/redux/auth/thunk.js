@@ -7,6 +7,9 @@ import {
   requestRefreshUser,
   requestSignup,
   setToken,
+
+  getDailyNormaData,
+  updateDailyNormaData,
 } from 'services/api';
 
 export const loginThunk = createAsyncThunk(
@@ -65,5 +68,30 @@ export const logoutThunk = createAsyncThunk(
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
+  }
+);
+
+
+export const getDailyNorma = createAsyncThunk(
+  'auth/',
+  async (_, thunkAPI) => {
+      try {
+        const userData = await getDailyNormaData();
+        return userData;
+      } catch (error) {
+        return thunkAPI.rejectWithValue(error.message);
+      }
+  }
+);
+
+export const updateDailyNorma = createAsyncThunk(
+  'auth/',
+  async (userData, thunkAPI) => {
+      try {
+        await updateDailyNormaData(userData);
+      //   return userData;
+      } catch (error) {
+        return thunkAPI.rejectWithValue(error.message);
+      }
   }
 );

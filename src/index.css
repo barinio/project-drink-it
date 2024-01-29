@@ -6,60 +6,62 @@ h4,
 h5,
 h6,
 p {
-	margin: 0;
+  margin: 0;
 }
 
 ul {
-	margin: 0;
-	padding: 0;
-	list-style: none;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 a {
-	color: currentColor;
-	text-decoration: none;
+  color: currentColor;
+  text-decoration: none;
 }
 
 button {
-	cursor: pointer;
+  cursor: pointer;
+  border: none;
 }
 
 img {
-	display: block;
-	max-width: 100%;
-	height: auto;
+  display: block;
+  max-width: 100%;
+  height: auto;
 }
 
 input,
 textarea,
 button,
 label {
-	display: block;
-	padding: 0;
-	margin: 0;
-	font-weight: inherit;
-	letter-spacing: 0.04em;
-	font-size: 12px;
-	line-height: 1.5;
+  display: block;
+  padding: 0;
+  margin: 0;
+  font-weight: inherit;
+  letter-spacing: 0.04em;
+  font-size: 12px;
+  line-height: 1.5;
 }
 
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 
 :root {
-	font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
 
-	--primery-color-black: #2f2f2f;
-	--primery-color-white: #fff;
-	--primery-color-blue: #407bff;
+  --primery-color-black: #2f2f2f;
+  --primery-color-white: #fff;
+  --primery-color-blue: #407bff;
 
-	--secondary-color-blue: #9ebbff;
-	--bg-color-light-blue: #ecf2ff;
+  --secondary-color-blue: #9ebbff;
+  --bg-color-light-blue: #ecf2ff;
+  --secondary-yellow: #ff9d43;
 
-	--btn-color-red: #ef5050;
-	--btn-color-light-blue: #d7e3ff;
-
-	font-synthesis: none;
-	text-rendering: optimizeLegibility;
-	-webkit-font-smoothing: antialiased;
-	-webkit-text-size-adjust: 100%;
+  --btn-color-red: #ef5050;
+  --btn-color-light-blue: #d7e3ff;
+  --calendar-color-orange: #ff9d43;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
 }

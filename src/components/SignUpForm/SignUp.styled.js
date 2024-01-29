@@ -26,16 +26,21 @@ export const SignupForm = styled.form`
       flex-direction: column;
       margin-bottom: 16px;
     }
-    input {
+    .password-wrapper {
       display: flex;
+      align-items: center;
+      flex-direction: row;
+      justify-content: space-between;
+
       padding: 12px 10px;
-      flex-direction: column;
-      justify-content: center;
-      align-items: flex-start;
-      gap: 10px;
+      margin: 0;
 
       border-radius: 6px;
       background: var(--primery-color-white);
+    }
+    input {
+      border: none;
+      width: 234px;
 
       color: var(--primery-color-blue);
       line-height: 1.2;
@@ -51,6 +56,17 @@ export const SignupForm = styled.form`
       color: var(--secondary-color-blue);
       font-size: 16px;
       line-height: 1.2;
+    }
+    .eye-icon,
+    .eye-icon:hover,
+    .eye-icon:focus {
+      background-color: transparent;
+      box-shadow: none;
+      padding: 0;
+      margin: 0;
+    }
+    svg {
+      fill: var(--primery-color-blue);
     }
     button {
       display: flex;
@@ -90,6 +106,9 @@ export const SignupForm = styled.form`
 
   @media screen and (min-width: 768px) {
     max-width: 336px;
+    input {
+      width: 290px;
+    }
     button {
       font-size: 18px;
       padding: 10px 30px;
@@ -98,6 +117,9 @@ export const SignupForm = styled.form`
 
   @media screen and (min-width: 1440px) {
     max-width: 384px;
+    input {
+      width: 338px;
+    }
   }
 `;
 export const ErrorMessage = styled.span`
