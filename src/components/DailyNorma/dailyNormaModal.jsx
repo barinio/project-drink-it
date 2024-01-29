@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { getDailyNorma, updateDailyNorma } from '../Redux/auth/thunk';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
-import '../index.css';
+import '../../index.css';
 
 import {
     ModalOverlay,
