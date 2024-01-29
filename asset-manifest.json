@@ -1,36 +1,38 @@
 {
   "files": {
-    "main.css": "/project-drink-it/static/css/main.3db448cd.css",
-    "main.js": "/project-drink-it/static/js/main.200c0719.js",
+    "main.css": "/project-drink-it/static/css/main.8f996b48.css",
+    "main.js": "/project-drink-it/static/js/main.8db0cb73.js",
     "static/js/841.1ac21060.chunk.js": "/project-drink-it/static/js/841.1ac21060.chunk.js",
-    "static/js/791.bad99ca0.chunk.js": "/project-drink-it/static/js/791.bad99ca0.chunk.js",
+    "static/js/983.d2e29efc.chunk.js": "/project-drink-it/static/js/983.d2e29efc.chunk.js",
     "static/js/857.67eb578e.chunk.js": "/project-drink-it/static/js/857.67eb578e.chunk.js",
-    "static/js/190.2703bb2a.chunk.js": "/project-drink-it/static/js/190.2703bb2a.chunk.js",
-    "static/js/61.424c24a3.chunk.js": "/project-drink-it/static/js/61.424c24a3.chunk.js",
+    "static/js/190.4e27236d.chunk.js": "/project-drink-it/static/js/190.4e27236d.chunk.js",
+    "static/js/61.24a95657.chunk.js": "/project-drink-it/static/js/61.24a95657.chunk.js",
     "static/js/485.6cf57d15.chunk.js": "/project-drink-it/static/js/485.6cf57d15.chunk.js",
     "static/js/207.78e6cf1a.chunk.js": "/project-drink-it/static/js/207.78e6cf1a.chunk.js",
-    "static/js/793.bf6405c9.chunk.js": "/project-drink-it/static/js/793.bf6405c9.chunk.js",
+    "static/js/944.1c882dff.chunk.js": "/project-drink-it/static/js/944.1c882dff.chunk.js",
+    "static/js/793.1dd09eb2.chunk.js": "/project-drink-it/static/js/793.1dd09eb2.chunk.js",
     "static/media/background-img-desktop.png": "/project-drink-it/static/media/background-img-desktop.2c4784f9482950c483fe.png",
     "static/media/background-img-tablet.png": "/project-drink-it/static/media/background-img-tablet.578a2aa82c80f7e4755c.png",
-    "static/media/icons.svg": "/project-drink-it/static/media/icons.7bf3ae4f654ee8bc4f5b2f325e538024.svg",
+    "static/media/icons.svg": "/project-drink-it/static/media/icons.e92d1572c4eefef79c2c95e9517c6e89.svg",
     "static/media/bg_main_desktop_group.svg": "/project-drink-it/static/media/bg_main_desktop_group.db59a702e4c59ab9b1e4e5d108d4312b.svg",
     "static/media/bg_main_tablet.svg": "/project-drink-it/static/media/bg_main_tablet.3e4d994e807f2a63a097fd7f5a8a858c.svg",
     "static/media/background-img-mobile.png": "/project-drink-it/static/media/background-img-mobile.b32d1893fe8bcf5035c7.png",
     "static/media/bg_main_mobile.svg": "/project-drink-it/static/media/bg_main_mobile.8ed6cf08772205ad6c61678b15992fca.svg",
     "index.html": "/project-drink-it/index.html",
-    "main.3db448cd.css.map": "/project-drink-it/static/css/main.3db448cd.css.map",
-    "main.200c0719.js.map": "/project-drink-it/static/js/main.200c0719.js.map",
+    "main.8f996b48.css.map": "/project-drink-it/static/css/main.8f996b48.css.map",
+    "main.8db0cb73.js.map": "/project-drink-it/static/js/main.8db0cb73.js.map",
     "841.1ac21060.chunk.js.map": "/project-drink-it/static/js/841.1ac21060.chunk.js.map",
-    "791.bad99ca0.chunk.js.map": "/project-drink-it/static/js/791.bad99ca0.chunk.js.map",
+    "983.d2e29efc.chunk.js.map": "/project-drink-it/static/js/983.d2e29efc.chunk.js.map",
     "857.67eb578e.chunk.js.map": "/project-drink-it/static/js/857.67eb578e.chunk.js.map",
-    "190.2703bb2a.chunk.js.map": "/project-drink-it/static/js/190.2703bb2a.chunk.js.map",
-    "61.424c24a3.chunk.js.map": "/project-drink-it/static/js/61.424c24a3.chunk.js.map",
+    "190.4e27236d.chunk.js.map": "/project-drink-it/static/js/190.4e27236d.chunk.js.map",
+    "61.24a95657.chunk.js.map": "/project-drink-it/static/js/61.24a95657.chunk.js.map",
     "485.6cf57d15.chunk.js.map": "/project-drink-it/static/js/485.6cf57d15.chunk.js.map",
     "207.78e6cf1a.chunk.js.map": "/project-drink-it/static/js/207.78e6cf1a.chunk.js.map",
-    "793.bf6405c9.chunk.js.map": "/project-drink-it/static/js/793.bf6405c9.chunk.js.map"
+    "944.1c882dff.chunk.js.map": "/project-drink-it/static/js/944.1c882dff.chunk.js.map",
+    "793.1dd09eb2.chunk.js.map": "/project-drink-it/static/js/793.1dd09eb2.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.3db448cd.css",
-    "static/js/main.200c0719.js"
+    "static/css/main.8f996b48.css",
+    "static/js/main.8db0cb73.js"
   ]
 }
