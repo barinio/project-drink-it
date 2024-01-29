@@ -1,11 +1,11 @@
 {
   "files": {
     "main.css": "/project-drink-it/static/css/main.3db448cd.css",
-    "main.js": "/project-drink-it/static/js/main.6ff69b77.js",
+    "main.js": "/project-drink-it/static/js/main.7d156a93.js",
     "static/js/492.981e8692.chunk.js": "/project-drink-it/static/js/492.981e8692.chunk.js",
     "static/js/791.bad99ca0.chunk.js": "/project-drink-it/static/js/791.bad99ca0.chunk.js",
     "static/js/590.4ead6d0c.chunk.js": "/project-drink-it/static/js/590.4ead6d0c.chunk.js",
-    "static/js/190.15830b50.chunk.js": "/project-drink-it/static/js/190.15830b50.chunk.js",
+    "static/js/190.2703bb2a.chunk.js": "/project-drink-it/static/js/190.2703bb2a.chunk.js",
     "static/js/61.424c24a3.chunk.js": "/project-drink-it/static/js/61.424c24a3.chunk.js",
     "static/js/485.6cf57d15.chunk.js": "/project-drink-it/static/js/485.6cf57d15.chunk.js",
     "static/js/207.78e6cf1a.chunk.js": "/project-drink-it/static/js/207.78e6cf1a.chunk.js",
@@ -20,11 +20,11 @@
     "static/media/bg_main_mobile.svg": "/project-drink-it/static/media/bg_main_mobile.8ed6cf08772205ad6c61678b15992fca.svg",
     "index.html": "/project-drink-it/index.html",
     "main.3db448cd.css.map": "/project-drink-it/static/css/main.3db448cd.css.map",
-    "main.6ff69b77.js.map": "/project-drink-it/static/js/main.6ff69b77.js.map",
+    "main.7d156a93.js.map": "/project-drink-it/static/js/main.7d156a93.js.map",
     "492.981e8692.chunk.js.map": "/project-drink-it/static/js/492.981e8692.chunk.js.map",
     "791.bad99ca0.chunk.js.map": "/project-drink-it/static/js/791.bad99ca0.chunk.js.map",
     "590.4ead6d0c.chunk.js.map": "/project-drink-it/static/js/590.4ead6d0c.chunk.js.map",
-    "190.15830b50.chunk.js.map": "/project-drink-it/static/js/190.15830b50.chunk.js.map",
+    "190.2703bb2a.chunk.js.map": "/project-drink-it/static/js/190.2703bb2a.chunk.js.map",
     "61.424c24a3.chunk.js.map": "/project-drink-it/static/js/61.424c24a3.chunk.js.map",
     "485.6cf57d15.chunk.js.map": "/project-drink-it/static/js/485.6cf57d15.chunk.js.map",
     "207.78e6cf1a.chunk.js.map": "/project-drink-it/static/js/207.78e6cf1a.chunk.js.map",
@@ -33,6 +33,6 @@
   },
   "entrypoints": [
     "static/css/main.3db448cd.css",
-    "static/js/main.6ff69b77.js"
+    "static/js/main.7d156a93.js"
   ]
 }
