@@ -1,4 +1,4 @@
-// import PrivateRoute from 'components/PrivateRoute/PrivateRoute';
+import PrivateRoute from 'components/PrivateRoute/PrivateRoute';
 import RestictedRoute from 'components/RestictedRoute/RestictedRoute';
 import { Suspense, lazy, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
@@ -28,9 +28,9 @@ export const App = () => {
             <Route
               path="/home"
               element={
-                // <PrivateRoute>
-                <HomePage />
-                // </PrivateRoute>
+                <PrivateRoute>
+                  <HomePage />
+                </PrivateRoute>
               }
             />
             <Route
