@@ -38,7 +38,30 @@ export const getDailyNormaData = async () => {
   return data;
 };
 
-export const updateDailyNormaData = async (userData) => {
-  const { data } = await instance.patch('/api/users/updateDailyNorma', userData);
+export const updateDailyNormaData = async userData => {
+  const { data } = await instance.patch(
+    '/api/users/updateDailyNorma',
+    userData
+  );
   return data;
+};
+// -------------------water----------------------
+
+export const fetchTodayWater = async () => {
+  const { data } = await instance.get('/api/users/today');
+  return data;
+};
+
+export const addWaters = async newWater => {
+  const { data } = await axios.post('/api/users/water', newWater);
+  return data;
+};
+
+export const editWater = async ({ newWaterUser, id }) => {
+  const { data } = await axios.patch(`/api/users/water/${id}`, newWaterUser);
+  return data;
+};
+
+export const deleteWater = async id => {
+  await axios.delete(`/api/users/water/${id}`);
 };
