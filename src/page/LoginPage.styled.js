@@ -26,7 +26,7 @@ export const LoginSection = styled.section`
       z-index: -1;
     }
   }
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1200px) {
     height: 100vh;
     &::before {
       top: -272px;
@@ -49,8 +49,8 @@ export const LoginContainer = styled.div`
     padding: 0 32px;
     margin: 0;
   }
-  @media screen and (min-width: 1440px) {
-    max-width: 1440px;
+  @media screen and (min-width: 1200px) {
+    max-width: 1200px;
     padding: 0 104px;
 
     display: flex;

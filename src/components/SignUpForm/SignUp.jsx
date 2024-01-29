@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { NavLink } from "react-router-dom";
@@ -6,13 +6,11 @@ import { SignupForm, ErrorMessage } from "./SignUp.styled";
 import icons from '../../img/icons.svg';
 import { useDispatch } from "react-redux";
 import { signupThunk } from "redux/auth/thunk";
-import { useNavigate } from "react-router-dom";
 
 const SignUpForm = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
-  const [showRepeatedPassword, setShowRepeatedPassword] = useState(false);
+  const validEmailDomains = ['gmail.com', 'i.ua', 'yahoo.com', 'ukr.net'];
 
   const formik = useFormik({
     initialValues: {
@@ -21,7 +19,9 @@ const SignUpForm = () => {
       repeatPassword: '',
     },
     validationSchema: Yup.object({
-      email: Yup.string().email('Invalid email address').required('Email is required'),
+      email: Yup.string().email('Invalid email address').required('Email is required').matches(
+    new RegExp(`@(${validEmailDomains.join('|')})$`),
+    'Invalid email domain'),
       password: Yup.string().required('Password is required').min(8, 'Password must be at least 8 characters')
       .max(64, 'Password must be at most 64 characters'),
       repeatPassword: Yup.string()
@@ -32,24 +32,14 @@ const SignUpForm = () => {
       try {
         console.log('Form data submitted:', { email, password });
         dispatch(signupThunk({ email, password }));
-        // navigate("/signin");
       } catch (error) {
         console.error('Error:', error);
       }
     },
   });
 
-  useEffect(() => {
-    if (formik.status && formik.status.success) {
-      navigate.push("/signin");
-    }
-  }, [formik.status, navigate]);
-
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
-  };
-  const toggleRepeatedPasswordVisibility = () => {
-    setShowRepeatedPassword(!showRepeatedPassword);
   };
 
   return (
@@ -93,11 +83,11 @@ const SignUpForm = () => {
               color: formik.touched.password && formik.errors.password ? 'var(--btn-color-red)' : 'var(--primery-color-blue)',
             }}
             />
-          <div className="eye-icon" onClick={togglePasswordVisibility}>
+          <button type="button" className="eye-icon" onClick={togglePasswordVisibility}>
             <svg width="16" height="16">
               <use href={showPassword ? icons + '#icon-opend-eye' : icons + '#icon-closed-eye'}></use>
             </svg>
-          </div>
+          </button>
         </div>
         {formik.touched.password && formik.errors.password ? (
           <ErrorMessage>{formik.touched.password && formik.errors.password}</ErrorMessage>
@@ -110,7 +100,7 @@ const SignUpForm = () => {
               border: formik.touched.password && formik.errors.password ? '1px solid var(--btn-color-red)' : '1px solid var(--secondary-color-blue)',
         }}>
           <input
-            type={showRepeatedPassword ? 'text' : 'password'}
+            type={showPassword ? 'text' : 'password'}
             name="repeatPassword"
             placeholder="Repeat password"
             onChange={formik.handleChange}
@@ -120,11 +110,11 @@ const SignUpForm = () => {
               color: formik.touched.repeatPassword && formik.errors.repeatPassword ? 'var(--btn-color-red)' : 'var(--primery-color-blue)',
             }}
           />
-          <div className="eye-icon" onClick={toggleRepeatedPasswordVisibility}>
+          <button type="button" className="eye-icon" onClick={togglePasswordVisibility}>
             <svg width="16" height="16">
-              <use href={showRepeatedPassword ? icons + '#icon-opend-eye' : icons + '#icon-closed-eye'}></use>
+              <use href={showPassword ? icons + '#icon-opend-eye' : icons + '#icon-closed-eye'}></use>
             </svg>
-          </div>
+          </button>
         </div>
         {formik.touched.repeatPassword && formik.errors.repeatPassword ? (
           <ErrorMessage>{formik.errors.repeatPassword}</ErrorMessage>

@@ -147,6 +147,8 @@ export const RightSide = styled.div`
 
   @media screen and (min-width: 1440px) {
     max-width: 494px;
+    height: 268px;
+    margin-top: 34px;
   }
 `;
 
@@ -168,49 +170,56 @@ export const ItemRight = styled.li`
   display: flex;
   gap: 8px;
   align-items: center;
+  padding-left: 16px;
   font-weight: 400;
   font-size: 16px;
   line-height: 1.25;
+
+  position: relative;
+  &::before {
+    position: absolute;
+    left: 0;
+    content: '';
+    display: block;
+    width: 8px;
+    height: 8px;
+    background-color: var(--primery-color-blue);
+    border-radius: 50%;
+  }
+`;
+
+export const HomeWrapper = styled.div`
+  background-image: url(${imgMobile});
+  background-size: cover;
+  background-repeat: no-repeat;
+  /* background-position: top; */
+  height: 100vh;
+
+  @media screen and (min-width: 768px) {
+    background-image: url(${imgTablet});
+  }
+  @media screen and (min-width: 1440px) {
+    background-image: url(${imgDesktop});
+  }
 `;
 
 export const Home = styled.div`
   padding-left: 20px;
   padding-right: 20px;
-  /* padding-bottom: 40px; */
-  /* background-image: url(${imgMobile}); */
-  /* background-size: cover; */
-  /* background-repeat: no-repeat; */
-  /* background-position: bottom; */
+  /* padding-top: 24px; */
+  padding-bottom: 40px;
 
-  @media screen and (min-width: 320px) {
-    /* background-image: url(${imgMobile}); */
-  }
   @media screen and (min-width: 768px) {
-    /* padding-top: 40px; */
-
-    /* background-image: url(${imgTablet}); */
+    padding-top: 40px;
   }
   @media screen and (min-width: 1440px) {
     display: flex;
     gap: 81px;
     justify-content: center;
-    align-items: end;
 
-    /* min-width: 1440px; */
-
-    /* padding-top: 31px; */
-    /* padding-bottom: 294px; */
-
-    /* background-image: url(${imgDesktop}); */
+    padding-top: 31px;
+    padding-bottom: 294px;
   }
-`;
-
-export const Circle = styled.div`
-  width: 8px;
-  height: 8px;
-  clip-path: circle(50%);
-
-  background-color: var(--primery-color-blue);
 `;
 
 export const Svg = styled.svg`
