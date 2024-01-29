@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 // import { saveDataToBackend, getStoredUserData } from './api';
-import { getDailyNorma, updateDailyNorma } from '../Redux/auth/thunk';
+import { getDailyNorma, updateDailyNorma } from '../../redux/auth/thunk';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import '../../index.css';
