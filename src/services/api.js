@@ -30,3 +30,15 @@ export const requestRefreshUser = async () => {
   const { data } = await instance.get('/users/current');
   return data;
 };
+
+// ----------- dailynorma-service -------------------
+
+export const getDailyNormaData = async () => {
+  const { data } = await instance.get('/api/users/getDailyNorma');
+  return data;
+};
+
+export const updateDailyNormaData = async (userData) => {
+  const { data } = await instance.patch('/api/users/updateDailyNorma', userData);
+  return data;
+};
