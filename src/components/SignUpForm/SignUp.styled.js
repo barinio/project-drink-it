@@ -57,8 +57,12 @@ export const SignupForm = styled.form`
       font-size: 16px;
       line-height: 1.2;
     }
-    .eye-icon {
-      cursor: pointer;
+    .eye-icon,
+    .eye-icon:hover,
+    .eye-icon:focus {
+      background-color: transparent;
+      box-shadow: none;
+      padding: 0;
       margin: 0;
     }
     svg {

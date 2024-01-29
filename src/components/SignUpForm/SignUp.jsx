@@ -83,11 +83,11 @@ const SignUpForm = () => {
               color: formik.touched.password && formik.errors.password ? 'var(--btn-color-red)' : 'var(--primery-color-blue)',
             }}
             />
-          <div className="eye-icon" onClick={togglePasswordVisibility}>
+          <button type="button" className="eye-icon" onClick={togglePasswordVisibility}>
             <svg width="16" height="16">
               <use href={showPassword ? icons + '#icon-opend-eye' : icons + '#icon-closed-eye'}></use>
             </svg>
-          </div>
+          </button>
         </div>
         {formik.touched.password && formik.errors.password ? (
           <ErrorMessage>{formik.touched.password && formik.errors.password}</ErrorMessage>
@@ -110,11 +110,11 @@ const SignUpForm = () => {
               color: formik.touched.repeatPassword && formik.errors.repeatPassword ? 'var(--btn-color-red)' : 'var(--primery-color-blue)',
             }}
           />
-          <div className="eye-icon" onClick={togglePasswordVisibility}>
+          <button type="button" className="eye-icon" onClick={togglePasswordVisibility}>
             <svg width="16" height="16">
               <use href={showPassword ? icons + '#icon-opend-eye' : icons + '#icon-closed-eye'}></use>
             </svg>
-          </div>
+          </button>
         </div>
         {formik.touched.repeatPassword && formik.errors.repeatPassword ? (
           <ErrorMessage>{formik.errors.repeatPassword}</ErrorMessage>
