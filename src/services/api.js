@@ -23,11 +23,11 @@ export const requestLogin = async body => {
 };
 
 export const requestLogout = async () => {
-  const { data } = await instance.post('/users/logout');
+  const { data } = await instance.post('/api/users/logout');
   return data;
 };
 export const requestRefreshUser = async () => {
-  const { data } = await instance.get('/users/current');
+  const { data } = await instance.get('/api/users/current');
   return data;
 };
 
