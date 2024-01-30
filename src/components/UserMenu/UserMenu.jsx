@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Button } from '@mui/material';
@@ -52,6 +52,9 @@ const UserMenu = () => {
     setIsOpenSetting(false);
   };
 
+  useEffect(() => {
+    document.body.style.overflow = isOpenSetting ? 'hidden' : '';
+  }, [isOpenSetting]);
   return (
     <>
       {authenticated ? (

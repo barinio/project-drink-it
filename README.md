@@ -1,10 +1,11 @@
 # project-drink-it
 
-Ось наша жива сторіночка:
-[Water Tracker](https://barinio.github.io/project-drink-it/).
+Ось наша жива сторіночка: [Water Tracker](https://barinio.github.io/project-drink-it/).
 
-Backend репозиторій:
-[Water Tracker Backend](https://github.com/barinio/project-drink-it-backend).
+Backend репозиторій: [Water Tracker Backend](https://github.com/barinio/project-drink-it-backend).
+
+Documentation to API Water Tracker:
+[Swagger](https://project-drink-it-backend.onrender.com/api-docs).
 
 Презентація проєкту: [Presentation]()
 

@@ -21,17 +21,22 @@ export const Backdrop = styled.div`
     display: none;
   }
 `;
+export const WrapperModal = styled.div`
+  position: relative;
+  top: 0;
+  width: 100%;
+  min-height: 112%;
+`;
+
 export const Modal = styled.div`
   position: absolute;
   top: 40px;
   left: 50%;
-  width: 280px;
+  min-width: 280px;
   padding: 32px 12px;
   border-radius: 10px;
-
   transform: translate(-50%, 0) scale(1);
   background-color: var(--primery-color-white);
-
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   h3 {
@@ -40,6 +45,11 @@ export const Modal = styled.div`
     font-weight: 500;
     line-height: 1.11;
     margin-bottom: 8px;
+  }
+
+  @media (min-width: 768px) {
+    padding: 32px 24px;
+    min-width: 704px;
   }
 `;
 export const CaptionBlock = styled.div`
@@ -96,16 +106,40 @@ export const PhotoBlock = styled.div`
     stroke: var(--primery-color-blue);
   }
 `;
-export const FormStyle = styled.form`
+export const FormStyle = styled.form``;
+
+export const FormWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 24px;
+  margin-bottom: 24px;
+  & > div {
+    min-width: 392px;
+    width: 392px;
+  }
+  @media (min-width: 768px) {
+    width: 392px;
+  }
+  @media (min-width: 1440px) {
+    flex-direction: row;
+    width: 1008px;
+    align-items: flex-end;
+  }
 `;
 
 export const GenderPart = styled.div`
   & > div {
     display: flex;
     gap: 24px;
+  }
+  margin-bottom: 24px;
+
+  @media (min-width: 1440px) {
+    margin-bottom: 52px;
+
+    h3 {
+      margin-bottom: 12px;
+    }
   }
 `;
 
@@ -140,10 +174,13 @@ export const InputHidden = styled.input`
   }
 `;
 
-export const UserInfoBox = styled.div`
+export const ContainerUserInfo = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 24px;
+`;
 
+export const UserInfoBox = styled.div`
   input {
     padding: 12px 10px;
 
@@ -152,6 +189,11 @@ export const UserInfoBox = styled.div`
     line-height: 1.25;
     font-size: 16px;
     color: var(--primery-color-blue);
+    width: 100%;
+
+    &:is(:focus-visible) {
+      outline: none;
+    }
 
     &::placeholder {
       color: var(--primery-color-blue);
@@ -177,18 +219,7 @@ export const PasswordBox = styled.div`
     line-height: 1.25;
     margin-bottom: 8px;
   }
-  input {
-    padding: 12px 10px;
-    border-radius: 6px;
-    border: 1px solid var(--btn-color-light-blue);
-    line-height: 1.25;
-    font-size: 16px;
-    color: var(--secondary-color-blue);
 
-    &::placeholder {
-      color: var(--secondary-color-blue);
-    }
-  }
   button {
     position: absolute;
     width: 20px;
@@ -212,19 +243,47 @@ export const PasswordInputContainer = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
+  input {
+    padding: 12px 10px;
+    border-radius: 6px;
+    border: 1px solid var(--btn-color-light-blue);
+    line-height: 1.25;
+    font-size: 16px;
+    color: var(--secondary-color-blue);
+    &:is(:focus-visible) {
+      outline: none;
+    }
+    &::placeholder {
+      color: var(--secondary-color-blue);
+    }
+  }
 `;
 
-export const BtnSettingSave = styled.button`
-  display: flex;
-  padding: 8px 30px;
-  justify-content: center;
+export const BtnSettingSave = styled.div`
+  button {
+    width: 100%;
+    padding: 8px 30px;
 
-  border-radius: 10px;
-  background: var(--primery-color-blue);
-  box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
+    border-radius: 10px;
+    background: var(--primery-color-blue);
+    box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
 
-  color: var(--primery-color-white);
-  font-weight: 500;
-  line-height: 1.25;
-  border: none;
+    color: var(--primery-color-white);
+    font-weight: 500;
+    line-height: 1.25;
+    border: none;
+
+    @media (min-width: 768px) {
+      width: 100px;
+      padding: 10px 30px;
+
+      font-size: 18px;
+      line-height: 1.33;
+    }
+  }
+
+  @media (min-width: 768px) {
+    display: flex;
+    justify-content: flex-end;
+  }
 `;
