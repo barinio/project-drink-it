@@ -15,11 +15,14 @@ import {
   ArrowDownSvg,
   SettingSvg,
 } from './UserMenu.styled';
+
 import icons from '../../img/icons.svg';
 import avatar from '../../img/avatar.png';
 
 import { menuStyle } from './menu-style';
+
 import Setting from 'components/Setting/Setting';
+import { LogOut } from 'components/LogOut/LogOut';
 import { logoutThunk } from 'redux/auth/thunk';
 
 const UserMenu = () => {
@@ -27,34 +30,35 @@ const UserMenu = () => {
 
   const authenticated = useSelector(selectAuthAuthenticated);
   const [isOpenSetting, setIsOpenSetting] = useState(false);
+  const [isSureLogOut, setIsSureLogOut] = useState(false);
   const UserName = 'David';
 
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
-  const handleClick = event => {
-    setAnchorEl(event.currentTarget);
-  };
+
+  const handleClick = event => setAnchorEl(event.currentTarget);
 
   const onLogout = () => {
     dispatch(logoutThunk());
+    setIsSureLogOut(false);
   };
 
   const handleClose = e => {
     setAnchorEl(null);
-    if (e.target.classList.contains('logout')) {
-      onLogout();
-      return;
-    }
-    setIsOpenSetting(true);
+
+    if (e.target.classList.contains('setting')) setIsOpenSetting(true);
+    if (e.target.classList.contains('logout')) setIsSureLogOut(true);
   };
 
-  const closeModal = () => {
-    setIsOpenSetting(false);
-  };
+  const onClose = () => setIsSureLogOut(false);
+  const closeModal = () => setIsOpenSetting(false);
 
   useEffect(() => {
-    document.body.style.overflow = isOpenSetting ? 'hidden' : '';
-  }, [isOpenSetting]);
+    document.body.style.overflow = isOpenSetting || isSureLogOut ? 'hidden' : '';
+  }, [isOpenSetting, isSureLogOut]);
+
+  const onBackdrop = e => e.target === e.currentTarget && closeModal();
+
   return (
     <>
       {authenticated ? (
@@ -82,7 +86,6 @@ const UserMenu = () => {
               anchorEl={anchorEl}
               id="account-menu"
               open={open}
-              onClose={handleClose}
               onClick={handleClose}
               sx={menuStyle}
               transformOrigin={{ horizontal: 'right', vertical: 'top' }}
@@ -102,7 +105,8 @@ const UserMenu = () => {
               </MenuItem>
             </Menu>
           </UserContainer>
-          {isOpenSetting && <Setting closeModal={closeModal} />}
+          {isOpenSetting && <Setting closeModal={closeModal} onBackdrop={onBackdrop} />}
+          {isSureLogOut && <LogOut onClose={onClose} onLogout={onLogout} />}
         </>
       ) : (
         <NavLinkSignin to="signin">
