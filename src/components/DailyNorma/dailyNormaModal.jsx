@@ -241,7 +241,7 @@ return (
               onChange={() => handleGenderChange('woman')}
             />
             <label htmlFor="woman">
-              <p className='label-text'>Female</p>
+              <LabelText>Female</LabelText>
             </label>
 
             <input
@@ -252,7 +252,9 @@ return (
               checked={gender === 'man'}
               onChange={() => handleGenderChange('man')}
             />
-            <label htmlFor="man"> <p className='label-text'>Male</p></label>
+            <label htmlFor="man">
+              <LabelText>Male</LabelText>
+            </label>
           </RadioButton>
 
           <label>
