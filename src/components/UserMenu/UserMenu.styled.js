@@ -11,6 +11,15 @@ export const NavLinkSignin = styled(NavLink)`
   }
 `;
 
+export const UserContainer = styled.div`
+  display: flex;
+  align-items: center;
+  line-height: 1.25;
+  span {
+    margin-right: 8px;
+  }
+`;
+
 export const UserSvg = styled.svg`
   fill: none;
   stroke: var(--primery-color-black);

@@ -8,6 +8,7 @@ import MenuItem from '@mui/material/MenuItem';
 import { selectAuthAuthenticated } from 'redux/auth/auth.selectors';
 
 import {
+  UserContainer,
   NavLinkSignin,
   UserSvg,
   Avatar,
@@ -55,7 +56,7 @@ const UserMenu = () => {
     <>
       {authenticated ? (
         <>
-          <NavLinkSignin to="signin">
+          <UserContainer to="signin">
             {UserName}
             <Avatar src={avatar} alt={UserName} width="28" height="28" />
 
@@ -97,7 +98,7 @@ const UserMenu = () => {
                 Log out
               </MenuItem>
             </Menu>
-          </NavLinkSignin>
+          </UserContainer>
           {isOpenSetting && <Setting closeModal={closeModal} />}
         </>
       ) : (

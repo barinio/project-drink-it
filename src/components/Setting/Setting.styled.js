@@ -27,6 +27,7 @@ export const Modal = styled.div`
   left: 50%;
   width: 280px;
   padding: 32px 12px;
+  border-radius: 10px;
 
   transform: translate(-50%, 0) scale(1);
   background-color: var(--primery-color-white);
@@ -58,13 +59,13 @@ export const CaptionBlock = styled.div`
     background: none;
     border: none;
     &:is(:hover, :focus) svg {
-      stroke: var(--primery-color-blue);
+      stroke: var(--primery-color-black);
     }
   }
 
   svg {
     fill: none;
-    stroke: var(--primery-color-black);
+    stroke: var(--primery-color-blue);
   }
 `;
 
@@ -73,6 +74,7 @@ export const PhotoBlock = styled.div`
     display: flex;
     align-items: center;
     gap: 8px;
+    margin-bottom: 24px;
   }
 
   button {
@@ -94,10 +96,135 @@ export const PhotoBlock = styled.div`
     stroke: var(--primery-color-blue);
   }
 `;
-export const FormStyle = styled.form``;
+export const FormStyle = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+`;
 
 export const GenderPart = styled.div`
-  div {
+  & > div {
     display: flex;
+    gap: 24px;
   }
+`;
+
+export const RadioLabel = styled.div`
+  label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    color: var(--primery-color-black);
+    font-size: 16px;
+    line-height: 1.25;
+  }
+`;
+
+export const InputHidden = styled.input`
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+  & + label svg {
+    fill: none;
+  }
+  &:checked + label svg {
+    fill: var(--primery-color-blue);
+  }
+`;
+
+export const UserInfoBox = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  input {
+    padding: 12px 10px;
+
+    border-radius: 6px;
+    border: 1px solid #d7e3ff;
+    line-height: 1.25;
+    font-size: 16px;
+    color: var(--primery-color-blue);
+
+    &::placeholder {
+      color: var(--primery-color-blue);
+    }
+  }
+`;
+
+export const PasswordBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  & > div {
+    display: flex;
+    flex-direction: column;
+  }
+  h3 {
+    margin-bottom: 0;
+  }
+  h4 {
+    color: var(--primery-color-black);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.25;
+    margin-bottom: 8px;
+  }
+  input {
+    padding: 12px 10px;
+    border-radius: 6px;
+    border: 1px solid var(--btn-color-light-blue);
+    line-height: 1.25;
+    font-size: 16px;
+    color: var(--secondary-color-blue);
+
+    &::placeholder {
+      color: var(--secondary-color-blue);
+    }
+  }
+  button {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    right: 10px;
+    top: 12px;
+    background: var(--primery-color-white);
+    text-transform: uppercase;
+    border: none;
+  }
+  svg {
+    fill: none;
+    stroke: var(--primery-color-black);
+    &:is(:hover, :focus, :active) {
+      stroke: var(--primery-color-blue);
+    }
+  }
+`;
+
+export const PasswordInputContainer = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+`;
+
+export const BtnSettingSave = styled.button`
+  display: flex;
+  padding: 8px 30px;
+  justify-content: center;
+
+  border-radius: 10px;
+  background: var(--primery-color-blue);
+  box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
+
+  color: var(--primery-color-white);
+  font-weight: 500;
+  line-height: 1.25;
+  border: none;
 `;
