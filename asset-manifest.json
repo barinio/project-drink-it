@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/project-drink-it/static/css/main.8f996b48.css",
+    "main.css": "/project-drink-it/static/css/main.515c2673.css",
     "main.js": "/project-drink-it/static/js/main.8eeb9847.js",
     "static/js/996.9ffcb788.chunk.js": "/project-drink-it/static/js/996.9ffcb788.chunk.js",
     "static/js/983.d3fbf363.chunk.js": "/project-drink-it/static/js/983.d3fbf363.chunk.js",
@@ -24,7 +24,7 @@
     "static/media/background-img-mobile.png": "/project-drink-it/static/media/background-img-mobile.b32d1893fe8bcf5035c7.png",
     "static/media/bg_main_mobile.svg": "/project-drink-it/static/media/bg_main_mobile.8ed6cf08772205ad6c61678b15992fca.svg",
     "index.html": "/project-drink-it/index.html",
-    "main.8f996b48.css.map": "/project-drink-it/static/css/main.8f996b48.css.map",
+    "main.515c2673.css.map": "/project-drink-it/static/css/main.515c2673.css.map",
     "main.8eeb9847.js.map": "/project-drink-it/static/js/main.8eeb9847.js.map",
     "996.9ffcb788.chunk.js.map": "/project-drink-it/static/js/996.9ffcb788.chunk.js.map",
     "983.d3fbf363.chunk.js.map": "/project-drink-it/static/js/983.d3fbf363.chunk.js.map",
@@ -38,7 +38,7 @@
     "171.6e7e2bc1.chunk.js.map": "/project-drink-it/static/js/171.6e7e2bc1.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.8f996b48.css",
+    "static/css/main.515c2673.css",
     "static/js/main.8eeb9847.js"
   ]
 }
