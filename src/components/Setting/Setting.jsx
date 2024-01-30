@@ -23,7 +23,7 @@ import icons from '../../img/icons.svg';
 import settingAvatar from '../../img/setting-avatar.png';
 import { useEffect, useState } from 'react';
 
-const Setting = ({ closeModal }) => {
+const Setting = ({ closeModal, onBackdrop }) => {
   const [isChecked, setIsChecked] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
@@ -44,13 +44,10 @@ const Setting = ({ closeModal }) => {
     validationSchema: validationSchema,
   });
 
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
-  };
+  const togglePasswordVisibility = () => setShowPassword(!showPassword);
 
   useEffect(() => {
     const onEsc = e => e.key === 'Escape' && closeModal();
-
     window.addEventListener('keydown', onEsc);
     return () => window.removeEventListener('keydown', onEsc);
   }, [closeModal]);
@@ -58,7 +55,7 @@ const Setting = ({ closeModal }) => {
   return (
     <>
       <Backdrop className="backdrop">
-        <WrapperModal>
+        <WrapperModal onClick={onBackdrop}>
           <Modal>
             <CaptionBlock>
               <h2>Setting</h2>
