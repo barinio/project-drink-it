@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import mobileImg from '../../img/1.svg';
-import tabletImg from '../../img/2.svg';
-import desktopImg from '../../img/3.svg';
+import mobileImg from '../../img/background-img-mobile.svg';
+import tabletImg from '../../img/background-img-tablet.svg';
+import desktopImg from '../../img/background-img-desktop.svg';
 export const SectionWrapper = styled.section`
   @media screen and (max-width: 767px) {
     position: fixed;

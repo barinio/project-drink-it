@@ -269,7 +269,7 @@ export const FormStyle = styled.form`
   @media screen and (min-width: 1200px) {
     min-width: 384px;
     margin-top: 140px;
-    margin-right: 112px;
+
     input {
       width: 334px;
     }
