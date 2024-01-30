@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 export const SignupPage = styled.div`
   @media screen and (min-width: 320px) {
-    max-width: 280px;
+    max-width: 320px;
     height: 600px;
     padding: 0 20px;
     margin: 0 auto;
   }
   @media screen and (min-width: 768px) {
-    max-width: 336px;
+    max-width: 768px;
     margin: 0;
     padding: 0 0 0 32px;
   }
