@@ -7,7 +7,7 @@ export const HeaderSection = styled.header`
     margin-bottom: 40px;
   }
   @media (min-width: 1440px) {
-    margin-bottom: 80px;
+    margin-bottom: 40px;
   }
 `;
 
