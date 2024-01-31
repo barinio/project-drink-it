@@ -41,4 +41,4 @@ const dailyNormaSlice = createSlice({
   },
 });
 
-export const dailiNormaReducer = dailyNormaSlice.reducer;
+export const dailyNormaReducer = dailyNormaSlice.reducer;
