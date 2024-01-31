@@ -30,6 +30,10 @@ export const TodayTitle = styled.h2`
   }
 `;
 
+export const Forget = styled.p`
+  color: var(--secondary-color-blue);
+`;
+
 export const TodayList = styled.ul`
   height: 212px;
   overflow: auto;

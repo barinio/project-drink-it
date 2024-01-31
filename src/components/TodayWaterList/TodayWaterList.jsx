@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectTodayWater } from 'redux/waterDetails/waterSelectors';
+import { selectIsLoading, selectTodayWater } from 'redux/waterDetails/waterSelectors';
 import { DeleteWaterModal } from '../DeleteWaterModal/DeleteWaterModal';
 import { TodayListModal } from '../TodayListModal/TodayListModal';
 import icons from '../../img/icons.svg';
@@ -18,8 +18,10 @@ import {
   TodayTools,
   TodayVolume,
   TodayWrapper,
+  Forget,
 } from './TodayWaterList.styled';
 import { formatTime } from 'redux/waterDetails/helpers';
+import Loader from 'components/Loader/Loader';
 
 const iconsList = {
   edit: `${icons}#icon-edit`,
@@ -34,6 +36,7 @@ export const TodayWaterList = () => {
   const [selectedWaterItem, setSelectedWaterItem] = useState(null);
   const [isDeleteWaterModalOpen, setDeleteWaterModalOpen] = useState(false);
   const { dailyWaterList } = useSelector(selectTodayWater);
+  const isLoading = useSelector(selectIsLoading);
 
   useEffect(() => {
     dispatch(getTodayWater());
@@ -57,31 +60,39 @@ export const TodayWaterList = () => {
   return (
     <TodayWrapper>
       <TodayTitle>Today</TodayTitle>
-      <TodayList>
-        {dailyWaterList?.map(item => (
-          <TodayItem key={item._id}>
-            <TodayInfo>
-              <IconGlass>
-                <use href={iconsList.glass}></use>
-              </IconGlass>
-              <TodayVolume>{item.waterVolume} ml</TodayVolume>
-              <TodayTime>{formatTime(item.date)}</TodayTime>
-            </TodayInfo>
-            <TodayTools>
-              <ButtonChange onClick={() => openModalToEdit(item)}>
-                <svg>
-                  <use href={iconsList.edit}></use>
-                </svg>
-              </ButtonChange>
-              <ButtonDelete onClick={() => openModalToDelete(item)}>
-                <svg>
-                  <use href={iconsList.delete}></use>
-                </svg>
-              </ButtonDelete>
-            </TodayTools>
-          </TodayItem>
-        ))}
-      </TodayList>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <TodayList>
+          {dailyWaterList?.length < 0 || dailyWaterList === undefined ? (
+            <Forget>You haven't drunk water yet. Don't forget to meet your daily norma! </Forget>
+          ) : (
+            dailyWaterList?.map(item => (
+              <TodayItem key={item.id}>
+                <TodayInfo>
+                  <IconGlass>
+                    <use href={iconsList.glass}></use>
+                  </IconGlass>
+                  <TodayVolume>{item.waterVolume} ml</TodayVolume>
+                  <TodayTime>{formatTime(item.time)}</TodayTime>
+                </TodayInfo>
+                <TodayTools>
+                  <ButtonChange onClick={() => openModalToEdit(item)}>
+                    <svg>
+                      <use href={iconsList.edit}></use>
+                    </svg>
+                  </ButtonChange>
+                  <ButtonDelete onClick={() => openModalToDelete(item)}>
+                    <svg>
+                      <use href={iconsList.delete}></use>
+                    </svg>
+                  </ButtonDelete>
+                </TodayTools>
+              </TodayItem>
+            ))
+          )}
+        </TodayList>
+      )}
       <AddWaterBtn onClick={openModalToAdd}>
         <svg>
           <use href={iconsList.add}></use>
@@ -91,15 +102,15 @@ export const TodayWaterList = () => {
       {isDeleteWaterModalOpen && (
         <DeleteWaterModal
           onClose={() => setDeleteWaterModalOpen(false)}
-          recordId={selectedWaterItem?._id}
+          recordId={selectedWaterItem?.id}
         />
       )}
       {isModalOpen && (
         <TodayListModal
           initialAmount={selectedWaterItem?.waterVolume}
-          initialTime={selectedWaterItem?.date}
+          initialTime={selectedWaterItem?.time}
           isEditing={selectedWaterItem !== null}
-          existingRecordId={selectedWaterItem?._id}
+          existingRecordId={selectedWaterItem?.id}
           onClose={() => setIsModalOpen(false)}
         />
       )}

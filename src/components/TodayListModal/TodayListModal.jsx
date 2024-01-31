@@ -23,11 +23,7 @@ import {
   FooterModal,
   AddButtonSave,
 } from './TodayListModal.styled';
-import {
-  IconGlass,
-  TodayTime,
-  TodayVolume,
-} from '../TodayWaterList/TodayWaterList.styled';
+import { IconGlass, TodayTime, TodayVolume } from '../TodayWaterList/TodayWaterList.styled';
 import icons from '../../img/icons.svg';
 import { addWatersThunk, editWaterThunk } from 'redux/waterDetails/waterThunk';
 
@@ -39,10 +35,8 @@ export const TodayListModal = ({
   existingRecordId,
 }) => {
   const [amount, setAmount] = useState(initialAmount || 0);
-  const [time, setTime] = useState(
-    isEditing && initialTime
-      ? format(new Date(initialTime), 'HH:mm')
-      : format(new Date(), 'HH:mm')
+  const [times, setTime] = useState(
+    isEditing && initialTime ? format(new Date(initialTime), 'HH:mm') : format(new Date(), 'HH:mm')
   );
   const dispatch = useDispatch();
 
@@ -64,8 +58,7 @@ export const TodayListModal = ({
     setAmount(prevAmount => prevAmount + 50);
   };
 
-  const decreaseAmount = () =>
-    setAmount(prevAmount => (prevAmount > 0 ? prevAmount - 50 : 0));
+  const decreaseAmount = () => setAmount(prevAmount => (prevAmount > 0 ? prevAmount - 50 : 0));
 
   const handleAmountChange = e => {
     let newValue = e.target.value;
@@ -96,15 +89,15 @@ export const TodayListModal = ({
       isoDate = initialTime
         ? new Date(initialTime).toISOString().slice(0, 16)
         : new Date().toISOString();
-    } else if (time) {
+    } else if (times) {
       // Якщо створюємо новий запис і час вибрано користувачем
       const currentDate = new Date();
-      const [hours, minutes] = time.split(':');
-      console.log('time: 1-й if', time);
+      const [hours, minutes] = times.split(':');
+      // console.log('time: 1-й if', times);
       currentDate.setHours(hours, minutes);
-      console.log(currentDate);
+      // console.log(currentDate);
       isoDate = currentDate.toISOString().slice(0, 16);
-      console.log('Наявна дата: 1-й if', isoDate);
+      // console.log('Наявна дата: 1-й if', isoDate);
 
       const currentDate2 = new Date(isoDate);
 
@@ -122,23 +115,21 @@ export const TodayListModal = ({
         ('0' + newDate.getHours()).slice(-2) +
         ':' +
         ('0' + newDate.getMinutes()).slice(-2);
-      console.log('Наявна дата', isoDate);
-      console.log('Нова дата', formattedNewDate);
+      // console.log('Наявна дата', isoDate);
+      // console.log('Нова дата', formattedNewDate);
       isoDate = formattedNewDate;
     }
 
     const waterData = {
       waterVolume: amount,
-      date: isoDate,
+      time: isoDate,
     };
     console.log(waterData);
 
     if (isEditing) {
-      dispatch(editWaterThunk({ _id: existingRecordId, ...waterData })).then(
-        data => {
-          if (!data.error) onClose();
-        }
-      );
+      dispatch(editWaterThunk({ _id: existingRecordId, ...waterData })).then(data => {
+        if (!data.error) onClose();
+      });
     } else {
       dispatch(addWatersThunk(waterData)).then(data => {
         if (!data.error) {
@@ -182,9 +173,7 @@ export const TodayListModal = ({
                 <IconGlass>
                   <use href={`${icons}#icon-glass`}></use>
                 </IconGlass>
-                <TodayVolume>
-                  {initialAmount ? `${initialAmount} ml` : 'No notes yet'}
-                </TodayVolume>
+                <TodayVolume>{initialAmount ? `${initialAmount} ml` : 'No notes yet'}</TodayVolume>
                 <TodayTime>{initialTime ? `${displayTime}` : ''}</TodayTime>
               </PreviousInfo>
             )}
@@ -211,7 +200,7 @@ export const TodayListModal = ({
               <AddParagraph>Recording time:</AddParagraph>
               <InputTime
                 type="time"
-                value={time}
+                value={times}
                 onChange={e => setTime(e.target.value)}
                 step="300"
               />
@@ -222,9 +211,7 @@ export const TodayListModal = ({
                 type="number"
                 value={Number.isNaN(amount) ? '0' : `${amount}`}
                 onChange={handleAmountChange}
-                onBlur={() =>
-                  setAmount(prevAmount => prevAmount || initialAmount || 0)
-                }
+                onBlur={() => setAmount(prevAmount => prevAmount || initialAmount || 0)}
               />
             </div>
             <FooterModal>
