@@ -117,7 +117,7 @@ export const SignupForm = styled.form`
 
   @media screen and (min-width: 1200px) {
     min-width: 384px;
-    margin: 140px 112px 0 0;
+    margin: 140px 0 0 0;
     input {
       width: 338px;
     }
