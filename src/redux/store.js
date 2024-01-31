@@ -13,6 +13,7 @@ import {
 
 import storage from 'redux-persist/lib/storage';
 import { waterReducer } from './waterDetails/waterSlice';
+import { dailyNormaReducer } from './dailyNorma/dailyNormaSlice';
 
 const authConfig = {
   key: 'auth',
@@ -22,6 +23,7 @@ const authConfig = {
 const rootReducer = combineReducers({
   auth: persistReducer(authConfig, authReducer),
   waterDetails: waterReducer,
+  dailyNorma: dailyNormaReducer,
 });
 export const store = configureStore({
   reducer: rootReducer,
