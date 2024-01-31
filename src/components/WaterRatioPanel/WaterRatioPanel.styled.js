@@ -6,7 +6,6 @@ export const WaterRatioPanelContainer = styled.div`
   justify-content: center;
   flex-direction: column;
   gap: 8px;
-  margin-bottom: 40px;
 
   @media screen and (min-width: 768px} {
     width: 704px;
