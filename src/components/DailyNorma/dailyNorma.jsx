@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Modal from './dailyNormaModal';
-import { getDailyNorma } from '../../redux/auth/thunk';
+import { getDailyNorma } from '../../redux/dailyNorma/dailyNormaThunk';
 import { useDispatch } from 'react-redux';
 import {
   DailyNormaBox,
