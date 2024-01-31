@@ -12,6 +12,7 @@ export const getTodayWater = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const water = await fetchTodayWater();
+      console.log(water);
       return water;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -23,6 +24,7 @@ export const addWatersThunk = createAsyncThunk(
   async (newWater, { rejectWithValue }) => {
     try {
       const data = await addWaters(newWater);
+      console.log(data);
       return data;
     } catch (error) {
       switch (error.response.status) {
