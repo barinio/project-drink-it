@@ -1,18 +1,24 @@
 import MounthStatsTable from 'components/MonthStatsTable/MonthStatsTable';
-import { Section } from 'components/Section/Section';
+
 import { TodayWaterList } from 'components/TodayWaterList/TodayWaterList';
 import { WaterRatioPanel } from 'components/WaterRatioPanel/WaterRatioPanel';
 import { DailyNorma } from 'components/DailyNorma/dailyNorma';
+import { BottleImg, ContentWrapper, HomePageSection } from './HomePage.styled';
 
 const HomePage = () => {
   return (
     <>
-      <Section title="Water Tracker">
-        <DailyNorma />
-        <WaterRatioPanel />
-        <TodayWaterList />
-        <MounthStatsTable />
-      </Section>
+      <HomePageSection>
+        <ContentWrapper>
+          <DailyNorma />
+          <BottleImg />
+          <WaterRatioPanel />
+        </ContentWrapper>
+        <ContentWrapper className="right-panel">
+          <TodayWaterList />
+          <MounthStatsTable />
+        </ContentWrapper>
+      </HomePageSection>
     </>
   );
 };

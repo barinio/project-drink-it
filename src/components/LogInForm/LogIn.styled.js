@@ -84,6 +84,11 @@ export const FormStyle = styled.form`
     button:active {
       box-shadow: none;
     }
+    .icon-wrapper,
+    .icon-wrapper:hover,
+    .icon-wrapper:focus {
+      box-shadow: none;
+    }
     a {
       color: var(--primery-color-blue);
       text-decoration: none;
@@ -198,6 +203,11 @@ export const FormStyle = styled.form`
     button:active {
       box-shadow: none;
     }
+    .icon-wrapper,
+    .icon-wrapper:hover,
+    .icon-wrapper:focus {
+      box-shadow: none;
+    }
     a {
       color: var(--primery-color-blue);
       text-decoration: none;
@@ -250,13 +260,23 @@ export const FormStyle = styled.form`
       color: var(--primery-color-white);
       margin-bottom: 16px;
     }
+    .icon-wrapper,
+    .icon-wrapper:hover,
+    .icon-wrapper:focus {
+      box-shadow: none;
+    }
   }
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1200px) {
     min-width: 384px;
     margin-top: 140px;
-    margin-right: 112px;
+
     input {
       width: 334px;
+    }
+    .icon-wrapper,
+    .icon-wrapper:hover,
+    .icon-wrapper:focus {
+      box-shadow: none;
     }
   }
 `;

@@ -325,25 +325,25 @@ export const DailyNormaBox = styled.div`
   box-shadow: 0 4px 8px 0 rgba(158, 187, 255, 0.12);
 
   @media screen and (max-width: 319px) {
-    position: absolute;
+    position: fixed;
     left: 20px;
     top: 80px;
   } 
 
   @media screen and (min-width: 320px) {
-    position: absolute;
+    position: fixed;
     left: 20px;
     top: 80px;
   }
 
   @media screen and (min-width: 768px) {
-    position: absolute;
+    position: fixed;
     left: 32px;
     top: 104px;
   }
 
   @media screen and (min-width: 1440px) {
-    position: absolute;
+    position: fixed;
     left: 112px;
     top: 112px;
   }

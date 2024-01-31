@@ -1,8 +1,16 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-// import { Button } from '@mui/material';
 
 export const NavLinkSignin = styled(NavLink)`
+  display: flex;
+  align-items: center;
+  line-height: 1.25;
+  span {
+    margin-right: 8px;
+  }
+`;
+
+export const UserContainer = styled.div`
   display: flex;
   align-items: center;
   line-height: 1.25;
