@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import imgMobile from '../img/bg_main_mobile.svg';
 import imgTablet from '../img/bg_main_tablet.svg';
 import imgDesktop from '../img/bg_main_desktop_group.svg';
+// import botleDesktop from '../img/botle_welcome_desktop.svg';
 
 export const LeftSide = styled.div`
   @media screen and (max-width: 767px) {
@@ -147,7 +148,7 @@ export const RightSide = styled.div`
 
   @media screen and (min-width: 1440px) {
     max-width: 494px;
-    height: 268px;
+    height: 332px;
     margin-top: 34px;
   }
 `;
@@ -192,14 +193,37 @@ export const HomeWrapper = styled.div`
   background-image: url(${imgMobile});
   background-size: cover;
   background-repeat: no-repeat;
-  /* background-position: top; */
-  height: 100vh;
+  background-position: center;
+  /* height: 100vh; */
+
+  @media screen and (min-width: 480px) {
+    background-image: url(${imgMobile});
+    /* background-position: bottom; */
+  }
 
   @media screen and (min-width: 768px) {
+    /* background-size: contain; */
+    background-position: bottom;
     background-image: url(${imgTablet});
   }
+
+  @media screen and (min-width: 769px) and (max-width: 1439px) {
+    background-size: cover;
+    background-image: url(${imgTablet});
+
+    height: 100vh;
+  }
+
   @media screen and (min-width: 1440px) {
     background-image: url(${imgDesktop});
+    background-size: contain;
+
+    /* height: 100vh; */
+  }
+  @media screen and (min-width: 1441px) {
+    background-size: cover;
+
+    height: 100vh;
   }
 `;
 
@@ -210,7 +234,9 @@ export const Home = styled.div`
   padding-bottom: 40px;
 
   @media screen and (min-width: 768px) {
-    padding-top: 40px;
+    padding-left: 32px;
+    padding-right: 32px;
+    padding-top: 50px;
   }
   @media screen and (min-width: 1440px) {
     display: flex;

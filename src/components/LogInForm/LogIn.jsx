@@ -13,9 +13,7 @@ const LogInForm = () => {
   const dispatch = useDispatch();
 
   const validationSchema = Yup.object({
-    email: Yup.string()
-      .required('Email is required')
-      .email('Invalid email address'),
+    email: Yup.string().required('Email is required').email('Invalid email address'),
     password: Yup.string()
       .min(8, 'Password must be at least 8 characters')
       .max(64, 'Password is too long')
@@ -28,7 +26,7 @@ const LogInForm = () => {
       password: '',
     },
     onSubmit: (values, { resetForm }) => {
-      console.log('onSubmit', values);
+      // console.log('onSubmit', values);
       dispatch(loginThunk(values));
       resetForm();
     },
@@ -41,10 +39,7 @@ const LogInForm = () => {
         <label>Enter your email</label>
         <div
           style={{
-            borderColor:
-              formik.errors.email && formik.touched.email
-                ? '#ef5050'
-                : '#9ebbff',
+            borderColor: formik.errors.email && formik.touched.email ? '#ef5050' : '#9ebbff',
             marginBottom: 4,
             color: '#ef5050',
           }}
@@ -57,25 +52,17 @@ const LogInForm = () => {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             style={{
-              color:
-                formik.errors.email && formik.touched.email
-                  ? '#ef5050'
-                  : '#407bff',
+              color: formik.errors.email && formik.touched.email ? '#ef5050' : '#407bff',
             }}
           />
         </div>
-        <span>
-          {formik.errors.email && formik.touched.email && formik.errors.email}
-        </span>
+        <span>{formik.errors.email && formik.touched.email && formik.errors.email}</span>
       </div>
       <div className="inputWrapper">
         <label>Enter your password</label>
         <div
           style={{
-            borderColor:
-              formik.errors.password && formik.touched.password
-                ? '#ef5050'
-                : '#9ebbff',
+            borderColor: formik.errors.password && formik.touched.password ? '#ef5050' : '#9ebbff',
             marginBottom: 4,
             color: '#ef5050',
           }}
@@ -88,29 +75,16 @@ const LogInForm = () => {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             style={{
-              color:
-                formik.errors.password && formik.touched.password
-                  ? '#ef5050'
-                  : '#407bff',
+              color: formik.errors.password && formik.touched.password ? '#ef5050' : '#407bff',
             }}
           />
           <button className="icon-wrapper" onClick={() => setVisible(!visible)}>
             <svg width="16" height="16">
-              <use
-                href={
-                  visible
-                    ? icons + '#icon-opend-eye'
-                    : icons + '#icon-closed-eye'
-                }
-              ></use>
+              <use href={visible ? icons + '#icon-opend-eye' : icons + '#icon-closed-eye'}></use>
             </svg>
           </button>
         </div>
-        <span>
-          {formik.errors.password &&
-            formik.touched.password &&
-            formik.errors.password}
-        </span>
+        <span>{formik.errors.password && formik.touched.password && formik.errors.password}</span>
       </div>
       <button type="submit">Sign In</button>
       <NavLink to="/signup">Sign up</NavLink>

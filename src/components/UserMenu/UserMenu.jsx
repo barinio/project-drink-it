@@ -31,9 +31,9 @@ const UserMenu = () => {
   const authenticated = useSelector(selectAuthAuthenticated);
 
   const user = useSelector(selectAuthUserData);
-  const UserName = user.email?.split('@')[0];
+  console.log('user:', user);
+  const UserName = user.userName;
   const avatarURL = user.avatarURL || avatar;
-  console.log('avatarURL:', avatarURL);
 
   const [isOpenSetting, setIsOpenSetting] = useState(false);
   const [isSureLogOut, setIsSureLogOut] = useState(false);
