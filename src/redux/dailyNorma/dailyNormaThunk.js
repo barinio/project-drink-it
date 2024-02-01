@@ -3,7 +3,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { getDailyNormaData, updateDailyNormaData } from 'services/api';
 
 export const getDailyNorma = createAsyncThunk(
-  'dailyNorma/getDailyNorma',
+  'auth/getDailyNorma',
   async (_, thunkAPI) => {
     try {
       const data = await getDailyNormaData();
@@ -15,7 +15,7 @@ export const getDailyNorma = createAsyncThunk(
 );
 
 export const updateDailyNorma = createAsyncThunk(
-  'dailyNorma/updateDailyNorma',
+  'auth/updateDailyNorma',
   async (userData, thunkAPI) => {
     try {
       await updateDailyNormaData(userData);
