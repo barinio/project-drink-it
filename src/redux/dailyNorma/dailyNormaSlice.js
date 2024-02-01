@@ -56,7 +56,7 @@
 
 // dailyNormaSlice.js
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
-import { getDailyNormaThunk, updateDailyNormaThunk } from './dailyNormaThunk';
+import { getDailyNorma, updateDailyNorma } from './dailyNormaThunk';
 
 const initialState = {
   gender: 0,
@@ -75,8 +75,8 @@ const dailyNormaSlice = createSlice({
     builder
       .addMatcher(
         isAnyOf(
-          getDailyNormaThunk.pending,
-          updateDailyNormaThunk.pending
+          getDailyNorma.pending,
+          updateDailyNorma.pending
         ),
         state => {
           state.isLoading = true;
@@ -84,8 +84,8 @@ const dailyNormaSlice = createSlice({
       )
       .addMatcher(
         isAnyOf(
-          getDailyNormaThunk.fulfilled,
-          updateDailyNormaThunk.fulfilled
+          getDailyNorma.fulfilled,
+          updateDailyNorma.fulfilled
         ),
         (state, { payload }) => {
           state.isLoading = false;
@@ -94,8 +94,8 @@ const dailyNormaSlice = createSlice({
       )
       .addMatcher(
         isAnyOf(
-          getDailyNormaThunk.rejected,
-          updateDailyNormaThunk.rejected
+          getDailyNorma.rejected,
+          updateDailyNorma.rejected
         ),
         state => {
           state.isLoading = false;
