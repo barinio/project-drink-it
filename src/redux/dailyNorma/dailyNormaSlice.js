@@ -30,10 +30,20 @@ const dailyNormaSlice = createSlice({
         state.loading = true;
         state.error = null;
       })
+      // .addCase(updateDailyNorma.fulfilled, (state, action) => {
+      //   state.loading = false;
+      //   state.data = action.payload;
+      //   //
+      // })
       .addCase(updateDailyNorma.fulfilled, (state, action) => {
         state.loading = false;
-        state.data = action.payload;
-        //
+        const updatedData = action.payload;
+        // Update the relevant state properties
+        state.weight = updatedData.weight;
+        state.gender = updatedData.gender;
+        state.activityTime = updatedData.activityTime;
+        state.willDrink = updatedData.willDrink;
+        state.dailyNorma = updatedData.dailyNorma;
       })
       .addCase(updateDailyNorma.rejected, (state, action) => {
         state.loading = false;
