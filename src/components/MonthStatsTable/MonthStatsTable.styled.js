@@ -1,14 +1,15 @@
 import styled from 'styled-components';
 
 export const CalendarStyle = styled.div`
-  background-color: var(--bg-color-light-blue);
   @media screen and (min-width: 320px) {
     .header {
       display: flex;
       justify-content: space-between;
       padding-bottom: 16px;
     }
+
     .sectionText {
+      color: var(--primery-color-black);
       font-size: 24px;
       font-style: normal;
       font-weight: 500;
@@ -65,7 +66,7 @@ export const CalendarStyle = styled.div`
       line-height: 20px;
     }
 
-    .border-complete {
+    .border {
       border: 1px solid var(--calendar-color-orange);
     }
   }
@@ -73,7 +74,7 @@ export const CalendarStyle = styled.div`
   @media screen and (min-width: 768px) {
     .month {
       grid-template-columns: repeat(10, 1fr);
-      grid-template-rows: repeat(4, 0.5fr);
+      grid-template-rows: repeat(4, 1fr);
     }
     .sectionText {
       font-size: 26px;
@@ -81,6 +82,55 @@ export const CalendarStyle = styled.div`
       font-weight: 500;
       line-height: 32px;
     }
+  }
+
+  @media screen and (min-width: 1440px) {
+  }
+`;
+
+export const ContentPopover = styled.div`
+  @media screen and (min-width: 320px) {
+    position: relative;
+    display: inline-flex;
+    padding: 24px 13px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+
+    .closeBtnPopover {
+      position: absolute;
+      top: 26px;
+      right: 13px;
+      border: none;
+      background-color: transparent;
+      display: flex;
+      justify-content: center;
+    }
+    .datePopover {
+      color: var(--primery-color-blue);
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 20px;
+    }
+    .datePopoverText {
+      color: var(--primery-color-black);
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 20px;
+    }
+    .popoverColorText {
+      color: var(--primery-color-blue);
+      font-size: 18px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 24px;
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    padding: 24px 16px;
   }
 
   @media screen and (min-width: 1440px) {
