@@ -31,7 +31,7 @@ const UserMenu = () => {
   const authenticated = useSelector(selectAuthAuthenticated);
 
   const user = useSelector(selectAuthUserData);
-  console.log('user:', user);
+  // console.log('user:', user);
   const UserName = user.userName;
   const avatarURL = user.avatarURL || avatar;
 
