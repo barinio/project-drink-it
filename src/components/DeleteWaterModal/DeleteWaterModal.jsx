@@ -1,4 +1,4 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { deleteWaterThunk } from 'redux/waterDetails/waterThunk';
 import {
   BoxModal,
@@ -14,12 +14,14 @@ import {
   CloseButton,
   CloseIcon,
 } from 'components/TodayListModal/TodayListModal.styled';
+import { selectOwnerId } from 'redux/waterDetails/waterSelectors';
 
 export const DeleteWaterModal = ({ onClose, recordId }) => {
   const dispatch = useDispatch();
+  const ownerId = useSelector(selectOwnerId);
 
   const handleDelete = () => {
-    dispatch(deleteWaterThunk(recordId)).then(data => {
+    dispatch(deleteWaterThunk({ id: recordId, _id: ownerId })).then(data => {
       if (!data.error) onClose();
     });
   };

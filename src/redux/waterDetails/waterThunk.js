@@ -1,24 +1,15 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import {
-  fetchTodayWater,
-  addWaters,
-  editWater,
-  deleteWater,
-} from 'services/api';
-import { toast } from 'react-toastify';
+import { fetchTodayWater, addWaters, editWater, deleteWater } from 'services/api';
 
-export const getTodayWater = createAsyncThunk(
-  'water/getTodayWater',
-  async (_, thunkAPI) => {
-    try {
-      const water = await fetchTodayWater();
-      console.log(water);
-      return water;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
+export const getTodayWater = createAsyncThunk('water/getTodayWater', async (_, thunkAPI) => {
+  try {
+    const water = await fetchTodayWater();
+    console.log(water);
+    return water;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.message);
   }
-);
+});
 export const addWatersThunk = createAsyncThunk(
   'water/addWater',
   async (newWater, { rejectWithValue }) => {
@@ -27,31 +18,19 @@ export const addWatersThunk = createAsyncThunk(
       console.log(data);
       return data;
     } catch (error) {
-      switch (error.response.status) {
-        case 409:
-          toast.error(`You can't add water at the same time twice`);
-          return rejectWithValue(error.message);
-        case 400:
-          toast.warning(`You must write at least 1 ml.`);
-          return rejectWithValue(error.message);
-        default:
-          return rejectWithValue(error.message);
-      }
+      return rejectWithValue(error.message);
     }
   }
 );
 
 export const editWaterThunk = createAsyncThunk(
   'water/editWater',
-  async ({ _id, waterVolume, date }, { rejectWithValue }) => {
+  async ({ _id, waterVolume, time, id }, { rejectWithValue }) => {
     try {
-      const newWaterUser = { waterVolume, date };
-      const response = await editWater({ newWaterUser, id: _id });
+      const newWater = { waterVolume, time };
+      const response = await editWater({ newWater, id, _id });
       return response;
     } catch (error) {
-      if (error.response.status === 400) {
-        toast.warning(`You must write at least 1 ml.`);
-      }
       return rejectWithValue(error.message);
     }
   }
@@ -59,9 +38,9 @@ export const editWaterThunk = createAsyncThunk(
 
 export const deleteWaterThunk = createAsyncThunk(
   'water/deleteWater',
-  async (id, { rejectWithValue }) => {
+  async ({ id, _id }, { rejectWithValue }) => {
     try {
-      deleteWater(id);
+      deleteWater({ id, _id });
       return id;
     } catch (error) {
       return rejectWithValue(error.message);

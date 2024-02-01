@@ -1,6 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectIsLoading, selectTodayWater } from 'redux/waterDetails/waterSelectors';
+import {
+  selectIsLoading,
+  selectOwnerId,
+  selectTodayWater,
+} from 'redux/waterDetails/waterSelectors';
 import { DeleteWaterModal } from '../DeleteWaterModal/DeleteWaterModal';
 import { TodayListModal } from '../TodayListModal/TodayListModal';
 import icons from '../../img/icons.svg';
@@ -37,6 +41,7 @@ export const TodayWaterList = () => {
   const [isDeleteWaterModalOpen, setDeleteWaterModalOpen] = useState(false);
   const { dailyWaterList } = useSelector(selectTodayWater);
   const isLoading = useSelector(selectIsLoading);
+  const ownerId = useSelector(selectOwnerId);
 
   useEffect(() => {
     dispatch(getTodayWater());
@@ -64,7 +69,9 @@ export const TodayWaterList = () => {
         <Loader />
       ) : (
         <TodayList>
-          {dailyWaterList?.length < 0 || dailyWaterList === undefined ? (
+          {dailyWaterList?.length < 0 ||
+          dailyWaterList === undefined ||
+          Number.isNaN(dailyWaterList) ? (
             <Forget>You haven't drunk water yet. Don't forget to meet your daily norma! </Forget>
           ) : (
             dailyWaterList?.map(item => (
@@ -112,6 +119,7 @@ export const TodayWaterList = () => {
           isEditing={selectedWaterItem !== null}
           existingRecordId={selectedWaterItem?.id}
           onClose={() => setIsModalOpen(false)}
+          ownerId={ownerId}
         />
       )}
     </TodayWrapper>

@@ -33,6 +33,7 @@ export const TodayListModal = ({
   initialAmount,
   initialTime,
   existingRecordId,
+  ownerId,
 }) => {
   const [amount, setAmount] = useState(initialAmount || 0);
   const [times, setTime] = useState(
@@ -127,7 +128,7 @@ export const TodayListModal = ({
     console.log(waterData);
 
     if (isEditing) {
-      dispatch(editWaterThunk({ _id: existingRecordId, ...waterData })).then(data => {
+      dispatch(editWaterThunk({ _id: ownerId, id: existingRecordId, ...waterData })).then(data => {
         if (!data.error) onClose();
       });
     } else {

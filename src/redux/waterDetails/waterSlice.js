@@ -9,36 +9,32 @@ const initialState = {
         id: 55555555555,
         waterVolume: 200,
         time: '2024-01-29T09:30',
-        owner: 555,
       },
       {
         id: 55555555535,
         waterVolume: 500,
         time: '2024-01-29T09:30',
-        owner: 555,
       },
       {
         id: 55555585535,
         waterVolume: 500,
         time: '2024-01-29T09:30',
-        owner: 555,
       },
       {
         id: 55554555535,
         waterVolume: 500,
         time: '2024-01-29T09:30',
-        owner: 555,
       },
       {
         id: 55555595535,
         waterVolume: 500,
         time: '2024-01-29T09:30',
-        owner: 555,
       },
     ],
-    dailyNorm: 1500,
-    waterRate: 70,
   },
+  dailyDrank: 1500,
+  waterRate: 70,
+  ownerId: 0,
   isLoading: false,
 };
 
@@ -48,29 +44,28 @@ const waterSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(getTodayWater.fulfilled, (state, { payload }) => {
-        state.today.dailyWaterList = payload.dailyWaterList;
-        state.today.dailyNorm = payload.dailyNorma;
+        state.today.dailyWaterList = payload.waterlist;
+        state.dailyDrank = payload.drankWater;
+        state.ownerId = payload._id;
         // state.today.waterRate = payload.waterRate;
       })
       .addCase(addWatersThunk.fulfilled, (state, { payload }) => {
-        state.today.dailyWaterList.push(payload.waterList);
-        state.today.dailyNorm += payload.drankWater;
+        state.today.dailyWaterList.push(payload.waterlist);
+        state.dailyDrank += payload.waterVolume;
         console.log(payload);
       })
       .addCase(editWaterThunk.fulfilled, (state, { payload }) => {
         const array = state.today.dailyWaterList;
-        const idx = array.findIndex(item => item._id === payload._id);
+        const idx = array.findIndex(item => item.id === payload.id);
         if (idx !== -1) {
           array[idx] = payload;
         }
-        state.today.dailyNorm = array.reduce((acc, item) => acc + item.waterVolume, 0);
+        state.dailyDrank = array.reduce((acc, item) => acc + item.waterVolume, 0);
       })
       .addCase(deleteWaterThunk.fulfilled, (state, { payload }) => {
-        state.today.dailyWaterList = state.today.dailyWaterList.filter(
-          data => data._id !== payload
-        );
+        state.today.dailyWaterList = state.today.dailyWaterList.filter(data => data.id !== payload);
         const array = state.today.dailyWaterList;
-        state.today.dailyNorm = array.reduce((acc, item) => acc + item.waterVolume, 0);
+        state.dailyDrank = array.reduce((acc, item) => acc + item.waterVolume, 0);
       })
       .addMatcher(
         isAnyOf(
