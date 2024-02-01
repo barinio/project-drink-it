@@ -30,7 +30,7 @@ const dailyNormaSlice = createSlice({
         state.loading = true;
         state.error = null;
       })
-      .addCase(updateDailyNorma.fulfilled, state => {
+      .addCase(updateDailyNorma.fulfilled, (state, action) => {
         state.loading = false;
         state.data = action.payload;
         //
