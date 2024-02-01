@@ -8,9 +8,9 @@ import bottle from '../img/bottle.svg';
 export const HomePageSection = styled.section`
   @media screen and (max-width: 767px) {
     padding: 0 20px;
-    position: fixed;
+    position: relative;
     height: 100%;
-    overflow: scroll;
+
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -31,9 +31,8 @@ export const HomePageSection = styled.section`
   }
 
   @media screen and (min-width: 768px) {
-    overflow: scroll;
     padding: 0 32px 44px 32px;
-    position: fixed;
+    position: relative;
     height: 100%;
     width: 100%;
     display: flex;
