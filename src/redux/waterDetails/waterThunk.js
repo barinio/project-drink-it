@@ -38,10 +38,10 @@ export const editWaterThunk = createAsyncThunk(
 
 export const deleteWaterThunk = createAsyncThunk(
   'water/deleteWater',
-  async ({ id, _id }, { rejectWithValue }) => {
+  async (dataDelete, { rejectWithValue }) => {
     try {
-      deleteWater({ id, _id });
-      return id;
+      deleteWater(dataDelete);
+      return dataDelete.id;
     } catch (error) {
       return rejectWithValue(error.message);
     }
