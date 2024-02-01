@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import imgMobile from '../img/bg_main_mobile.svg';
 import imgTablet from '../img/bg_main_tablet.svg';
 import imgDesktop from '../img/bg_main_desktop_group.svg';
-import botleDesktop from '../img/botle_welcome_desktop.svg';
+// import botleDesktop from '../img/botle_welcome_desktop.svg';
 
 export const LeftSide = styled.div`
   @media screen and (max-width: 767px) {

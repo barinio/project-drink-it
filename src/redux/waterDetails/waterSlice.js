@@ -19,9 +19,9 @@ const waterSlice = createSlice({
     builder
       .addCase(getTodayWater.fulfilled, (state, { payload }) => {
         state.isLoading = false;
-        console.log(payload);
-        payload.map(item => (state.today = item));
-        console.log(state.today);
+        // console.log(payload);
+        // payload.map(item => (state.today = item));
+        // console.log(state.today);
         state.dailyDrank = state.today.drankWater;
         state.ownerId = state.today.owner;
       })
