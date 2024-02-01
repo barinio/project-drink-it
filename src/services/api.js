@@ -35,18 +35,18 @@ export const requestRefreshUser = async () => {
 // ----------- dailynorma-service -------------------
 
 export const getDailyNormaData = async ({ id, _id }) => {
-  const { data } = await instance.get(`/api/users/${_id}?_id=${id}/dailynorma`);
+  const { data } = await instance.get(`/api/users/dailynorma/${_id}?_id=${id}`);
   return data;
 };
 
-// export const updateDailyNormaData = async userData => {
-//   const { data } = await instance.patch(`/api/users/dailynorma`, userData);
-//   return data;
-// };
-export const updateDailyNormaData = async ({ _id, userData }) => {
-  const { data } = await instance.patch(`/api/users/${_id}/dailynorma`, userData);
+export const updateDailyNormaData = async ({ id, _id, userData }) => {
+  const { data } = await instance.patch(`/api/users/${_id}?_id=${id}/dailynorma`, userData);
   return data;
 };
+// export const updateDailyNormaData = async ({ _id, userData }) => {
+//   const { data } = await instance.patch(`/api/users/${_id}/dailynorma`, userData);
+//   return data;
+// };
 // -------------------water----------------------
 
 export const fetchTodayWater = async () => {
