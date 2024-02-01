@@ -1,3 +1,4 @@
+import Loader from 'components/Loader/Loader';
 import PrivateRoute from 'components/PrivateRoute/PrivateRoute';
 import RestictedRoute from 'components/RestictedRoute/RestictedRoute';
 import { Suspense, lazy, useEffect } from 'react';
@@ -21,7 +22,7 @@ export const App = () => {
   }, [dispatch]);
   return (
     <>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<Loader />}>
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<WelcomePage />} />
