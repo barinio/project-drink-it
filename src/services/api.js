@@ -39,7 +39,7 @@ export const getDailyNormaData = async ({ id, _id }) => {
   return data;
 };
 
-export const updateDailyNormaData = async ({ _id, id, userData }) => {
+export const updateDailyNormaData = async ({ id, _id, userData }) => {
   const { data } = await instance.patch(`/api/users/${_id}?_id=${id}/dailynorma`, userData);
   return data;
 };
