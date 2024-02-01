@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  selectIsLoading,
+  selectIsLoadingList,
   selectOwnerId,
   selectTodayWater,
 } from 'redux/waterDetails/waterSelectors';
@@ -39,8 +39,8 @@ export const TodayWaterList = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedWaterItem, setSelectedWaterItem] = useState(null);
   const [isDeleteWaterModalOpen, setDeleteWaterModalOpen] = useState(false);
-  const { dailyWaterList } = useSelector(selectTodayWater);
-  const isLoading = useSelector(selectIsLoading);
+  const { waterlist } = useSelector(selectTodayWater);
+  const isLoadingList = useSelector(selectIsLoadingList);
   const ownerId = useSelector(selectOwnerId);
 
   useEffect(() => {
@@ -65,16 +65,14 @@ export const TodayWaterList = () => {
   return (
     <TodayWrapper>
       <TodayTitle>Today</TodayTitle>
-      {isLoading ? (
+      {isLoadingList ? (
         <Loader />
       ) : (
         <TodayList>
-          {dailyWaterList?.length < 0 ||
-          dailyWaterList === undefined ||
-          Number.isNaN(dailyWaterList) ? (
+          {waterlist?.length < 0 || waterlist === undefined ? (
             <Forget>You haven't drunk water yet. Don't forget to meet your daily norma! </Forget>
           ) : (
-            dailyWaterList?.map(item => (
+            waterlist?.map(item => (
               <TodayItem key={item.id}>
                 <TodayInfo>
                   <IconGlass>
@@ -110,6 +108,7 @@ export const TodayWaterList = () => {
         <DeleteWaterModal
           onClose={() => setDeleteWaterModalOpen(false)}
           recordId={selectedWaterItem?.id}
+          ownerId={ownerId}
         />
       )}
       {isModalOpen && (

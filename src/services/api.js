@@ -52,15 +52,15 @@ export const fetchTodayWater = async () => {
 };
 
 export const addWaters = async newWater => {
-  const { data } = await axios.post('/api/user/water', newWater);
+  const { data } = await instance.post('/api/user/water', newWater);
   return data;
 };
 
 export const editWater = async ({ _id, id, newWater }) => {
-  const { data } = await axios.put(`/api/user/water/${_id}?_id=${id}`, newWater);
+  const { data } = await instance.put(`/api/user/water/${_id}?_id=${id}`, newWater);
   return data;
 };
 
 export const deleteWater = async ({ id, _id }) => {
-  await axios.delete(`/api/user/water/${_id}?_id=${id}`);
+  await instance.delete(`/api/user/water/${_id}?_id=${id}`);
 };
