@@ -6,8 +6,8 @@ export const HeaderSection = styled.header`
   @media (min-width: 768px) {
     margin-bottom: 40px;
   }
-  @media (min-width: 1440px) {
-    margin-bottom: 40px;
+  @media (min-width: 1200px) {
+    margin-bottom: 20px;
   }
 `;
 
@@ -27,7 +27,7 @@ export const HeaderContainer = styled.div`
   @media (min-width: 768px) {
     padding: 16px 32px 0;
   }
-  @media (min-width: 1440px) {
+  @media (min-width: 1200px) {
     padding: 12px 112px 0;
   }
 `;
