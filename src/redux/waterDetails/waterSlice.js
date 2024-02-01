@@ -7,7 +7,7 @@ const initialState = {
     waterlist: [],
   },
   dailyDrank: 1500,
-  waterRate: 70,
+  waterNorma: 15000,
   ownerId: 0,
   isLoading: false,
 };
