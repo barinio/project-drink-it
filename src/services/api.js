@@ -39,8 +39,12 @@ export const getDailyNormaData = async ({ id, _id }) => {
   return data;
 };
 
-export const updateDailyNormaData = async userData => {
-  const { data } = await instance.patch(`/api/users/dailynorma`, userData);
+// export const updateDailyNormaData = async userData => {
+//   const { data } = await instance.patch(`/api/users/dailynorma`, userData);
+//   return data;
+// };
+export const updateDailyNormaData = async ({ _id, userData }) => {
+  const { data } = await instance.patch(`/api/users/${_id}/dailynorma`, userData);
   return data;
 };
 // -------------------water----------------------
