@@ -83,7 +83,7 @@ export const ContentWrapper = styled.div`
     justify-content: space-between;
     &.right-panel {
       min-height: 836px;
-      z-index: -5;
+
       padding: 24px 8px;
       background-color: var(--bg-color-light-blue);
       border-radius: 10px;
@@ -98,7 +98,7 @@ export const ContentWrapper = styled.div`
     justify-content: space-between;
     &.right-panel {
       min-height: 688px;
-      z-index: -5;
+
       padding: 32px 24px;
       background-color: var(--bg-color-light-blue);
       border-radius: 10px;
@@ -113,7 +113,7 @@ export const ContentWrapper = styled.div`
     justify-content: space-between;
     &.right-panel {
       min-height: 680px;
-      z-index: -5;
+
       background-color: var(--bg-color-light-blue);
       border-radius: 10px;
     }
@@ -128,7 +128,7 @@ export const BottleImg = styled.div`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -65%);
-    z-index: -5;
+
     background-repeat: no-repeat;
     background-image: url(${bottle});
     background-position: center;
@@ -141,7 +141,7 @@ export const BottleImg = styled.div`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -65%);
-    z-index: -5;
+
     background-repeat: no-repeat;
     background-image: url(${bottle});
     background-position: center;
@@ -154,7 +154,7 @@ export const BottleImg = styled.div`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -65%);
-    z-index: -5;
+
     background-repeat: no-repeat;
     background-image: url(${bottle});
     background-position: center;
