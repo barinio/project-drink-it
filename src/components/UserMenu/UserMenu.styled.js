@@ -26,6 +26,7 @@ export const UserSvg = styled.svg`
 
 export const Avatar = styled.img`
   margin-left: 8px;
+  border-radius: 50%;
 `;
 
 export const ArrowDownSvg = styled.svg`

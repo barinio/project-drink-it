@@ -5,7 +5,7 @@ import { Button } from '@mui/material';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 
-import { selectAuthAuthenticated } from 'redux/auth/auth.selectors';
+import { selectAuthAuthenticated, selectAuthUserData } from 'redux/auth/auth.selectors';
 
 import {
   UserContainer,
@@ -29,9 +29,14 @@ const UserMenu = () => {
   const dispatch = useDispatch();
 
   const authenticated = useSelector(selectAuthAuthenticated);
+
+  const user = useSelector(selectAuthUserData);
+  const UserName = user.email?.split('@')[0];
+  const avatarURL = user.avatarURL || avatar;
+  console.log('avatarURL:', avatarURL);
+
   const [isOpenSetting, setIsOpenSetting] = useState(false);
   const [isSureLogOut, setIsSureLogOut] = useState(false);
-  const UserName = 'David';
 
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -65,7 +70,7 @@ const UserMenu = () => {
         <>
           <UserContainer to="signin">
             {UserName}
-            <Avatar src={avatar} alt={UserName} width="28" height="28" />
+            <Avatar src={avatarURL} alt={UserName} width="28" height="28" />
 
             <Button
               id="basic-button"
