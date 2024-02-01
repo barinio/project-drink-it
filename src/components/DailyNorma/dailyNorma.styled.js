@@ -8,7 +8,7 @@ export const GlobalStyles = styled.div`
       margin: 0;
     }
 
-    input[type=number] {
+    input[type='number'] {
       -moz-appearance: textfield;
     }
   }
@@ -102,7 +102,7 @@ export const LabelText = styled.div`
   line-height: 20px;
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
-  `;
+`;
 export const InputText = styled.div`
   color: var(--primery-color-black);
   font-size: 16px;
@@ -125,7 +125,6 @@ export const RequiredText = styled.div`
     width: auto;
   }
 `;
-
 
 export const CaptionBox = styled.div`
   border: 1px solid var(--btn-color-light-blue);
@@ -161,7 +160,7 @@ export const CaptionMark = styled.span`
   line-height: 16px;
 `;
 export const CaptionText = styled.div`
-  color: #8F8F8F;
+  color: #8f8f8f;
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
   font-size: 12px;
@@ -240,7 +239,7 @@ export const SaveButton = styled.button`
   }
 
   @media screen and (max-width: 319px) {
-    width: calc( 100% - 24px);
+    width: calc(100% - 24px);
     height: 36px;
     font-size: 16px;
     line-height: 20px;
@@ -248,7 +247,7 @@ export const SaveButton = styled.button`
     bottom: 24px;
   }
   @media screen and (min-width: 320px) {
-    width: calc( 100% - 24px);
+    width: calc(100% - 24px);
     height: 36px;
     font-size: 16px;
     line-height: 20px;
@@ -315,6 +314,7 @@ export const RadioButton = styled.div`
 // DAILY NORMA PANEL
 
 export const DailyNormaBox = styled.div`
+  z-index: 1;
   display: flex;
   flex-direction: column;
   padding: 8px 20px;
@@ -324,10 +324,11 @@ export const DailyNormaBox = styled.div`
   border: 1px solid var(--bg-color-light-blue);
   box-shadow: 0 4px 8px 0 rgba(158, 187, 255, 0.12);
 
-  ${'' /* &:hover {
+  ${
+    '' /* &:hover {
     box-shadow: 0 4px 4px 0 rgba(158, 187, 255, 0.3);
-  } */}
-
+  } */
+  }
 `;
 
 export const DailyText = styled.div`
