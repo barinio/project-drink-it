@@ -324,11 +324,12 @@ export const DailyNormaBox = styled.div`
   border: 1px solid var(--bg-color-light-blue);
   box-shadow: 0 4px 8px 0 rgba(158, 187, 255, 0.12);
 
-  ${
-    '' /* &:hover {
-    box-shadow: 0 4px 4px 0 rgba(158, 187, 255, 0.3);
-  } */
+
+  &:hover {
+    // box-shadow: 0 4px 4px 0 rgba(158, 187, 255, 0.3);
   }
+
+
 `;
 
 export const DailyText = styled.div`
@@ -369,6 +370,5 @@ export const EditWaterButton = styled.button`
   right: 0;
 
   &:hover {
-    /* Add styling for hover state if needed */
   }
 `;

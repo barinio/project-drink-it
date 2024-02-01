@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { newDate } from 'redux/waterDetails/helpers';
 
 const instance = axios.create({
   baseURL: 'https://project-drink-it-backend.onrender.com',
@@ -33,32 +34,33 @@ export const requestRefreshUser = async () => {
 
 // ----------- dailynorma-service -------------------
 
-export const getDailyNormaData = async () => {
-  const { data } = await instance.get('/api/users/getDailyNorma');
+export const getDailyNormaData = async ({ id, _id }) => {
+  const { data } = await instance.get(`/api/users/${_id}?_id=${id}/dailynorma`);
   return data;
 };
 
-export const updateDailyNormaData = async userData => {
-  const { data } = await instance.patch('/api/users/updateDailyNorma', userData);
+export const updateDailyNormaData = async ({ id, _id, userData }) => {
+  const { data } = await instance.patch(`/api/users/${_id}?_id=${id}/dailynorma`, userData);
   return data;
 };
 // -------------------water----------------------
 
 export const fetchTodayWater = async () => {
-  const { data } = await instance.get('/api/waters/today');
+  const time = newDate(new Date());
+  const { data } = await instance.get(`/api/user/water/today?date=${time}`);
   return data;
 };
 
 export const addWaters = async newWater => {
-  const { data } = await axios.post('/api/waters', newWater);
+  const { data } = await axios.post('/api/user/water', newWater);
   return data;
 };
 
-export const editWater = async ({ newWaterUser, id }) => {
-  const { data } = await axios.patch(`/api/water/${id}`, newWaterUser);
+export const editWater = async ({ _id, id, newWater }) => {
+  const { data } = await axios.put(`/api/user/water/${_id}?_id=${id}`, newWater);
   return data;
 };
 
-export const deleteWater = async id => {
-  await axios.delete(`/api/water/${id}`);
+export const deleteWater = async ({ id, _id }) => {
+  await axios.delete(`/api/user/water/${_id}?_id=${id}`);
 };

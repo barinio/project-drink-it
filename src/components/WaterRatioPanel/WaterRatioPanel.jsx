@@ -17,19 +17,22 @@ import { useSelector } from 'react-redux';
 import { useState } from 'react';
 
 import icons from '../../img/icons.svg';
-import { selectWaterRate } from 'redux/waterDetails/waterSelectors';
+import { selectWaterPercentage } from 'redux/waterDetails/waterSelectors';
 
 export const WaterRatioPanel = () => {
-  const waterRate = useSelector(selectWaterRate);
+  const waterPercent = useSelector(selectWaterPercentage);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const getBackgroundSize = () => {
+    if (Number.isNaN(waterPercent)) {
+      return { backgroundSize: `${0}` };
+    }
     return {
-      backgroundSize: `${waterRate}%`,
+      backgroundSize: `${waterPercent}%`,
     };
   };
 
   const getPosition = () => {
-    const limit = Math.min(100, Math.max(0, waterRate));
+    const limit = Math.min(100, Math.max(0, waterPercent));
     return {
       left: `calc(${limit}% - 2px)`,
     };
@@ -43,23 +46,24 @@ export const WaterRatioPanel = () => {
     setIsModalOpen(false);
   };
 
+  const isShow = waterPercent > 0 && waterPercent <= 100;
+
   return (
     <WaterRatioPanelContainer>
       <WaterRangeContainer>
         <WaterRangeHeader>Today</WaterRangeHeader>
         <WaterRange
           type="range"
-          value={waterRate}
+          value={Number.isNaN(waterPercent) ? `0` : waterPercent}
           readOnly={true}
           style={getBackgroundSize()}
           aria-label="Water range"
         />
         <RateContainer>
           <StartMark>0%</StartMark>
-          <MiddleMark
-            id="waterMark"
-            style={getPosition()}
-          >{`${waterRate}%`}</MiddleMark>
+          {isShow && (
+            <MiddleMark id="waterMark" style={getPosition()}>{`${waterPercent}%`}</MiddleMark>
+          )}
           <EndMark>100%</EndMark>
         </RateContainer>
       </WaterRangeContainer>
