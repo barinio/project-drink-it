@@ -20,10 +20,10 @@ const waterSlice = createSlice({
       .addCase(getTodayWater.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         console.log(payload);
-        payload.map(item => (state.today = item));
+        state.today = payload[0];
         console.log(state.today);
         state.dailyDrank = state.today.drankWater;
-        state.ownerId = state.today.owner;
+        state.ownerId = state.today._id;
       })
       .addCase(addWatersThunk.fulfilled, (state, { payload }) => {
         state.isLoading = false;
