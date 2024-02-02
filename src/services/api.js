@@ -39,12 +39,18 @@ export const getDailyNormaData = async ({ id, _id }) => {
   return data;
 };
 
+// export const updateDailyNormaData = async ({ id, _id, userData }) => {
+//   const { data } = await instance.patch(`/api/users/dailynorma/${_id}?_id=${id}`, userData);
+//   return data;
+// };
 export const updateDailyNormaData = async ({ id, _id, userData }) => {
-  const { data } = await instance.patch(`/api/users/${_id}?_id=${id}/dailynorma`, userData);
+  console.log('id:', id); // Check if id is defined
+  console.log('_id:', _id); // Check if _id is defined
+  const { data } = await instance.patch(`/api/users/dailynorma/${_id}?_id=${id}`, userData);
   return data;
 };
-// export const updateDailyNormaData = async ({ _id, userData }) => {
-//   const { data } = await instance.patch(`/api/users/${_id}/dailynorma`, userData);
+// export const updateDailyNormaData = async ({ id, userData }) => {
+//   const { data } = await instance.put(`/api/users/${id}/dailynorma`, userData);
 //   return data;
 // };
 // -------------------water----------------------

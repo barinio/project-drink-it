@@ -147,7 +147,7 @@ const DailyNormaModal = ({ isOpen, onClose }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const userData = await dispatch(getDailyNorma());
+        const userData = dispatch(getDailyNorma());
         if (userData.payload) {
           setGender(userData.payload.gender || 'woman');
           setWeight(userData.payload.weight || 0);
@@ -182,6 +182,7 @@ const DailyNormaModal = ({ isOpen, onClose }) => {
     };
 
     // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
     dispatch(updateDailyNorma(requestData))
       .then((response) => {
         console.log('Data saved to the server:', response);
