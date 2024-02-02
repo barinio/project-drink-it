@@ -3,6 +3,8 @@ import { NavLink } from 'react-router-dom';
 
 export const HeaderSection = styled.header`
   margin-bottom: 24px;
+  padding-bottom: 17px;
+  border-bottom: 3px solid transparent;
   @media (min-width: 768px) {
     margin-bottom: 40px;
   }
