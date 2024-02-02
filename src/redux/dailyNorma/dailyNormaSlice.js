@@ -55,53 +55,101 @@
 // export const dailyNormaReducer = dailyNormaSlice.reducer;
 
 // dailyNormaSlice.js
-import { createSlice, isAnyOf } from '@reduxjs/toolkit';
+// import { createSlice, isAnyOf } from '@reduxjs/toolkit';
+// import { getDailyNorma, updateDailyNorma } from './dailyNormaThunk';
+
+// const initialState = {
+//   gender: 0,
+//   weight: 0,
+//   activityTime: 0,
+//   willDrink: 0,
+//   dailyNorma: 0,
+//   isLoading: false,
+// };
+
+// const dailyNormaSlice = createSlice({
+//   name: 'dailyNorma',
+//   initialState,
+//   reducers: {},
+//   extraReducers: builder => {
+//     builder
+//       .addMatcher(
+//         isAnyOf(
+//           getDailyNorma.pending,
+//           updateDailyNorma.pending
+//         ),
+//         state => {
+//           state.isLoading = true;
+//         }
+//       )
+//       .addMatcher(
+//         isAnyOf(
+//           getDailyNorma.fulfilled,
+//           updateDailyNorma.fulfilled
+//         ),
+//         (state, { payload }) => {
+//           state.isLoading = false;
+//           state = { ...state, ...payload };
+//         }
+//       )
+//       .addMatcher(
+//         isAnyOf(
+//           getDailyNorma.rejected,
+//           updateDailyNorma.rejected
+//         ),
+//         state => {
+//           state.isLoading = false;
+//         }
+//       );
+//   },
+// });
+
+// export const dailyNormaReducer = dailyNormaSlice.reducer;
+
+
+// src/redux/dailyNormaSlice.js
+import { createSlice } from '@reduxjs/toolkit';
 import { getDailyNorma, updateDailyNorma } from './dailyNormaThunk';
 
+
 const initialState = {
-  gender: 0,
-  weight: 0,
-  activityTime: 0,
-  willDrink: 0,
-  dailyNorma: 0,
-  isLoading: false,
+  dailyNorma: null,
+  status: 'idle',
+  error: null,
 };
 
-const dailyNormaSlice = createSlice({
+
+
+export const dailyNormaSlice = createSlice({
   name: 'dailyNorma',
   initialState,
   reducers: {},
-  extraReducers: builder => {
+  extraReducers: (builder) => {
     builder
-      .addMatcher(
-        isAnyOf(
-          getDailyNorma.pending,
-          updateDailyNorma.pending
-        ),
-        state => {
-          state.isLoading = true;
-        }
-      )
-      .addMatcher(
-        isAnyOf(
-          getDailyNorma.fulfilled,
-          updateDailyNorma.fulfilled
-        ),
-        (state, { payload }) => {
-          state.isLoading = false;
-          state = { ...state, ...payload };
-        }
-      )
-      .addMatcher(
-        isAnyOf(
-          getDailyNorma.rejected,
-          updateDailyNorma.rejected
-        ),
-        state => {
-          state.isLoading = false;
-        }
-      );
+      .addCase(getDailyNorma.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(getDailyNorma.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.dailyNorma = action.payload;
+      })
+      .addCase(getDailyNorma.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.payload;
+      })
+      .addCase(updateDailyNorma.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(updateDailyNorma.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.dailyNorma = action.payload;
+      })
+      .addCase(updateDailyNorma.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.payload;
+      });
   },
 });
 
 export const dailyNormaReducer = dailyNormaSlice.reducer;
+

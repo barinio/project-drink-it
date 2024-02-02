@@ -185,7 +185,7 @@ const DailyNormaModal = ({ isOpen, onClose }) => {
 
     dispatch(updateDailyNorma(requestData))
       .then((response) => {
-        console.log('Data saved to the server:', response);
+        console.log(response);
         onClose();
       })
       .catch((error) => {

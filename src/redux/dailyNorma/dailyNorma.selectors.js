@@ -1,18 +1,20 @@
-import { createSelector } from '@reduxjs/toolkit';
+// import { createSelector } from '@reduxjs/toolkit';
 
-const selectDailyNorma = (state) => state.dailyNorma;
+// const selectDailyNorma = (state) => state.dailyNorma;
 
-export const selectDailyNormaData = createSelector(
-  selectDailyNorma,
-  (dailyNorma) => dailyNorma.data
-);
+// export const selectDailyNormaData = createSelector(
+//   selectDailyNorma,
+//   (dailyNorma) => dailyNorma.data
+// );
 
-export const selectDailyNormaLoading = createSelector(
-  selectDailyNorma,
-  (dailyNorma) => dailyNorma.loading
-);
+// export const selectDailyNormaLoading = createSelector(
+//   selectDailyNorma,
+//   (dailyNorma) => dailyNorma.loading
+// );
 
-export const selectDailyNormaError = createSelector(
-  selectDailyNorma,
-  (dailyNorma) => dailyNorma.error
-);
+// export const selectDailyNormaError = createSelector(
+//   selectDailyNorma,
+//   (dailyNorma) => dailyNorma.error
+// );
+
+export const selectDailyNormaData = state => state.dailyNorma;

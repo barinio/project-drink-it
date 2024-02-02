@@ -34,25 +34,27 @@ export const requestRefreshUser = async () => {
 
 // ----------- dailynorma-service -------------------
 
-export const getDailyNormaData = async ({ id, _id }) => {
-  const { data } = await instance.get(`/api/users/dailynorma/${_id}?_id=${id}`);
-  return data;
-};
+// export const getDailyNormaData = async ({ id, _id }) => {
+//   const { data } = await instance.get(`/api/users/dailynorma/${_id}?_id=${id}`);
+//   return data;
+// };
 
 // export const updateDailyNormaData = async ({ id, _id, userData }) => {
 //   const { data } = await instance.patch(`/api/users/dailynorma/${_id}?_id=${id}`, userData);
 //   return data;
 // };
-export const updateDailyNormaData = async ({ id, _id, userData }) => {
-  console.log('id:', id); // Check if id is defined
-  console.log('_id:', _id); // Check if _id is defined
-  const { data } = await instance.patch(`/api/users/dailynorma/${_id}?_id=${id}`, userData);
-  return data;
+
+
+export const getDailyNormaData = async () => {
+    const { data } = await instance.get('/api/users/dailynorma');
+    return data;
 };
-// export const updateDailyNormaData = async ({ id, userData }) => {
-//   const { data } = await instance.put(`/api/users/${id}/dailynorma`, userData);
-//   return data;
-// };
+
+export const updateDailyNormaData = async (updatedData) => {
+    const { data } = await instance.patch('/api/users/dailynorma', updatedData);
+    return data;
+};
+
 // -------------------water----------------------
 
 export const fetchTodayWater = async () => {
