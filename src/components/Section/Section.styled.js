@@ -16,6 +16,7 @@ export const SectionWrapper = styled.section`
     background-repeat: no-repeat;
     &::before {
       content: '';
+      z-index: -1;
       position: absolute;
       background-image: url(${bottle});
       top: 50%;
@@ -37,6 +38,7 @@ export const SectionWrapper = styled.section`
     background-size: cover;
     z-index: -10;
     &::before {
+      z-index: -1;
       content: '';
       width: 570px;
       height: 500px;
@@ -57,6 +59,7 @@ export const SectionWrapper = styled.section`
     background-size: contain;
     z-index: -21;
     &::before {
+      z-index: -1;
       width: 710px;
       height: 620px;
       position: absolute;
@@ -71,6 +74,7 @@ export const SectionWrapper = styled.section`
   @media screen and (min-width: 1440px) {
     max-height: 100%;
     &::before {
+      z-index: -1;
       width: 710px;
       height: 620px;
       position: absolute;
