@@ -1,12 +1,14 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 
-import { loginThunk, logoutThunk, refreshThunk, signupThunk } from './thunk';
+import { loginThunk, logoutThunk, refreshThunk, signupThunk, updUserInfoThunk } from './thunk';
 
 const initialState = {
   token: null,
   user: {
+    id: null,
     email: null,
     name: null,
+    avatar: null,
   },
   authenticated: false,
   isloading: false,
@@ -44,15 +46,12 @@ const authSlice = createSlice({
 
       .addCase(refreshThunk.fulfilled, handlerefreshFulfilled)
 
+      .addCase(updUserInfoThunk.fulfilled, handlerefreshFulfilled)
+
       .addCase(logoutThunk.fulfilled, () => initialState)
 
       .addMatcher(
-        isAnyOf(
-          logoutThunk.pending,
-          signupThunk.pending,
-          loginThunk.pending,
-          refreshThunk.pending
-        ),
+        isAnyOf(logoutThunk.pending, signupThunk.pending, loginThunk.pending, refreshThunk.pending),
         handlePending
       )
       .addMatcher(

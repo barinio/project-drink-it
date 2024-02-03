@@ -32,14 +32,22 @@ export const requestRefreshUser = async () => {
   return data;
 };
 
+export const updUserInfo = async ({ body, id }) => {
+  const { data } = await instance.patch(`/api/users/info/${id}`, body);
+  // console.log('data:', data);
+  setToken(data.token);
+
+  return data;
+};
+
 // ----------- dailynorma-service -------------------
 
-export const fetchDailyNorma = async (id) => {
+export const fetchDailyNorma = async id => {
   const { data } = await instance.get(`/api/dailynorma/${id}`);
   return data.dailyNorma;
 };
 
-export const newDailyNorma = async ( id, updatedData) => {
+export const newDailyNorma = async (id, updatedData) => {
   const { data } = await instance.patch(`/api/dailynorma/${id}`, updatedData);
   return data;
 };
