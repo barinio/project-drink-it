@@ -7,6 +7,7 @@ import {
 } from './Header.styled';
 import { selectAuthAuthenticated } from 'redux/auth/auth.selectors';
 import UserMenu from 'components/UserMenu/UserMenu';
+import ThemeSwitcher from 'components/ThemeSwitcher/ThemeSwitcher';
 
 import icons from '../../img/icons.svg';
 
@@ -37,6 +38,7 @@ export const Header = () => {
                 </NavLinkLogo>
               </>
             )}
+            <ThemeSwitcher />
             <UserMenu />
           </nav>
         </HeaderContainer>

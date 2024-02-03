@@ -158,7 +158,7 @@ export const TodayListModal = ({
   return (
     <>
       <Overlay onClick={handleOnClose} />
-      <ModalContent>
+      <ModalContent className='dark-water-modal'>
         <ModalHeader>
           <h2>{title}</h2>
           <CloseButton onClick={onClose}>
@@ -180,14 +180,14 @@ export const TodayListModal = ({
             )}
             <h3>{isEditing ? 'Correct entered data:' : 'Choose a value:'}</h3>
             <AddWater>
-              <AddParagraph>Amount of water:</AddParagraph>
+              <AddParagraph className='dark-modal-text'>Amount of water:</AddParagraph>
               <div>
                 <ButtonMl onClick={decreaseAmount}>
                   <Icon>
                     <use href={`${icons}#icon-decrement-outline`}></use>
                   </Icon>
                 </ButtonMl>
-                <Label>
+                <Label className='dark-water-modal-button'>
                   <Water>{Number.isNaN(amount) ? '0' : `${amount}`} ml</Water>
                 </Label>
                 <ButtonMl onClick={increaseAmount}>
@@ -198,7 +198,7 @@ export const TodayListModal = ({
               </div>
             </AddWater>
             <AddTime>
-              <AddParagraph>Recording time:</AddParagraph>
+              <AddParagraph className='dark-modal-text'>Recording time:</AddParagraph>
               <InputTime
                 type="time"
                 value={times}

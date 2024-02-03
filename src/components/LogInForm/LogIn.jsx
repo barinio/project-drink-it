@@ -38,6 +38,7 @@ const LogInForm = () => {
       <div className="inputWrapper">
         <label>Enter your email</label>
         <div
+          className="dark-input"
           style={{
             borderColor: formik.errors.email && formik.touched.email ? '#ef5050' : '#9ebbff',
             marginBottom: 4,
@@ -45,6 +46,7 @@ const LogInForm = () => {
           }}
         >
           <input
+            className='dark-sign-input'
             type="email"
             placeholder="E-mail"
             name="email"
@@ -61,6 +63,7 @@ const LogInForm = () => {
       <div className="inputWrapper">
         <label>Enter your password</label>
         <div
+          className="dark-input"
           style={{
             borderColor: formik.errors.password && formik.touched.password ? '#ef5050' : '#9ebbff',
             marginBottom: 4,
@@ -68,6 +71,7 @@ const LogInForm = () => {
           }}
         >
           <input
+            className='dark-sign-input'
             type={visible ? 'text' : 'password'}
             placeholder="Password"
             name="password"

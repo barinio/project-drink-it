@@ -25,21 +25,21 @@ const Welcome = () => {
           <LeftSide>
             <TitleLeft>Water consumption tracker</TitleLeft>
             <TextH3Left>Record daily water intake and track</TextH3Left>
-            <TextP>Tracker Benefits</TextP>
+            <TextP className='dark-welcome-page-text'>Tracker Benefits</TextP>
             <ListLeft>
-              <ItemLeft>
+              <ItemLeft className='dark-welcome-page-label'>
                 <Svg>
                   <use href={icons + '#icon-calendar-days'}></use>
                 </Svg>
                 Habit drive
               </ItemLeft>
-              <ItemLeft>
+              <ItemLeft className='dark-welcome-page-label'>
                 <Svg>
                   <use href={icons + '#icon-chart-bar'}></use>
                 </Svg>
                 View statistics
               </ItemLeft>
-              <ItemLeft>
+              <ItemLeft className='dark-welcome-page-label'>
                 <Svg>
                   <use href={icons + '#icon-wrench-screwdriver'}></use>
                 </Svg>
@@ -51,7 +51,7 @@ const Welcome = () => {
             </NavLink>
           </LeftSide>
           <RightSide>
-            <TitleRight>Why drink water</TitleRight>
+            <TitleRight className='dark-title-right'>Why drink water</TitleRight>
             <ListRight>
               <ItemRight>Supply of nutrients to all organs</ItemRight>
               <ItemRight>Providing oxygen to the lungs</ItemRight>

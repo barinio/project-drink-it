@@ -205,19 +205,19 @@ const DailyNormaModal = ({ isOpen, onClose }) => {
 
 return (
     <ModalOverlay onMouseDown={handleBackdropClick}>
-      <Modal>
+      <Modal className='dark-daily-norma-modal'>
         <TopDiv>
-          <ModalHeader>My daily norma</ModalHeader>
+          <ModalHeader className='dark-daily-norma-text'>My daily norma</ModalHeader>
           <CloseButton onClick={onClose}>&#10005;</CloseButton>
         </TopDiv>
 
         <FormulasBox>
           <FormulaBox>
-            <LabelText>Female:</LabelText>
+            <LabelText className='dark-daily-norma-text'>Female:</LabelText>
             <ColoredFormula>V=(M*0.03) + (T*0.4)</ColoredFormula>
           </FormulaBox>
           <FormulaBox>
-            <LabelText>Male:</LabelText>
+            <LabelText className='dark-daily-norma-text'>Male:</LabelText>
             <ColoredFormula>V=(M*0.04) + (T*0.6)</ColoredFormula>
           </FormulaBox>
         </FormulasBox>
@@ -230,7 +230,7 @@ return (
         </CaptionBox>
 
         <form>
-          <FormBigText>Calculate your rate:</FormBigText>
+          <FormBigText className='dark-daily-norma-text'>Calculate your rate:</FormBigText>
 
           <RadioButton>
             <input
@@ -242,7 +242,7 @@ return (
               onChange={() => handleGenderChange('woman')}
             />
             <label htmlFor="woman">
-              <LabelText>Female</LabelText>
+              <LabelText className='dark-daily-norma-text'>Female</LabelText>
             </label>
 
             <input
@@ -254,12 +254,12 @@ return (
               onChange={() => handleGenderChange('man')}
             />
             <label htmlFor="man">
-              <LabelText>Male</LabelText>
+              <LabelText className='dark-daily-norma-text'>Male</LabelText>
             </label>
           </RadioButton>
 
           <label>
-            <InputText>Your weight in kilograms:</InputText>
+            <InputText className='dark-daily-norma-text'>Your weight in kilograms:</InputText>
           </label>
             <WaterFormInput
               type="text"
@@ -275,7 +275,7 @@ return (
             />
 
           <label>
-            <InputText>The time of active participation in sports or other activities with a high physical load in hours:</InputText>
+            <InputText className='dark-daily-norma-text'>The time of active participation in sports or other activities with a high physical load in hours:</InputText>
           </label>
             <WaterFormInput
               type="text"
@@ -291,11 +291,11 @@ return (
             />
 
           <RequiredWaterBox>
-            <RequiredText>The required amount of water in liters per day:</RequiredText>
+            <RequiredText className='dark-daily-norma-text'>The required amount of water in liters per day:</RequiredText>
             <RequiredWater>{displayAmount} L</RequiredWater>
           </RequiredWaterBox>
 
-          <FormBigText>Write down how much water you will drink:</FormBigText>
+          <FormBigText className='dark-daily-norma-text'>Write down how much water you will drink:</FormBigText>
           <WaterFormInput
             type="text"
             value={willDrink}
