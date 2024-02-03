@@ -23,11 +23,10 @@ import {
   TodayVolume,
   TodayWrapper,
   Forget,
-  Loader,
   LoaderWrapper,
 } from './TodayWaterList.styled';
 import { formatTime } from 'redux/waterDetails/helpers';
-// import Loader from 'components/Loader/Loader';
+import Loader from 'components/Loader/Loader';
 
 const iconsList = {
   edit: `${icons}#icon-edit`,
@@ -73,7 +72,7 @@ export const TodayWaterList = () => {
         </LoaderWrapper>
       ) : (
         <TodayList>
-          {waterlist?.length < 0 || waterlist === undefined ? (
+          {waterlist?.length === 0 || waterlist === undefined ? (
             <Forget>You haven't drunk water yet. Don't forget to meet your daily norma! </Forget>
           ) : (
             waterlist?.map(item => (

@@ -6,8 +6,8 @@ const initialState = {
   today: {
     waterlist: [],
   },
-  dailyDrank: 1500,
-  waterNorma: 15000,
+  dailyDrank: 0,
+  waterNorma: 0,
   ownerId: 0,
   isLoading: false,
 };
@@ -19,11 +19,10 @@ const waterSlice = createSlice({
     builder
       .addCase(getTodayWater.fulfilled, (state, { payload }) => {
         state.isLoading = false;
-        console.log(payload);
         state.today = payload[0];
-        console.log(state.today);
         state.dailyDrank = state.today.drankWater;
         state.ownerId = state.today._id;
+        state.waterNorma = state.today.dailyNorma;
       })
       .addCase(addWatersThunk.fulfilled, (state, { payload }) => {
         state.isLoading = false;
@@ -33,7 +32,6 @@ const waterSlice = createSlice({
         const newArr = { waterVolume: newWaterVolume, time: newTime, id: newWaterId };
         state.today.waterlist.push(newArr);
         state.dailyDrank += newWaterVolume;
-        console.log(payload);
       })
       .addCase(editWaterThunk.fulfilled, (state, { payload }) => {
         state.isLoading = false;
@@ -49,7 +47,6 @@ const waterSlice = createSlice({
         state.today.waterlist = state.today.waterlist.filter(data => data.id !== payload);
         const arr = state.today.waterlist;
         state.dailyDrank = arr.reduce((acc, item) => acc + item.waterVolume, 0);
-        console.log(state.dailyDrank);
       })
       .addMatcher(
         isAnyOf(
