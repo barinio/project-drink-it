@@ -148,6 +148,8 @@ const DailyNormaModal = ({ isOpen, onClose }) => {
     const fetchData = async () => {
       try {
         const userData = dispatch(getDailyNorma());
+        console.log('Dispatched getDailyNorma');
+        console.log('UserData:', userData);
         if (userData.payload) {
           setGender(userData.payload.gender || 'woman');
           setWeight(userData.payload.weight || 0);
@@ -172,7 +174,7 @@ const DailyNormaModal = ({ isOpen, onClose }) => {
   };
 
   // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  const handleSave = () => {
+  const handleSave = async () => {
     const requestData = {
       gender,
       weight: parseFloat(weight),
@@ -180,19 +182,37 @@ const DailyNormaModal = ({ isOpen, onClose }) => {
       willDrink: parseFloat(willDrink),
       dailyNorma: parseFloat(dailyNorma),
     };
-
-    // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-    dispatch(updateDailyNorma(requestData))
-      .then((response) => {
-        console.log(response);
-        onClose();
-      })
-      .catch((error) => {
-        console.error('Error saving data to the server:', error);
-        toast.error('There was an error saving data. Please try again.');
-      });
+  
+    try {
+      const response = await dispatch(updateDailyNorma(requestData));
+      console.log('Dispatched updateDailyNorma');
+      console.log(response);
+      onClose();
+    } catch (error) {
+      console.error('Error saving data to the server:', error);
+      toast.error('There was an error saving data. Please try again.');
+    }
   };
+  // const handleSave = () => {
+  //   const requestData = {
+  //     gender,
+  //     weight: parseFloat(weight),
+  //     activityTime: parseFloat(activityTime),
+  //     willDrink: parseFloat(willDrink),
+  //     dailyNorma: parseFloat(dailyNorma),
+  //   };
+
+  //   dispatch(updateDailyNorma(requestData))
+  //   console.log('Dispatched updateDailyNorma')
+  //     .then((response) => {
+  //       console.log(response);
+  //       onClose();
+  //     })
+  //     .catch((error) => {
+  //       console.error('Error saving data to the server:', error);
+  //       toast.error('There was an error saving data. Please try again.');
+  //     });
+  // };
 
   if (!isOpen) {
     return null;

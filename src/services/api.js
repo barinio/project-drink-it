@@ -34,23 +34,13 @@ export const requestRefreshUser = async () => {
 
 // ----------- dailynorma-service -------------------
 
-// export const getDailyNormaData = async ({ id, _id }) => {
-//   const { data } = await instance.get(`/api/users/dailynorma/${_id}?_id=${id}`);
-//   return data;
-// };
-
-// export const updateDailyNormaData = async ({ id, _id, userData }) => {
-//   const { data } = await instance.patch(`/api/users/dailynorma/${_id}?_id=${id}`, userData);
-//   return data;
-// };
-
-export const getDailyNormaData = async () => {
-  const { data } = await instance.get('/api/users/dailynorma');
-  return data;
+export const fetchDailyNorma = async (id) => {
+  const { data } = await instance.get(`/api/dailynorma/${id}`);
+  return data.dailyNorma;
 };
 
-export const updateDailyNormaData = async updatedData => {
-  const { data } = await instance.patch('/api/users/dailynorma', updatedData);
+export const newDailyNorma = async ( id, updatedData) => {
+  const { data } = await instance.patch(`/api/dailynorma/${id}`, updatedData);
   return data;
 };
 
