@@ -19,7 +19,7 @@ const Setting = ({ closeModal, onBackdrop }) => {
     <>
       <Backdrop className="backdrop">
         <WrapperModal onClick={onBackdrop}>
-          <Modal>
+          <Modal className="dark-settings-modal">
             <CaptionBlock>
               <h2>Setting</h2>
               <button type="button" onClick={closeModal}>

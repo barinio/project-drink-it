@@ -60,6 +60,7 @@ const SignUpForm = () => {
           }}
         >
           <input
+            className='dark-sign-input'
             type="email"
             name="email"
             placeholder="E-mail"
@@ -91,6 +92,7 @@ const SignUpForm = () => {
           }}
         >
           <input
+            className='dark-sign-input'
             type={showPassword ? 'text' : 'password'}
             name="password"
             placeholder="Password"
@@ -129,6 +131,7 @@ const SignUpForm = () => {
           }}
         >
           <input
+            className='dark-sign-input'
             type={showPassword ? 'text' : 'password'}
             name="repeatPassword"
             placeholder="Repeat password"

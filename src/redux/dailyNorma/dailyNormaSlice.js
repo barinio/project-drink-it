@@ -1,121 +1,10 @@
-// // dailyNormaSlice.js
-// import { createSlice } from '@reduxjs/toolkit';
-// import { getDailyNorma, updateDailyNorma } from './dailyNormaThunk';
+import { createSlice} from '@reduxjs/toolkit';
 
-// const initialState = {
-//   data: null,
-//   loading: false,
-//   error: null,
-// };
-
-// const dailyNormaSlice = createSlice({
-//   name: 'dailyNorma',
-//   initialState,
-//   reducers: {},
-//   extraReducers: builder => {
-//     builder
-//       .addCase(getDailyNorma.pending, state => {
-//         state.loading = true;
-//         state.error = null;
-//       })
-//       .addCase(getDailyNorma.fulfilled, (state, action) => {
-//         state.loading = false;
-//         state.data = action.payload;
-//       })
-//       .addCase(getDailyNorma.rejected, (state, action) => {
-//         state.loading = false;
-//         state.error = action.payload;
-//       })
-//       .addCase(updateDailyNorma.pending, state => {
-//         state.loading = true;
-//         state.error = null;
-//       })
-//       // .addCase(updateDailyNorma.fulfilled, (state, action) => {
-//       //   state.loading = false;
-//       //   state.data = action.payload;
-//       //   //
-//       // })
-//       .addCase(updateDailyNorma.fulfilled, (state, action) => {
-//         state.loading = false;
-//         const updatedData = action.payload;
-//         // Update the relevant state properties
-//         state.weight = updatedData.weight;
-//         state.gender = updatedData.gender;
-//         state.activityTime = updatedData.activityTime;
-//         state.willDrink = updatedData.willDrink;
-//         state.dailyNorma = updatedData.dailyNorma;
-//       })
-//       .addCase(updateDailyNorma.rejected, (state, action) => {
-//         state.loading = false;
-//         state.error = action.payload;
-//       });
-//   },
-// });
-
-// export const dailyNormaReducer = dailyNormaSlice.reducer;
-
-// dailyNormaSlice.js
-// import { createSlice, isAnyOf } from '@reduxjs/toolkit';
-// import { getDailyNorma, updateDailyNorma } from './dailyNormaThunk';
-
-// const initialState = {
-//   gender: 0,
-//   weight: 0,
-//   activityTime: 0,
-//   willDrink: 0,
-//   dailyNorma: 0,
-//   isLoading: false,
-// };
-
-// const dailyNormaSlice = createSlice({
-//   name: 'dailyNorma',
-//   initialState,
-//   reducers: {},
-//   extraReducers: builder => {
-//     builder
-//       .addMatcher(
-//         isAnyOf(
-//           getDailyNorma.pending,
-//           updateDailyNorma.pending
-//         ),
-//         state => {
-//           state.isLoading = true;
-//         }
-//       )
-//       .addMatcher(
-//         isAnyOf(
-//           getDailyNorma.fulfilled,
-//           updateDailyNorma.fulfilled
-//         ),
-//         (state, { payload }) => {
-//           state.isLoading = false;
-//           state = { ...state, ...payload };
-//         }
-//       )
-//       .addMatcher(
-//         isAnyOf(
-//           getDailyNorma.rejected,
-//           updateDailyNorma.rejected
-//         ),
-//         state => {
-//           state.isLoading = false;
-//         }
-//       );
-//   },
-// });
-
-// export const dailyNormaReducer = dailyNormaSlice.reducer;
-
-
-// src/redux/dailyNormaSlice.js
-import { createSlice } from '@reduxjs/toolkit';
 import { getDailyNorma, updateDailyNorma } from './dailyNormaThunk';
 
-
 const initialState = {
-  dailyNorma: null,
-  status: 'idle',
-  error: null,
+  dailyNorma: 0,
+  isLoading: false,
 };
 
 
@@ -127,29 +16,29 @@ export const dailyNormaSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(getDailyNorma.pending, (state) => {
-        state.status = 'loading';
+        state.isLoading = true;
       })
-      .addCase(getDailyNorma.fulfilled, (state, action) => {
-        state.status = 'succeeded';
-        state.dailyNorma = action.payload;
+      .addCase(getDailyNorma.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.dailyNorma = payload;
       })
-      .addCase(getDailyNorma.rejected, (state, action) => {
-        state.status = 'failed';
-        state.error = action.payload;
+      .addCase(getDailyNorma.rejected, (state) => {
+        state.isLoading = false;
       })
       .addCase(updateDailyNorma.pending, (state) => {
-        state.status = 'loading';
+        state.isLoading = true;
       })
-      .addCase(updateDailyNorma.fulfilled, (state, action) => {
-        state.status = 'succeeded';
-        state.dailyNorma = action.payload;
+      .addCase(updateDailyNorma.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.dailyNorma = payload;
       })
-      .addCase(updateDailyNorma.rejected, (state, action) => {
-        state.status = 'failed';
-        state.error = action.payload;
+      .addCase(updateDailyNorma.rejected, (state) => {
+        state.isLoading = false;
       });
   },
 });
+
+export const selectDailyNorma = (state) => state.dailyNorma.dailyNorma;
 
 export const dailyNormaReducer = dailyNormaSlice.reducer;
 

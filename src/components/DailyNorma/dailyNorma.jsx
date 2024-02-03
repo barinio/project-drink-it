@@ -18,6 +18,7 @@ export const DailyNorma = () => {
   useEffect(() => {
     dispatch(getDailyNorma())
       .then((userData) => {
+        console.log('UserData:', userData);
         const fetchedDailyNorma = userData && userData.dailyNorma;
         const formattedAmount = (parseFloat(fetchedDailyNorma) || 2.0).toFixed(1);
 
@@ -45,8 +46,8 @@ export const DailyNorma = () => {
   }
 
   return (
-    <DailyNormaBox>
-      <DailyText>My daily norma</DailyText>
+    <DailyNormaBox className='dark-daily-norma-box'>
+      <DailyText className="dark-daily-norma-text">My daily norma</DailyText>
       <BottomBox>
         <RequiredWaterHeader>{displayAmount} L</RequiredWaterHeader>
         <EditWaterButton onClick={handleModalOpen}>Edit</EditWaterButton>

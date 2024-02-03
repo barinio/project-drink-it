@@ -79,7 +79,7 @@ const UserMenu = () => {
                 minWidth: '16px',
               }}
             >
-              <ArrowDownSvg width="16" height="16">
+              <ArrowDownSvg className='dark-icon-arrow' width="16" height="16">
                 <use href={icons + '#icon-arrow-down'}></use>
               </ArrowDownSvg>
             </Button>
@@ -112,7 +112,7 @@ const UserMenu = () => {
       ) : (
         <NavLinkSignin to="signin">
           <span>Sign in</span>
-          <UserSvg width="28" height="28">
+          <UserSvg className='dark-user-menu' width="28" height="28">
             <use href={icons + '#icon-user'}></use>
           </UserSvg>
         </NavLinkSignin>

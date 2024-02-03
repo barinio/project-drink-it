@@ -23,7 +23,7 @@ export const LogOut = ({ onClose, onLogout }) => {
   return (
     <>
       <Overlay className="overlay" onClick={onClose} />
-      <ModalContent>
+      <ModalContent className="dark-logout-modal">
         <ModalHeader>
           <h2>Log out</h2>
           <CloseButton type="button" onClick={onClose}>
@@ -36,7 +36,7 @@ export const LogOut = ({ onClose, onLogout }) => {
           <BoxModal>
             <TextStyle>Do you really want to leave?</TextStyle>
             <ButtonBox>
-              <ButtonStyle type="button" onClick={onLogout}>
+              <ButtonStyle className='dark-logout-button' type="button" onClick={onLogout}>
                 Log out
               </ButtonStyle>
               <ButtonStyle type="button" onClick={onClose}>
