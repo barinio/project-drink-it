@@ -17,11 +17,15 @@ import { useSelector } from 'react-redux';
 import { useState } from 'react';
 
 import icons from '../../img/icons.svg';
-import { selectWaterPercentage } from 'redux/waterDetails/waterSelectors';
+import { selectDailyDrank, selectNorma } from 'redux/waterDetails/waterSelectors';
 
 export const WaterRatioPanel = () => {
-  const waterPercent = useSelector(selectWaterPercentage);
+  const dailyNorm = useSelector(selectNorma);
+  const dailyDrank = useSelector(selectDailyDrank);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const waterPercent = Math.round((100 * dailyDrank) / dailyNorm);
+
   const getBackgroundSize = () => {
     if (Number.isNaN(waterPercent)) {
       return { backgroundSize: `${0}` };
