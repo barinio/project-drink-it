@@ -53,8 +53,6 @@ export const TodayListModal = ({
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, [onClose]);
-
-  // змінюємо кількість води за допомогою кнопок
   const increaseAmount = () => {
     setAmount(prevAmount => prevAmount + 50);
   };
@@ -67,14 +65,11 @@ export const TodayListModal = ({
     if (newValue.startsWith('0') && newValue.length > 1) {
       newValue = parseFloat(newValue.substring(1));
     }
-    console.log(parseFloat(newValue));
     setAmount(parseFloat(newValue));
   };
 
   useEffect(() => {
     if (isEditing) {
-      // console.log('here');
-      // console.log(initialTime);
       setAmount(initialAmount || 0);
       setTime(formatTime(initialTime, 'HH:mm'));
     } else {
@@ -86,23 +81,17 @@ export const TodayListModal = ({
   const handleSubmit = () => {
     let isoDate;
     if (isEditing) {
-      // Якщо редагуємо, використовуємо вже встановлений час з існуючого запису
       isoDate = initialTime
         ? new Date(initialTime).toISOString().slice(0, 16)
         : new Date().toISOString();
     } else if (times) {
-      // Якщо створюємо новий запис і час вибрано користувачем
       const currentDate = new Date();
       const [hours, minutes] = times.split(':');
-      // console.log('time: 1-й if', times);
       currentDate.setHours(hours, minutes);
-      // console.log(currentDate);
       isoDate = currentDate.toISOString().slice(0, 16);
-      // console.log('Наявна дата: 1-й if', isoDate);
 
       const currentDate2 = new Date(isoDate);
 
-      // Нова дата на базі наявної
       const newDate = new Date(currentDate2);
       newDate.setHours(currentDate2.getHours() + 2);
 
@@ -116,8 +105,6 @@ export const TodayListModal = ({
         ('0' + newDate.getHours()).slice(-2) +
         ':' +
         ('0' + newDate.getMinutes()).slice(-2);
-      // console.log('Наявна дата', isoDate);
-      // console.log('Нова дата', formattedNewDate);
       isoDate = formattedNewDate;
     }
 
@@ -125,7 +112,6 @@ export const TodayListModal = ({
       waterVolume: amount,
       time: isoDate,
     };
-    console.log(waterData);
 
     if (isEditing) {
       dispatch(editWaterThunk({ _id: ownerId, id: existingRecordId, ...waterData })).then(data => {
