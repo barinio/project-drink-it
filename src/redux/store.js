@@ -14,6 +14,7 @@ import {
 import storage from 'redux-persist/lib/storage';
 import { waterReducer } from './waterDetails/waterSlice';
 import { dailyNormaReducer } from './dailyNorma/dailyNormaSlice';
+import { monthWaterReducer } from './monthWater/monthWaterSlice';
 
 const authConfig = {
   key: 'auth',
@@ -24,6 +25,7 @@ const rootReducer = combineReducers({
   auth: persistReducer(authConfig, authReducer),
   waterDetails: waterReducer,
   dailyNorma: dailyNormaReducer,
+  monthWater: monthWaterReducer,
 });
 export const store = configureStore({
   reducer: rootReducer,
