@@ -135,7 +135,7 @@ export const RightSide = styled.div`
 
   background-color: #ecf2ff;
 
-  border: 1px solid black;
+  /* border: 1px solid black; */
   border-radius: 10px;
   box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.3);
 

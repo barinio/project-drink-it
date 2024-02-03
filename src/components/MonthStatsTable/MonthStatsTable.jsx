@@ -3,16 +3,33 @@ import { CalendarStyle, ContentPopover } from './MonthStatsTable.styled';
 import icons from '../../img/icons.svg';
 import { Popover } from '@mui/material';
 import { format, startOfMonth, endOfMonth, eachDayOfInterval } from 'date-fns';
+import { getMonthWater } from 'redux/monthWater/monthWaterThunk';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  selectIsLoadingMonthWater,
+  selectMonthWaterDetails,
+} from 'redux/monthWater/monthWaterselectors';
+import { formatDate } from 'redux/waterDetails/helpers';
 
 const MounthStatsTable = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(null);
   const [waterData, setWaterData] = useState([]);
 
+  const isLoading = useSelector(selectIsLoadingMonthWater);
+  const monthWater = useSelector(selectMonthWaterDetails);
+
+  const d = formatDate(currentDate);
+  // console.log(' currentDate:>> ', d);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getMonthWater('2024-01-12'));
+  }, [dispatch]);
+
   useEffect(() => {
     const { start, end } = getMonthBounds(currentDate);
     const generatedWaterData = generateWaterData(start, end);
-
+    dispatch(getMonthWater(d));
     setWaterData(generatedWaterData);
   }, [currentDate]);
 

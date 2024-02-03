@@ -44,15 +44,14 @@ export const requestRefreshUser = async () => {
 //   return data;
 // };
 
-
 export const getDailyNormaData = async () => {
-    const { data } = await instance.get('/api/users/dailynorma');
-    return data;
+  const { data } = await instance.get('/api/users/dailynorma');
+  return data;
 };
 
-export const updateDailyNormaData = async (updatedData) => {
-    const { data } = await instance.patch('/api/users/dailynorma', updatedData);
-    return data;
+export const updateDailyNormaData = async updatedData => {
+  const { data } = await instance.patch('/api/users/dailynorma', updatedData);
+  return data;
 };
 
 // -------------------water----------------------
@@ -75,4 +74,11 @@ export const editWater = async ({ _id, id, newWater }) => {
 
 export const deleteWater = async ({ id, _id }) => {
   await instance.delete(`/api/user/water/${_id}?_id=${id}`);
+};
+
+// -------------------waterMonth----------------------
+
+export const fetchMonthWater = async selectDate => {
+  const { data } = await instance.get(`/api/user/water/month?date=${selectDate}`);
+  return data;
 };
