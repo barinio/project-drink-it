@@ -21,7 +21,7 @@ export const CalendarStyle = styled.div`
       grid-template-rows: repeat(7, 0.5fr);
       gap: 10px;
     }
-    .mounthNav {
+    .monthNav {
       display: flex;
       align-items: center;
     }
@@ -135,4 +135,9 @@ export const ContentPopover = styled.div`
 
   @media screen and (min-width: 1440px) {
   }
+`;
+
+export const LoaderMonthWrapper = styled.div`
+  position: relative;
+  height: 262px;
 `;

@@ -1,4 +1,4 @@
-import MounthStatsTable from 'components/MonthStatsTable/MonthStatsTable';
+import MonthStatsTable from 'components/MonthStatsTable/MonthStatsTable';
 
 import { TodayWaterList } from 'components/TodayWaterList/TodayWaterList';
 import { WaterRatioPanel } from 'components/WaterRatioPanel/WaterRatioPanel';
@@ -16,7 +16,7 @@ const HomePage = () => {
         </ContentWrapper>
         <ContentWrapper className="right-panel">
           <TodayWaterList />
-          <MounthStatsTable />
+          <MonthStatsTable />
         </ContentWrapper>
       </HomePageSection>
     </>

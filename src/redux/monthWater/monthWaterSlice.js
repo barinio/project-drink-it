@@ -28,5 +28,4 @@ const monthWaterSlice = createSlice({
       });
   },
 });
-
 export const monthWaterReducer = monthWaterSlice.reducer;
