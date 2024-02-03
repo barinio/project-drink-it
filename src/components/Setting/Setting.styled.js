@@ -11,7 +11,7 @@ export const Backdrop = styled.div`
   visibility: visible;
   transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1),
     visibility 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  z-index: 1;
+  z-index: 3;
   overflow-y: auto;
 
   -ms-overflow-style: none;
@@ -106,7 +106,7 @@ export const PhotoBlock = styled.div`
     stroke: var(--primery-color-blue);
   }
 `;
-export const FormStyle = styled.form``;
+export const SettingFormik = styled.form``;
 
 export const FormWrapper = styled.div`
   display: flex;

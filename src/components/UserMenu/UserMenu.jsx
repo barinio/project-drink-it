@@ -17,7 +17,6 @@ import {
 } from './UserMenu.styled';
 
 import icons from '../../img/icons.svg';
-import avatar from '../../img/avatar.png';
 
 import { menuStyle } from './menu-style';
 
@@ -31,9 +30,6 @@ const UserMenu = () => {
   const authenticated = useSelector(selectAuthAuthenticated);
 
   const user = useSelector(selectAuthUserData);
-  // console.log('user:', user);
-  const UserName = user.userName;
-  const avatarURL = user.avatarURL || avatar;
 
   const [isOpenSetting, setIsOpenSetting] = useState(false);
   const [isSureLogOut, setIsSureLogOut] = useState(false);
@@ -69,8 +65,8 @@ const UserMenu = () => {
       {authenticated ? (
         <>
           <UserContainer to="signin">
-            {UserName}
-            <Avatar src={avatarURL} alt={UserName} width="28" height="28" />
+            {user.userName}
+            <Avatar src={user.avatarURL} alt={user.userName} width="28" height="28" />
 
             <Button
               id="basic-button"
