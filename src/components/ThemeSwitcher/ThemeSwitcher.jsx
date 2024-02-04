@@ -5,10 +5,10 @@ export const ThemeSwitcher = () => {
     const [isDarkTheme, setIsDarkTheme] = useState(false);
 
     const toggleTheme = () => {
-        setIsDarkTheme((prevTheme) => !prevTheme);
-        const newTheme = !isDarkTheme ? 'dark' : 'light';
-        document.body.dataset.theme = newTheme;
-        localStorage.setItem('theme', newTheme);
+      setIsDarkTheme((prevTheme) => !prevTheme);
+      const newTheme = !isDarkTheme ? 'dark' : 'light';
+      document.body.dataset.theme = newTheme;
+      localStorage.setItem('theme', newTheme);
     };
     useEffect(() => {
       const savedTheme = localStorage.getItem('theme');
@@ -24,13 +24,13 @@ export const ThemeSwitcher = () => {
   }, []);
 
     return (
-        <>
-            <SwitcherWrapp className='switcher-wrapp'>
-              <input type="checkbox" className='switcher' onChange={toggleTheme}
-                checked={isDarkTheme} />
-              <span className="switcher-slider"></span>
-            </SwitcherWrapp>
-        </>
+      <>
+          <SwitcherWrapp className='switcher-wrapp'>
+            <input type="checkbox" className='switcher' onChange={toggleTheme}
+              checked={isDarkTheme} />
+            <span className="switcher-slider"></span>
+          </SwitcherWrapp>
+      </>
     )
 }
 
