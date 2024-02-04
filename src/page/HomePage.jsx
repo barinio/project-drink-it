@@ -11,7 +11,7 @@ const HomePage = () => {
       <HomePageSection>
         <ContentWrapper>
           <DailyNorma />
-          <BottleImg />
+          <BottleImg className='dark-home-page-bottle' />
           <WaterRatioPanel />
         </ContentWrapper>
         <ContentWrapper className="right-panel">

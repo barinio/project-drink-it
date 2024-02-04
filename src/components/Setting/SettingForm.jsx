@@ -173,7 +173,7 @@ const SettingForm = ({ onClose }) => {
           <div>
             <h4>Outdated password:</h4>
             <PasswordInputContainer>
-              <button type="button" onClick={togglePasswordVisibility}>
+              <button className='dark-icon-wrapper' type="button" onClick={togglePasswordVisibility}>
                 <svg width="16" height="16">
                   <use href={icons + (showPassword ? '#icon-opend-eye' : '#icon-closed-eye')}></use>
                 </svg>
@@ -200,7 +200,7 @@ const SettingForm = ({ onClose }) => {
           <div>
             <h4>New Password:</h4>
             <PasswordInputContainer>
-              <button type="button" onClick={togglePasswordVisibility}>
+              <button className='dark-icon-wrapper' type="button" onClick={togglePasswordVisibility}>
                 <svg width="16" height="16">
                   <use href={icons + (showPassword ? '#icon-opend-eye' : '#icon-closed-eye')}></use>
                 </svg>
@@ -229,7 +229,7 @@ const SettingForm = ({ onClose }) => {
           <div>
             <h4>Repeat new password:</h4>
             <PasswordInputContainer>
-              <button type="button" onClick={togglePasswordVisibility}>
+              <button className='dark-icon-wrapper' type="button" onClick={togglePasswordVisibility}>
                 <svg width="16" height="16">
                   <use href={icons + (showPassword ? '#icon-opend-eye' : '#icon-closed-eye')}></use>
                 </svg>

@@ -11,10 +11,15 @@ export const ThemeSwitcher = () => {
         localStorage.setItem('theme', newTheme);
     };
     useEffect(() => {
-    const savedTheme = localStorage.getItem('theme');
+      const savedTheme = localStorage.getItem('theme');
+      const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
     if (savedTheme) {
       document.body.dataset.theme = savedTheme;
       setIsDarkTheme(savedTheme === 'dark');
+     } else {
+      document.body.dataset.theme = prefersDarkMode ? 'dark' : 'light';
+      setIsDarkTheme(prefersDarkMode);
     }
   }, []);
 
