@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-// import { saveDataToBackend, getStoredUserData } from './api';
 import { getDailyNorma, updateDailyNorma } from '../../redux/dailyNorma/dailyNormaThunk';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
@@ -143,7 +142,6 @@ const DailyNormaModal = ({ isOpen, onClose }) => {
     };
   }, [isOpen, onClose]);
 
-  // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -173,7 +171,6 @@ const DailyNormaModal = ({ isOpen, onClose }) => {
     }
   };
 
-  // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   const handleSave = async () => {
     const requestData = {
       gender,
@@ -193,26 +190,6 @@ const DailyNormaModal = ({ isOpen, onClose }) => {
       toast.error('There was an error saving data. Please try again.');
     }
   };
-  // const handleSave = () => {
-  //   const requestData = {
-  //     gender,
-  //     weight: parseFloat(weight),
-  //     activityTime: parseFloat(activityTime),
-  //     willDrink: parseFloat(willDrink),
-  //     dailyNorma: parseFloat(dailyNorma),
-  //   };
-
-  //   dispatch(updateDailyNorma(requestData))
-  //   console.log('Dispatched updateDailyNorma')
-  //     .then((response) => {
-  //       console.log(response);
-  //       onClose();
-  //     })
-  //     .catch((error) => {
-  //       console.error('Error saving data to the server:', error);
-  //       toast.error('There was an error saving data. Please try again.');
-  //     });
-  // };
 
   if (!isOpen) {
     return null;

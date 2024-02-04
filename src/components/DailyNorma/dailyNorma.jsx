@@ -23,7 +23,6 @@ export const DailyNorma = () => {
         const formattedAmount = (parseFloat(fetchedDailyNorma) || 2.0).toFixed(1);
 
         setDailyNorma(formattedAmount);
-        // setDailyNorma((fetchedDailyNorma).toFixed(1));
         
       })
       .catch((error) => {
@@ -58,4 +57,3 @@ export const DailyNorma = () => {
   );
 };
 
-// export default DailyNorma;
