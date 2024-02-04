@@ -39,6 +39,13 @@ export const updUserInfo = async ({ body, id }) => {
 
   return data;
 };
+export const updAvatar = async ({ imgUrl }) => {
+  const { data } = await instance.patch(`/api/users/avatar`, imgUrl);
+  // console.log('data:', data);
+  setToken(data.token);
+
+  return data;
+};
 
 // ----------- dailynorma-service -------------------
 

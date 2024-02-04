@@ -7,6 +7,7 @@ import {
   requestRefreshUser,
   requestSignup,
   setToken,
+  updAvatar,
   updUserInfo,
 } from 'services/api';
 
@@ -60,6 +61,17 @@ export const updUserInfoThunk = createAsyncThunk('auth/updUserInfo', async (body
   try {
     setToken(token);
     const authData = await updUserInfo({ body, id });
+    return authData;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.message);
+  }
+});
+export const updAvatarThunk = createAsyncThunk('auth/updAvatar', async (imgUrl, thunkAPI) => {
+  const state = thunkAPI.getState();
+  const token = state.auth.token;
+  try {
+    setToken(token);
+    const authData = await updAvatar({ imgUrl });
     return authData;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
