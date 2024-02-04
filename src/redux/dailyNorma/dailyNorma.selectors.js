@@ -17,4 +17,4 @@
 //   (dailyNorma) => dailyNorma.error
 // );
 
-export const selectDailyNormaData = state => state.dailyNorma;
+// export const selectDailyNormaData = state => state.dailyNorma;

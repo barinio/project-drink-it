@@ -43,13 +43,13 @@ export const updUserInfo = async ({ body, id }) => {
 // ----------- dailynorma-service -------------------
 
 export const fetchDailyNorma = async id => {
-  const { data } = await instance.get(`/api/dailynorma/${id}`);
-  return data.dailyNorma;
+    const response = await axios.get(`/api/users/dailynorma/${id}`);
+    return response.data;
 };
 
-export const newDailyNorma = async (id, updatedData) => {
-  const { data } = await instance.patch(`/api/dailynorma/${id}`, updatedData);
-  return data;
+export const newDailyNorma = async ( id, updatedData ) => {
+    const response = await axios.patch(`/api/users/dailynorma/${id}`, updatedData);
+    return response.data;
 };
 
 // -------------------water----------------------

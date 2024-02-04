@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { getDailyNorma, updateDailyNorma } from '../../redux/dailyNorma/dailyNormaThunk';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import '../../index.css';
+import { selectAuthUserData } from 'redux/auth/auth.selectors';
 
 import {
     ModalOverlay,
@@ -38,6 +39,8 @@ const DailyNormaModal = ({ isOpen, onClose }) => {
   const [dailyNorma, setDailyNorma] = useState(2.0);
   const [willDrink, setWillDrink] = useState(0);
 
+  const userId = useSelector(selectAuthUserData);
+
   const weightInputRef = useRef(null);
   const activityTimeInputRef = useRef(null);
   const willDrinkInputRef = useRef(null);
@@ -48,17 +51,17 @@ const DailyNormaModal = ({ isOpen, onClose }) => {
   };
 
   const handleWeightChange = (e) => {
-    const numericValue = e.target.value.replace(/[^0-9]/g, '');
+    const numericValue = e.target.value.replace(/[^0-9.,]/g, '');
     setWeight(numericValue);
   };
 
   const handleActivityTimeChange = (e) => {
-    const numericValue = e.target.value.replace(/[^0-9]/g, '');
+    const numericValue = e.target.value.replace(/[^0-9.,]/g, '');
     setActivityTime(numericValue);
   };
 
   const handleWillDrinkChange = (e) => {
-    const numericValue = e.target.value.replace(/[^0-9]/g, '');
+    const numericValue = e.target.value.replace(/[^0-9.,]/g, '');
     setWillDrink(numericValue);
   };
 
@@ -145,7 +148,7 @@ const DailyNormaModal = ({ isOpen, onClose }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const userData = dispatch(getDailyNorma());
+        const userData = dispatch(getDailyNorma(userId._id));
         console.log('Dispatched getDailyNorma');
         console.log('UserData:', userData);
         if (userData.payload) {
@@ -163,7 +166,7 @@ const DailyNormaModal = ({ isOpen, onClose }) => {
     if (isOpen) {
       fetchData();
     }
-  }, [isOpen, dispatch]);
+  }, [isOpen, dispatch, userId._id]);
 
   const handleBackdropClick = (e) => {
     if (e.target === e.currentTarget && e.button === 0) {
@@ -176,12 +179,12 @@ const DailyNormaModal = ({ isOpen, onClose }) => {
       gender,
       weight: parseFloat(weight),
       activityTime: parseFloat(activityTime),
-      willDrink: parseFloat(willDrink),
-      dailyNorma: parseFloat(dailyNorma),
+      willDrink: parseFloat(willDrink * 1000),
+      dailyNorma: parseFloat(dailyNorma * 1000),
     };
   
     try {
-      const response = await dispatch(updateDailyNorma(requestData));
+      const response = await dispatch(updateDailyNorma(userId._id, requestData));
       console.log('Dispatched updateDailyNorma');
       console.log(response);
       onClose();

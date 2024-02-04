@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Modal from './dailyNormaModal';
 import { getDailyNorma } from '../../redux/dailyNorma/dailyNormaThunk';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   DailyNormaBox,
   DailyText,
@@ -9,14 +9,16 @@ import {
   BottomBox,
   EditWaterButton,
 } from './dailyNorma.styled';
+import { selectAuthUserData } from 'redux/auth/auth.selectors';
 
 export const DailyNorma = () => {
   const dispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [dailyNorma, setDailyNorma] = useState(2.0);
+  const userId = useSelector(selectAuthUserData);
 
   useEffect(() => {
-    dispatch(getDailyNorma())
+    dispatch(getDailyNorma(userId._id))
       .then((userData) => {
         console.log('UserData:', userData);
         const fetchedDailyNorma = userData && userData.dailyNorma;
@@ -29,7 +31,7 @@ export const DailyNorma = () => {
         console.error('Error getting dailyNorma:', error);
         setDailyNorma(2.0);
       });
-  }, [dispatch]);
+  }, [dispatch, userId._id]);
 
   const handleModalOpen = () => {
     setIsModalOpen(true);
