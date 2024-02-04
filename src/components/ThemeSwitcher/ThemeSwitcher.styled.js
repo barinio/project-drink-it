@@ -1,4 +1,7 @@
 import styled from 'styled-components';
+import sun from '../../img/sun.png';
+import moon from '../../img/moon.png';
+import clouds from '../../img/cloudy.png';
 
 export const SwitcherWrapp = styled.label`
   display: block;
@@ -6,6 +9,7 @@ export const SwitcherWrapp = styled.label`
 
   width: 40px;
   height: 24px;
+
   .switcher {
     height: 0;
     width: 0;
@@ -19,27 +23,41 @@ export const SwitcherWrapp = styled.label`
     right: 0;
 
     border-radius: 30px;
-    background-color: #407bff;
+    background-color: #d8f5ff;
+    background-image: url(${clouds});
+    background-size: 17px;
+    background-repeat: no-repeat;
+    background-position: 19px;
     cursor: pointer;
+    transition: background-image 350ms cubic-bezier(0.4, 0, 0.2, 1),
+      background-position 350ms cubic-bezier(0.4, 0, 0.2, 1),
+      background-size 350ms cubic-bezier(0.4, 0, 0.2, 1),
+      background-color 450ms cubic-bezier(0.4, 0, 0.2, 1);
   }
   .switcher-slider::before {
     content: '';
     position: absolute;
-    top: 2px;
+    top: -2px;
     right: 52.5%;
     bottom: 12.5%;
-    left: 4%;
+    left: auto;
 
-    height: 16px;
-    width: 16px;
-    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-    background: linear-gradient(180deg, #ffffff 0%, #f7f7f7 100%);
-    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1), 0px 2px 2px rgba(0, 0, 0, 0.1),
-      1px 2px 4px rgba(0, 0, 0, 0.1);
+    height: 24px;
+    width: 24px;
+    background-image: url(${sun});
+    background-size: cover;
     border-radius: 50%;
     cursor: pointer;
+    transition: transform 450ms cubic-bezier(0.4, 0, 0.2, 1),
+      background-image 350ms cubic-bezier(0.4, 0, 0.2, 1);
   }
   .switcher:checked + .switcher-slider::before {
-    transform: translateX(21px);
+    transform: translateX(25px) rotate(346deg);
+    background-image: url(${moon});
+    transition: transform 450ms cubic-bezier(0.4, 0, 0.2, 1),
+      background-image 350ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .switcher:checked + .switcher-slider {
+    background-color: #2f4e90;
   }
 `;
