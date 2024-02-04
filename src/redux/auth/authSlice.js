@@ -1,6 +1,13 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 
-import { loginThunk, logoutThunk, refreshThunk, signupThunk, updUserInfoThunk } from './thunk';
+import {
+  loginThunk,
+  logoutThunk,
+  refreshThunk,
+  signupThunk,
+  updAvatarThunk,
+  updUserInfoThunk,
+} from './thunk';
 
 const initialState = {
   token: null,
@@ -47,6 +54,7 @@ const authSlice = createSlice({
       .addCase(refreshThunk.fulfilled, handlerefreshFulfilled)
 
       .addCase(updUserInfoThunk.fulfilled, handlerefreshFulfilled)
+      .addCase(updAvatarThunk.fulfilled, handlerefreshFulfilled)
 
       .addCase(logoutThunk.fulfilled, () => initialState)
 

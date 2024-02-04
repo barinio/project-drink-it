@@ -21,7 +21,7 @@ import icons from '../../img/icons.svg';
 import { selectAuthUserData } from 'redux/auth/auth.selectors';
 import { updUserInfoThunk } from 'redux/auth/thunk';
 
-const SettingForm = ({ onClose }) => {
+const SettingForm = ({ onClose, avatarURL }) => {
   const dispatch = useDispatch();
 
   const user = useSelector(selectAuthUserData);
@@ -61,8 +61,10 @@ const SettingForm = ({ onClose }) => {
     onSubmit: values => {
       if (values.password === '' || values.newPassword === '') {
         const { gender, userName, email } = values;
-        const userBody = { gender, userName, email };
+        const userBody = { gender, userName, email, avatarURL };
         dispatch(updUserInfoThunk(userBody));
+        // URL.revokeObjectURL(avatarURL);
+
         return;
       }
 
@@ -173,7 +175,11 @@ const SettingForm = ({ onClose }) => {
           <div>
             <h4>Outdated password:</h4>
             <PasswordInputContainer>
-              <button className='dark-icon-wrapper' type="button" onClick={togglePasswordVisibility}>
+              <button
+                className="dark-icon-wrapper"
+                type="button"
+                onClick={togglePasswordVisibility}
+              >
                 <svg width="16" height="16">
                   <use href={icons + (showPassword ? '#icon-opend-eye' : '#icon-closed-eye')}></use>
                 </svg>
@@ -200,7 +206,11 @@ const SettingForm = ({ onClose }) => {
           <div>
             <h4>New Password:</h4>
             <PasswordInputContainer>
-              <button className='dark-icon-wrapper' type="button" onClick={togglePasswordVisibility}>
+              <button
+                className="dark-icon-wrapper"
+                type="button"
+                onClick={togglePasswordVisibility}
+              >
                 <svg width="16" height="16">
                   <use href={icons + (showPassword ? '#icon-opend-eye' : '#icon-closed-eye')}></use>
                 </svg>
@@ -229,7 +239,11 @@ const SettingForm = ({ onClose }) => {
           <div>
             <h4>Repeat new password:</h4>
             <PasswordInputContainer>
-              <button className='dark-icon-wrapper' type="button" onClick={togglePasswordVisibility}>
+              <button
+                className="dark-icon-wrapper"
+                type="button"
+                onClick={togglePasswordVisibility}
+              >
                 <svg width="16" height="16">
                   <use href={icons + (showPassword ? '#icon-opend-eye' : '#icon-closed-eye')}></use>
                 </svg>

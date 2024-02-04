@@ -39,17 +39,26 @@ export const updUserInfo = async ({ body, id }) => {
 
   return data;
 };
+export const updAvatar = async ({ imgUrl }) => {
+  const { data } = await instance.patch(`/api/users/avatar`, imgUrl);
+  // console.log('data:', data);
+  setToken(data.token);
+
+  return data;
+};
 
 // ----------- dailynorma-service -------------------
 
 export const fetchDailyNorma = async id => {
-    const response = await axios.get(`/api/users/dailynorma/${id}`);
-    return response.data;
+
+  const { data } = await instance.get(`/api/users/dailynorma/${id}`);
+  return data;
 };
 
-export const newDailyNorma = async ( id, updatedData ) => {
-    const response = await axios.patch(`/api/users/dailynorma/${id}`, updatedData);
-    return response.data;
+export const newDailyNorma = async (id, updatedData) => {
+  const { data } = await instance.patch(`/api/users/dailynorma/${id}`, updatedData);
+  return data;
+
 };
 
 // -------------------water----------------------
