@@ -86,7 +86,13 @@ export const PhotoBlock = styled.div`
     gap: 8px;
     margin-bottom: 24px;
   }
-
+  img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 50%;
+  }
   button {
     display: flex;
     background: none;
@@ -286,4 +292,8 @@ export const BtnSettingSave = styled.div`
     display: flex;
     justify-content: flex-end;
   }
+`;
+export const InputUpload = styled.input`
+  opacity: 0;
+  position: absolute;
 `;
