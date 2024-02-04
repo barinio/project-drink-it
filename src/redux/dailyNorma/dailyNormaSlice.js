@@ -14,15 +14,7 @@ const initialState = {
 
 export const dailyNormaSlice = createSlice({
   name: 'dailyNorma',
-  initialState: {
-    dailyNorma: 0,
-    weight: 0,
-    gender: '',
-    activityTime: 0,
-    willDrink: 0,
-    isloading: false,
-    error: null,
-  },
+  initialState,
   reducers: {},
   extraReducers: builder => {
     builder
@@ -42,6 +34,7 @@ export const dailyNormaSlice = createSlice({
       })
       .addCase(updateDailyNorma.pending, state => {
         state.isLoading = true;
+
       })
       .addCase(updateDailyNorma.fulfilled, (state, { payload }) => {
         state.isloading = false;
@@ -51,6 +44,7 @@ export const dailyNormaSlice = createSlice({
         state.activityTime = payload.activityTime || 0;
         state.willDrink = payload.willDrink || 0;
       })
+
       .addCase(updateDailyNorma.rejected, state => {
         state.isLoading = false;
       });
@@ -60,3 +54,4 @@ export const dailyNormaSlice = createSlice({
 export const selectDailyNorma = state => state.dailyNorma.dailyNorma;
 
 export const dailyNormaReducer = dailyNormaSlice.reducer;
+
