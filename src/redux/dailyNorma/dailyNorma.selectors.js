@@ -18,3 +18,7 @@
 // );
 
 export const selectDailyNormaData = state => state.dailyNorma;
+export const selectDailyNormaWeight = state => state.weight;
+export const selectDailyNormaGender = state => state.gender;
+export const selectDailyNormaActivity = state => state.activityTime;
+export const selectDailyNormaWillDrink = state => state.willDrink;

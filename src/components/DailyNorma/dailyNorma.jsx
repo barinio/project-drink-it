@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux'; // додала селектор
 import Modal from './dailyNormaModal';
 import { getDailyNorma } from '../../redux/dailyNorma/dailyNormaThunk';
 import { useDispatch } from 'react-redux';
@@ -9,27 +10,29 @@ import {
   BottomBox,
   EditWaterButton,
 } from './dailyNorma.styled';
+import { selectAuthUserData } from 'redux/auth/auth.selectors';
 
 export const DailyNorma = () => {
   const dispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [dailyNorma, setDailyNorma] = useState(2.0);
+  const userId = useSelector(selectAuthUserData); // витягнула юзера з стейту
 
   useEffect(() => {
-    dispatch(getDailyNorma())
-      .then((userData) => {
-        console.log('UserData:', userData);
-        const fetchedDailyNorma = userData && userData.dailyNorma;
-        const formattedAmount = (parseFloat(fetchedDailyNorma) || 2.0).toFixed(1);
-
+    dispatch(getDailyNorma(userId._id)) // передала в thunk id юзера
+      .then(userData => {
+        console.log('UserData:', userData.payload);
+        const fetchedDailyNorma = userData.payload.dailyNorma;
+        console.log(fetchedDailyNorma);
+        const formattedAmount = parseFloat(fetchedDailyNorma / 1000).toFixed(1);
+        console.log(formattedAmount);
         setDailyNorma(formattedAmount);
-        
       })
-      .catch((error) => {
+      .catch(error => {
         console.error('Error getting dailyNorma:', error);
         setDailyNorma(2.0);
       });
-  }, [dispatch]);
+  }, [dispatch, userId._id]); // Додала в залежність id юзера
 
   const handleModalOpen = () => {
     setIsModalOpen(true);
@@ -41,11 +44,11 @@ export const DailyNorma = () => {
 
   let displayAmount = dailyNorma;
   if (dailyNorma >= 99) {
-    displayAmount = "99+";
+    displayAmount = '99+';
   }
 
   return (
-    <DailyNormaBox className='dark-daily-norma-box'>
+    <DailyNormaBox className="dark-daily-norma-box">
       <DailyText className="dark-daily-norma-text">My daily norma</DailyText>
       <BottomBox>
         <RequiredWaterHeader>{displayAmount} L</RequiredWaterHeader>
@@ -56,4 +59,3 @@ export const DailyNorma = () => {
     </DailyNormaBox>
   );
 };
-

@@ -50,12 +50,12 @@ export const updAvatar = async ({ imgUrl }) => {
 // ----------- dailynorma-service -------------------
 
 export const fetchDailyNorma = async id => {
-  const { data } = await instance.get(`/api/dailynorma/${id}`);
-  return data.dailyNorma;
+  const { data } = await instance.get(`/api/users/dailynorma/${id}`);
+  return data;
 };
 
 export const newDailyNorma = async (id, updatedData) => {
-  const { data } = await instance.patch(`/api/dailynorma/${id}`, updatedData);
+  const { data } = await instance.patch(`/api/users/dailynorma/${id}`, updatedData);
   return data;
 };
 
