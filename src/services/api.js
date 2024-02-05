@@ -8,7 +8,6 @@ const instance = axios.create({
 export const setToken = token => {
   instance.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
-
 // ----------- auth-service -------------------
 
 export const requestSignup = async body => {
@@ -39,11 +38,17 @@ export const updUserInfo = async ({ body, id }) => {
 
   return data;
 };
-export const updAvatar = async ({ imgUrl }) => {
-  const { data } = await instance.patch(`/api/users/avatar`, imgUrl);
-  // console.log('data:', data);
-  setToken(data.token);
+export const updAvatar = async avatar => {
+  const formData = new FormData();
+  formData.append('avatar', avatar);
 
+  const config = {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  };
+  const { data } = await instance.patch(`/api/users/avatar`, formData, config);
+  setToken(data.token);
   return data;
 };
 
@@ -69,7 +74,6 @@ export const newDailyNorm = async ({ updatedData }) => {
   const { data } = await instance.patch(`/api/users/dailynorma`, updatedData);
   return data;
 };
-
 // -------------------water----------------------
 
 export const fetchTodayWater = async () => {

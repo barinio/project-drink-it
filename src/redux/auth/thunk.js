@@ -57,6 +57,7 @@ export const refreshThunk = createAsyncThunk(
 export const updUserInfoThunk = createAsyncThunk('auth/updUserInfo', async (body, thunkAPI) => {
   const state = thunkAPI.getState();
   const id = state.auth.user._id;
+  // console.log('id :', id);
   const token = state.auth.token;
   try {
     setToken(token);
@@ -66,12 +67,12 @@ export const updUserInfoThunk = createAsyncThunk('auth/updUserInfo', async (body
     return thunkAPI.rejectWithValue(error.message);
   }
 });
-export const updAvatarThunk = createAsyncThunk('auth/updAvatar', async (imgUrl, thunkAPI) => {
+export const updAvatarThunk = createAsyncThunk('auth/updAvatar', async (avatar, thunkAPI) => {
   const state = thunkAPI.getState();
   const token = state.auth.token;
   try {
     setToken(token);
-    const authData = await updAvatar({ imgUrl });
+    const authData = await updAvatar(avatar);
     return authData;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);

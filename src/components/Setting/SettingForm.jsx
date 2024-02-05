@@ -21,7 +21,7 @@ import icons from '../../img/icons.svg';
 import { selectAuthUserData } from 'redux/auth/auth.selectors';
 import { updUserInfoThunk } from 'redux/auth/thunk';
 
-const SettingForm = ({ onClose, avatarURL }) => {
+const SettingForm = ({ onClose }) => {
   const dispatch = useDispatch();
 
   const user = useSelector(selectAuthUserData);
@@ -61,9 +61,8 @@ const SettingForm = ({ onClose, avatarURL }) => {
     onSubmit: values => {
       if (values.password === '' || values.newPassword === '') {
         const { gender, userName, email } = values;
-        const userBody = { gender, userName, email, avatarURL };
+        const userBody = { gender, userName, email };
         dispatch(updUserInfoThunk(userBody));
-        // URL.revokeObjectURL(avatarURL);
 
         return;
       }

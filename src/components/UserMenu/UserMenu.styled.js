@@ -10,6 +10,18 @@ export const NavLinkSignin = styled(NavLink)`
   }
 `;
 
+export const NotAvatar = styled.span`
+  color: var(--primery-color-white);
+  font-size: 25px;
+  font-weight: 700;
+  margin-left: 8px;
+  text-shadow: var(--secondary-yellow) 0px 0px 10px;
+  border: 1px dashed darkblue;
+  border-radius: 50%;
+  width: 35px;
+  text-align: center;
+  background-image: linear-gradient(55grad, var(--primery-color-blue), var(--secondary-color-blue));
+`;
 export const UserContainer = styled.div`
   display: flex;
   align-items: center;
