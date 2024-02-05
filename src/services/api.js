@@ -49,16 +49,25 @@ export const updAvatar = async ({ imgUrl }) => {
 
 // ----------- dailynorma-service -------------------
 
-export const fetchDailyNorma = async id => {
+// export const fetchDailyNorma = async id => {
+//   const { data } = await instance.get(`/api/users/dailynorma/${id}`);
+//   return data;
+// };
 
-  const { data } = await instance.get(`/api/users/dailynorma/${id}`);
+// export const newDailyNorm = async ({ id, updatedData }) => {
+//   console.log(updatedData);
+//   const { data } = await instance.patch(`/api/users/dailynorma/${id}`, updatedData);
+//   return data;
+// };
+export const fetchDailyNorma = async () => {
+  const { data } = await instance.get(`/api/users/dailynorma`);
   return data;
 };
 
-export const newDailyNorma = async (id, updatedData) => {
-  const { data } = await instance.patch(`/api/users/dailynorma/${id}`, updatedData);
+export const newDailyNorm = async ({ updatedData }) => {
+  console.log(updatedData);
+  const { data } = await instance.patch(`/api/users/dailynorma`, updatedData);
   return data;
-
 };
 
 // -------------------water----------------------

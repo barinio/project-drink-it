@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { getDailyNorma, updateDailyNorma } from '../../redux/dailyNorma/dailyNormaThunk';
-import { useDispatch, useSelector } from 'react-redux';
-import { toast } from 'react-toastify';
+import { updateDailyNorma } from '../../redux/dailyNorma/dailyNormaThunk';
+import { useDispatch} from 'react-redux';
+// import { toast } from 'react-toastify';
 import '../../index.css';
-import { selectAuthUserData } from 'redux/auth/auth.selectors';
+// import { selectAuthUserData } from 'redux/auth/auth.selectors';
 
 import {
     ModalOverlay,
@@ -28,147 +28,134 @@ import {
     LabelText,
   } from './dailyNorma.styled';
 
+  const DailyNormaModal = ({
+    onClose,
+    genderData,
+    weightData,
+    activityTimeData,
+    dailyNormaData,
+    willDrinkData,
+    userId,
+  }) => {
+    const dispatch = useDispatch();
+  
+    const [gender, setGender] = useState(genderData);
+    const [weight, setWeight] = useState(weightData);
+    const [activityTime, setActivityTime] = useState(activityTimeData);
+    const [dailyNorma, setDailyNorma] = useState(dailyNormaData);
+    const [willDrink, setWillDrink] = useState(willDrinkData);
+  
+    const weightInputRef = useRef(null);
+    const activityTimeInputRef = useRef(null);
+    const willDrinkInputRef = useRef(null);
 
-
-const DailyNormaModal = ({ isOpen, onClose }) => {
-  const dispatch = useDispatch();
-
-  const [gender, setGender] = useState('woman');
-  const [weight, setWeight] = useState(0);
-  const [activityTime, setActivityTime] = useState(0);
-  const [dailyNorma, setDailyNorma] = useState(2.0);
-  const [willDrink, setWillDrink] = useState(0);
-
-  const userId = useSelector(selectAuthUserData);
-
-  const weightInputRef = useRef(null);
-  const activityTimeInputRef = useRef(null);
-  const willDrinkInputRef = useRef(null);
-
-  const handleGenderChange = (selectedGender) => {
-    setGender(selectedGender);
-    calculateDailyNorma();
-  };
-
-  const handleWeightChange = (e) => {
-    const numericValue = e.target.value.replace(/[^0-9.,]/g, '');
-    setWeight(numericValue);
-  };
-
-  const handleActivityTimeChange = (e) => {
-    const numericValue = e.target.value.replace(/[^0-9.,]/g, '');
-    setActivityTime(numericValue);
-  };
-
-  const handleWillDrinkChange = (e) => {
-    const numericValue = e.target.value.replace(/[^0-9.,]/g, '');
-    setWillDrink(numericValue);
-  };
-
-  const handleWeightFocus = () => {
-    if (parseFloat(weight) === 0) {
-      weightInputRef.current.value = '';
-    }
-  };
-
-  const handleActivityTimeFocus = () => {
-    if (parseFloat(activityTime) === 0) {
-      activityTimeInputRef.current.value = '';
-    }
-  };
-
-  const handleWillDrinkFocus = () => {
-    if (parseFloat(willDrink) === 0) {
-      willDrinkInputRef.current.value = '';
-    }
-  };
-
-  const handleWeightBlur = () => {
-    if (weight === '' || parseFloat(weight) === 0) {
-      weightInputRef.current.value = 0;
-      setWeight(0);
-    }
-    calculateDailyNorma();
-  };
-
-  const handleActivityTimeBlur = () => {
-    if (activityTime === '' || parseFloat(activityTime) === 0) {
-      activityTimeInputRef.current.value = 0;
-      setActivityTime(0);
-    }
-    calculateDailyNorma();
-  };
-
-  const handleWillDrinkBlur = () => {
-    if (willDrink === '' || parseFloat(willDrink) === 0) {
-      willDrinkInputRef.current.value = 0;
-      setWillDrink(0);
-    }
-    calculateDailyNorma();
-  };
-
-  const calculateDailyNorma = useCallback(() => {
-    const userWeight = parseFloat(weight);
-    const userActivity = parseFloat(activityTime);
-
-    if (isNaN(userWeight) || isNaN(userActivity)) {
-      setDailyNorma((2.0).toFixed(1));
-      return;
-    }
-
-    const genderWeight = gender === 'woman' ? 0.03 : 0.04;
-    const genderActivity = gender === 'woman' ? 0.4 : 0.6;
-    let formulaResult = userWeight * genderWeight + userActivity * genderActivity;
-
-    formulaResult = formulaResult === 0 ? 2.0 : formulaResult;
-
-    setDailyNorma(formulaResult > 99 ? 99 : formulaResult.toFixed(1));
-  }, [gender, weight, activityTime]);
-
-  useEffect(() => {
-    calculateDailyNorma();
-  }, [calculateDailyNorma]);
-
-  useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (e.key === 'Escape') {
-        onClose();
+    const handleGenderChange = (selectedGender) => {
+      setGender(selectedGender);
+      calculateDailyNorma();
+    };
+  
+    const handleWeightChange = (e) => {
+      let numericValue = e.target.value.replace(/[^0-9.,]/g, '');
+      if (numericValue >= 250){
+        numericValue = 250;
+      }
+      setWeight(numericValue);
+    };
+  
+    const handleActivityTimeChange = (e) => {
+      let numericValue = e.target.value.replace(/[^0-9.,]/g, '');
+      if (numericValue >= 16){
+        numericValue = 16;
+      }
+      setActivityTime(numericValue);
+    };
+  
+    const handleWillDrinkChange = (e) => {
+      let numericValue = e.target.value.replace(/[^0-9.,]/g, '');
+      if (numericValue >= 15){
+        numericValue = 15;
+      }
+      setWillDrink(numericValue);
+    };
+  
+    const handleWeightFocus = () => {
+      if (parseFloat(weight) === 0) {
+        weightInputRef.current.value = '';
       }
     };
-
-    if (isOpen) {
-      window.addEventListener('keydown', handleKeyDown);
-    }
-
-    return () => {
-      window.removeEventListener('keydown', handleKeyDown);
+  
+    const handleActivityTimeFocus = () => {
+      if (parseFloat(activityTime) === 0) {
+        activityTimeInputRef.current.value = '';
+      }
     };
-  }, [isOpen, onClose]);
+  
+    const handleWillDrinkFocus = () => {
+      if (parseFloat(willDrink) === 0) {
+        willDrinkInputRef.current.value = '';
+      }
+    };
+  
+    const handleWeightBlur = () => {
+      if (weight === '' || parseFloat(weight) === 0) {
+        weightInputRef.current.value = 0;
+        setWeight(0);
+      }
+      calculateDailyNorma();
+    };
+  
+    const handleActivityTimeBlur = () => {
+      if (activityTime === '' || parseFloat(activityTime) === 0) {
+        activityTimeInputRef.current.value = 0;
+        setActivityTime(0);
+      }
+      calculateDailyNorma();
+    };
+  
+    const handleWillDrinkBlur = () => {
+      if (willDrink === '' || parseFloat(willDrink) === 0) {
+        willDrinkInputRef.current.value = 0;
+        setWillDrink(0);
+      }
+      calculateDailyNorma();
+    };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const userData = dispatch(getDailyNorma(userId._id));
-        console.log('Dispatched getDailyNorma');
-        console.log('UserData:', userData);
-        if (userData.payload) {
-          setGender(userData.payload.gender || 'woman');
-          setWeight(userData.payload.weight || 0);
-          setActivityTime(userData.payload.activityTime || 0);
-          setWillDrink(userData.payload.willDrink || 0);
-          setDailyNorma(isNaN(userData.payload.dailyNorma) ? 2.0.toFixed(1) : userData.payload.dailyNorma);
+    const calculateDailyNorma = useCallback(() => {
+      const userWeight = parseFloat(weight);
+      const userActivity = parseFloat(activityTime);
+  
+      if (isNaN(userWeight) || isNaN(userActivity)) {
+        setDailyNorma((2.0).toFixed(1));
+        return;
+      }
+  
+      const genderWeight = gender === 'woman' ? 0.03 : 0.04;
+      const genderActivity = gender === 'woman' ? 0.4 : 0.6;
+      let formulaResult = userWeight * genderWeight + userActivity * genderActivity;
+  
+      formulaResult = formulaResult === 0 ? 2.0 : formulaResult;
+  
+      setDailyNorma(formulaResult > 15 ? 15 : formulaResult.toFixed(1));
+    }, [gender, weight, activityTime]);
+  
+    useEffect(() => {
+      calculateDailyNorma();
+    }, [calculateDailyNorma]);
+  
+    useEffect(() => {
+      const handleKeyDown = e => {
+        if (e.code === 'Escape') {
+          onClose();
         }
-      } catch (error) {
-        console.error('Error fetching user data:', error);
-      }
-    };
+      };
+  
+      window.addEventListener('keydown', handleKeyDown);
+      return () => {
+        window.removeEventListener('keydown', handleKeyDown);
+      };
+    }, [onClose]);
 
-    if (isOpen) {
-      fetchData();
-    }
-  }, [isOpen, dispatch, userId._id]);
-
-  const handleBackdropClick = (e) => {
+  const handleBackdropClick = e => {
     if (e.target === e.currentTarget && e.button === 0) {
       onClose();
     }
@@ -176,32 +163,16 @@ const DailyNormaModal = ({ isOpen, onClose }) => {
 
   const handleSave = async () => {
     const requestData = {
-      gender,
+      // id: userId,
+      gender: gender,
       weight: parseFloat(weight),
       activityTime: parseFloat(activityTime),
       willDrink: parseFloat(willDrink * 1000),
       dailyNorma: parseFloat(dailyNorma * 1000),
     };
-  
-    try {
-      const response = await dispatch(updateDailyNorma(userId._id, requestData));
-      console.log('Dispatched updateDailyNorma');
-      console.log(response);
-      onClose();
-    } catch (error) {
-      console.error('Error saving data to the server:', error);
-      toast.error('There was an error saving data. Please try again.');
-    }
+    dispatch(updateDailyNorma(requestData));
+    onClose();
   };
-
-  if (!isOpen) {
-    return null;
-  }
-
-  let displayAmount = dailyNorma;
-  if (dailyNorma >= 99) {
-    displayAmount = "99+";
-  }
 
 return (
     <ModalOverlay onMouseDown={handleBackdropClick}>
@@ -269,9 +240,9 @@ return (
               onBlur={handleWeightBlur}
               ref={weightInputRef}
               defaultValue={weight === 0 ? '' : weight}
-              maxLength={5}
+              maxLength={4}
 
-              onKeyDown={(e) =>["e", "E", "+", "-"].includes(e.key) && e.preventDefault()}
+              onKeyDown={(e) =>["e", "E", "+", "-", "="].includes(e.key) && e.preventDefault()}
             />
 
           <label>
@@ -285,14 +256,14 @@ return (
               onBlur={handleActivityTimeBlur}
               ref={activityTimeInputRef}
               defaultValue={activityTime === 0 ? '' : activityTime}
-              maxLength={5}
+              maxLength={3}
 
               onKeyDown={(e) =>["e", "E", "+", "-"].includes(e.key) && e.preventDefault()}
             />
 
           <RequiredWaterBox>
             <RequiredText className='dark-daily-norma-text'>The required amount of water in liters per day:</RequiredText>
-            <RequiredWater>{displayAmount} L</RequiredWater>
+            <RequiredWater>{dailyNorma} L</RequiredWater>
           </RequiredWaterBox>
 
           <FormBigText className='dark-daily-norma-text'>Write down how much water you will drink:</FormBigText>
@@ -305,7 +276,7 @@ return (
             ref={willDrinkInputRef}
             defaultValue={willDrink === 0 ? '' : willDrink}
             
-            maxLength={5}
+            maxLength={3}
             
             onKeyDown={(e) =>["e", "E", "+", "-"].includes(e.key) && e.preventDefault()}
           />

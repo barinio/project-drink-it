@@ -8,7 +8,7 @@ export const GlobalStyles = styled.div`
       margin: 0;
     }
 
-    input[type='number'] {
+    input[type=number] {
       -moz-appearance: textfield;
     }
   }
@@ -351,10 +351,8 @@ export const RequiredWaterHeader = styled.div`
 
 export const BottomBox = styled.div`
   display: flex;
-  position: relative;
   margin-bottom: 0;
   margin-top: auto;
-  width: 94px;
   height: 24px;
 `;
 
@@ -365,9 +363,11 @@ export const EditWaterButton = styled.button`
   color: var(--secondary-color-blue);
   border: none;
   cursor: pointer;
-  position: absolute;
-  bottom: 0;
-  right: 0;
+
+  margin-top: 5px;
+  margin-right: 10px;
+  margin-left: auto;
+
 
   &:hover {
   }
