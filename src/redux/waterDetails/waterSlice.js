@@ -20,7 +20,7 @@ const waterSlice = createSlice({
       .addCase(getTodayWater.fulfilled, (state, { payload }) => {
         console.log(payload);
         state.isLoading = false;
-        state.today = payload[0];
+        state.today = payload;
         state.dailyDrank = state.today.drankWater;
         state.ownerId = state.today._id;
         state.waterNorma = state.today.dailyNorma;
