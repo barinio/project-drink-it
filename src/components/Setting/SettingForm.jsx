@@ -19,7 +19,7 @@ import { ErrorMessage } from 'components/SignUpForm/SignUp.styled';
 
 import icons from '../../img/icons.svg';
 import { selectAuthUserData } from 'redux/auth/auth.selectors';
-import { updUserInfoThunk } from 'redux/auth/thunk';
+import { updUserInfoThunk } from 'redux/auth/authThunk';
 
 const SettingForm = ({ onClose }) => {
   const dispatch = useDispatch();
@@ -63,7 +63,7 @@ const SettingForm = ({ onClose }) => {
         const { gender, userName, email } = values;
         const userBody = { gender, userName, email };
         dispatch(updUserInfoThunk(userBody));
-
+        onClose();
         return;
       }
 
@@ -83,197 +83,205 @@ const SettingForm = ({ onClose }) => {
   }, [formik, isMan]);
 
   return (
-    <SettingFormik onSubmit={formik.handleSubmit}>
-      <FormWrapper>
-        <div>
-          <GenderPart>
-            <h3>Your gender identity</h3>
+    <>
+      <SettingFormik onSubmit={formik.handleSubmit}>
+        <FormWrapper>
+          <div>
+            <GenderPart>
+              <h3>Your gender identity</h3>
+              <div>
+                <RadioLabel>
+                  <InputHidden
+                    type="radio"
+                    id="woman"
+                    name="gender"
+                    value="woman"
+                    checked={!isMan}
+                    onChange={() => setIsMan(!isMan)}
+                  />
+                  <label htmlFor="woman">
+                    <svg width="14" height="14">
+                      <use href={icons + '#icon-checkbox'}></use>
+                    </svg>
+                    Woman
+                  </label>
+                </RadioLabel>
+
+                <RadioLabel>
+                  <InputHidden
+                    type="radio"
+                    id="man"
+                    name="gender"
+                    value="man"
+                    checked={isMan}
+                    onChange={() => setIsMan(!isMan)}
+                  />
+                  <label htmlFor="man">
+                    <svg width="14" height="14">
+                      <use href={icons + '#icon-checkbox'}></use>
+                    </svg>
+                    Man
+                  </label>
+                </RadioLabel>
+              </div>
+            </GenderPart>
+
+            <ContainerUserInfo>
+              <UserInfoBox>
+                <h3>Your name</h3>
+                <input
+                  type="text"
+                  name="userName"
+                  placeholder="Name"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.userName}
+                  style={{
+                    color:
+                      formik.touched.userName && formik.errors.userName
+                        ? 'var(--btn-color-red)'
+                        : 'var(--primery-color-blue)',
+                  }}
+                />
+                {formik.touched.userName && formik.errors.userName ? (
+                  <ErrorMessage>{formik.errors.userName}</ErrorMessage>
+                ) : null}
+              </UserInfoBox>
+              <UserInfoBox>
+                <h3>E-mail</h3>
+                <input
+                  type="text"
+                  placeholder="E-mail"
+                  name="email"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.email}
+                  style={{
+                    color:
+                      formik.touched.email && formik.errors.email
+                        ? 'var(--btn-color-red)'
+                        : 'var(--primery-color-blue)',
+                  }}
+                />
+              </UserInfoBox>
+              {formik.touched.email && formik.errors.email ? (
+                <ErrorMessage>{formik.errors.email}</ErrorMessage>
+              ) : null}
+            </ContainerUserInfo>
+          </div>
+
+          <PasswordBox>
+            <h3>Password</h3>
             <div>
-              <RadioLabel>
-                <InputHidden
-                  type="radio"
-                  id="woman"
-                  name="gender"
-                  value="woman"
-                  checked={!isMan}
-                  onChange={() => setIsMan(!isMan)}
-                />
-                <label htmlFor="woman">
-                  <svg width="14" height="14">
-                    <use href={icons + '#icon-checkbox'}></use>
+              <h4>Outdated password:</h4>
+              <PasswordInputContainer>
+                <button
+                  className="dark-icon-wrapper"
+                  type="button"
+                  onClick={togglePasswordVisibility}
+                >
+                  <svg width="16" height="16">
+                    <use
+                      href={icons + (showPassword ? '#icon-opend-eye' : '#icon-closed-eye')}
+                    ></use>
                   </svg>
-                  Woman
-                </label>
-              </RadioLabel>
-
-              <RadioLabel>
-                <InputHidden
-                  type="radio"
-                  id="man"
-                  name="gender"
-                  value="man"
-                  checked={isMan}
-                  onChange={() => setIsMan(!isMan)}
+                </button>
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  placeholder="Password"
+                  name="password"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.password}
+                  style={{
+                    color:
+                      formik.touched.password && formik.errors.password
+                        ? 'var(--btn-color-red)'
+                        : 'var(--primery-color-blue)',
+                  }}
                 />
-                <label htmlFor="man">
-                  <svg width="14" height="14">
-                    <use href={icons + '#icon-checkbox'}></use>
-                  </svg>
-                  Man
-                </label>
-              </RadioLabel>
+                {formik.touched.password && formik.errors.password ? (
+                  <ErrorMessage>{formik.touched.password && formik.errors.password}</ErrorMessage>
+                ) : null}
+              </PasswordInputContainer>
             </div>
-          </GenderPart>
-
-          <ContainerUserInfo>
-            <UserInfoBox>
-              <h3>Your name</h3>
-              <input
-                type="text"
-                name="userName"
-                placeholder="Name"
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                value={formik.values.userName}
-                style={{
-                  color:
-                    formik.touched.userName && formik.errors.userName
-                      ? 'var(--btn-color-red)'
-                      : 'var(--primery-color-blue)',
-                }}
-              />
-              {formik.touched.userName && formik.errors.userName ? (
-                <ErrorMessage>{formik.errors.userName}</ErrorMessage>
-              ) : null}
-            </UserInfoBox>
-            <UserInfoBox>
-              <h3>E-mail</h3>
-              <input
-                type="text"
-                placeholder="E-mail"
-                name="email"
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                value={formik.values.email}
-                style={{
-                  color:
-                    formik.touched.email && formik.errors.email
-                      ? 'var(--btn-color-red)'
-                      : 'var(--primery-color-blue)',
-                }}
-              />
-            </UserInfoBox>
-            {formik.touched.email && formik.errors.email ? (
-              <ErrorMessage>{formik.errors.email}</ErrorMessage>
-            ) : null}
-          </ContainerUserInfo>
-        </div>
-
-        <PasswordBox>
-          <h3>Password</h3>
-          <div>
-            <h4>Outdated password:</h4>
-            <PasswordInputContainer>
-              <button
-                className="dark-icon-wrapper"
-                type="button"
-                onClick={togglePasswordVisibility}
-              >
-                <svg width="16" height="16">
-                  <use href={icons + (showPassword ? '#icon-opend-eye' : '#icon-closed-eye')}></use>
-                </svg>
-              </button>
-              <input
-                type={showPassword ? 'text' : 'password'}
-                placeholder="Password"
-                name="password"
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                value={formik.values.password}
-                style={{
-                  color:
-                    formik.touched.password && formik.errors.password
-                      ? 'var(--btn-color-red)'
-                      : 'var(--primery-color-blue)',
-                }}
-              />
-              {formik.touched.password && formik.errors.password ? (
-                <ErrorMessage>{formik.touched.password && formik.errors.password}</ErrorMessage>
-              ) : null}
-            </PasswordInputContainer>
-          </div>
-          <div>
-            <h4>New Password:</h4>
-            <PasswordInputContainer>
-              <button
-                className="dark-icon-wrapper"
-                type="button"
-                onClick={togglePasswordVisibility}
-              >
-                <svg width="16" height="16">
-                  <use href={icons + (showPassword ? '#icon-opend-eye' : '#icon-closed-eye')}></use>
-                </svg>
-              </button>
-              <input
-                type={showPassword ? 'text' : 'password'}
-                placeholder="Password"
-                name="newPassword"
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                value={formik.values.newPassword}
-                style={{
-                  color:
-                    formik.touched.newPassword && formik.errors.newPassword
-                      ? 'var(--btn-color-red)'
-                      : 'var(--primery-color-blue)',
-                }}
-              />
-              {formik.touched.newPassword && formik.errors.newPassword ? (
-                <ErrorMessage>
-                  {formik.touched.newPassword && formik.errors.newPassword}
-                </ErrorMessage>
-              ) : null}
-            </PasswordInputContainer>
-          </div>
-          <div>
-            <h4>Repeat new password:</h4>
-            <PasswordInputContainer>
-              <button
-                className="dark-icon-wrapper"
-                type="button"
-                onClick={togglePasswordVisibility}
-              >
-                <svg width="16" height="16">
-                  <use href={icons + (showPassword ? '#icon-opend-eye' : '#icon-closed-eye')}></use>
-                </svg>
-              </button>
-              <input
-                type={showPassword ? 'text' : 'password'}
-                placeholder="Password"
-                name="repeatPassword"
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                value={formik.values.repeatPassword}
-                style={{
-                  color:
-                    formik.touched.repeatPassword && formik.errors.repeatPassword
-                      ? 'var(--btn-color-red)'
-                      : 'var(--primery-color-blue)',
-                }}
-              />
-              {formik.touched.repeatPassword && formik.errors.repeatPassword ? (
-                <ErrorMessage>
-                  {formik.touched.repeatPassword && formik.errors.repeatPassword}
-                </ErrorMessage>
-              ) : null}
-            </PasswordInputContainer>
-          </div>
-        </PasswordBox>
-      </FormWrapper>
-      <BtnSettingSave>
-        <button type="submit">Save</button>
-      </BtnSettingSave>
-    </SettingFormik>
+            <div>
+              <h4>New Password:</h4>
+              <PasswordInputContainer>
+                <button
+                  className="dark-icon-wrapper"
+                  type="button"
+                  onClick={togglePasswordVisibility}
+                >
+                  <svg width="16" height="16">
+                    <use
+                      href={icons + (showPassword ? '#icon-opend-eye' : '#icon-closed-eye')}
+                    ></use>
+                  </svg>
+                </button>
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  placeholder="Password"
+                  name="newPassword"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.newPassword}
+                  style={{
+                    color:
+                      formik.touched.newPassword && formik.errors.newPassword
+                        ? 'var(--btn-color-red)'
+                        : 'var(--primery-color-blue)',
+                  }}
+                />
+                {formik.touched.newPassword && formik.errors.newPassword ? (
+                  <ErrorMessage>
+                    {formik.touched.newPassword && formik.errors.newPassword}
+                  </ErrorMessage>
+                ) : null}
+              </PasswordInputContainer>
+            </div>
+            <div>
+              <h4>Repeat new password:</h4>
+              <PasswordInputContainer>
+                <button
+                  className="dark-icon-wrapper"
+                  type="button"
+                  onClick={togglePasswordVisibility}
+                >
+                  <svg width="16" height="16">
+                    <use
+                      href={icons + (showPassword ? '#icon-opend-eye' : '#icon-closed-eye')}
+                    ></use>
+                  </svg>
+                </button>
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  placeholder="Password"
+                  name="repeatPassword"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.repeatPassword}
+                  style={{
+                    color:
+                      formik.touched.repeatPassword && formik.errors.repeatPassword
+                        ? 'var(--btn-color-red)'
+                        : 'var(--primery-color-blue)',
+                  }}
+                />
+                {formik.touched.repeatPassword && formik.errors.repeatPassword ? (
+                  <ErrorMessage>
+                    {formik.touched.repeatPassword && formik.errors.repeatPassword}
+                  </ErrorMessage>
+                ) : null}
+              </PasswordInputContainer>
+            </div>
+          </PasswordBox>
+        </FormWrapper>
+        <BtnSettingSave>
+          <button type="submit">Save</button>
+        </BtnSettingSave>
+      </SettingFormik>
+    </>
   );
 };
 

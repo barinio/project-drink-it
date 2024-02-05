@@ -12,7 +12,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectAuthUserData } from 'redux/auth/auth.selectors';
 import SettingForm from './SettingForm';
-import { updAvatarThunk } from 'redux/auth/thunk';
+import { updAvatarThunk } from 'redux/auth/authThunk';
 import { NotAvatar } from 'components/UserMenu/UserMenu.styled';
 
 const Setting = ({ closeModal, onBackdrop }) => {

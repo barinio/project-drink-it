@@ -2,11 +2,12 @@ import Loader from 'components/Loader/Loader';
 import PrivateRoute from 'components/PrivateRoute/PrivateRoute';
 import RestictedRoute from 'components/RestictedRoute/RestictedRoute';
 import { Suspense, lazy, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
+import { selectIsLoading } from 'redux/auth/auth.selectors';
 
-import { refreshThunk } from 'redux/auth/thunk';
+import { refreshThunk } from 'redux/auth/authThunk';
 
 const Layout = lazy(() => import('./components/Layout/Layout'));
 const HomePage = lazy(() => import('./page/HomePage'));
@@ -16,6 +17,7 @@ const LogInPage = lazy(() => import('./page/LoginPage'));
 
 export const App = () => {
   const dispatch = useDispatch();
+  const isLoading = useSelector(selectIsLoading);
 
   useEffect(() => {
     dispatch(refreshThunk());
@@ -56,6 +58,7 @@ export const App = () => {
 
         <ToastContainer autoClose={2000} />
       </Suspense>
+      {isLoading && <Loader />}
     </>
   );
 };

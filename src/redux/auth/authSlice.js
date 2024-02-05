@@ -7,7 +7,7 @@ import {
   signupThunk,
   updAvatarThunk,
   updUserInfoThunk,
-} from './thunk';
+} from './authThunk';
 
 const initialState = {
   token: null,
@@ -18,35 +18,41 @@ const initialState = {
     avatar: null,
   },
   authenticated: false,
-  isloading: false,
+  isLoading: false,
   error: null,
 };
 
 const handlePending = state => {
-  state.isloading = true;
+  state.isLoading = true;
   state.error = null;
 };
 const handleFulfilled = (state, { payload }) => {
-  state.isloading = false;
+  state.isLoading = false;
   state.token = payload.token;
   state.authenticated = true;
   state.user = payload.user;
 };
 const handleError = (state, { payload }) => {
-  state.isloading = false;
+  state.isLoading = false;
   state.error = payload;
 };
 const handlerefreshFulfilled = (state, { payload }) => {
-  state.isloading = false;
+  state.isLoading = false;
   state.authenticated = true;
-  state.user = payload;
+  state.user = { ...state.user, ...payload };
 };
-// const handleUpdAvaFulfilled = (state, { payload }) => {
-//   // console.log('payload:', payload);
-//   state.isloading = false;
-//   state.authenticated = true;
-//   state.user = payload;
-// };
+
+const handleUpdUserInfoFulfilled = (state, { payload }) => {
+  state.isLoading = false;
+  state.authenticated = true;
+  state.user = { ...state.user, ...payload };
+};
+
+const handleUpdAvaFulfilled = (state, { payload }) => {
+  state.isLoading = false;
+  state.authenticated = true;
+  state.user.avatarURL = payload.avatarURL;
+};
 
 const authSlice = createSlice({
   name: 'auth',
@@ -59,9 +65,9 @@ const authSlice = createSlice({
 
       .addCase(refreshThunk.fulfilled, handlerefreshFulfilled)
 
-      .addCase(updUserInfoThunk.fulfilled, handlerefreshFulfilled)
+      .addCase(updUserInfoThunk.fulfilled, handleUpdUserInfoFulfilled)
 
-      .addCase(updAvatarThunk.fulfilled, handlerefreshFulfilled)
+      .addCase(updAvatarThunk.fulfilled, handleUpdAvaFulfilled)
 
       .addCase(logoutThunk.fulfilled, () => initialState)
 
