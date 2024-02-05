@@ -23,7 +23,7 @@ import { menuStyle } from './menu-style';
 
 import Setting from 'components/Setting/Setting';
 import { LogOut } from 'components/LogOut/LogOut';
-import { logoutThunk } from 'redux/auth/thunk';
+import { logoutThunk } from 'redux/auth/authThunk';
 
 const UserMenu = () => {
   const dispatch = useDispatch();
