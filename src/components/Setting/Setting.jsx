@@ -9,17 +9,15 @@ import {
 
 import icons from '../../img/icons.svg';
 import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { selectAuthUserData } from 'redux/auth/auth.selectors';
 import SettingForm from './SettingForm';
-import { useState } from 'react';
-// import { updAvatarThunk } from 'redux/auth/thunk';
+import { updAvatarThunk } from 'redux/auth/thunk';
+import { NotAvatar } from 'components/UserMenu/UserMenu.styled';
 
 const Setting = ({ closeModal, onBackdrop }) => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const user = useSelector(selectAuthUserData);
-
-  const [updateAvatar, setUpdateAvatar] = useState(null);
 
   useEffect(() => {
     const onEsc = e => e.key === 'Escape' && closeModal();
@@ -27,21 +25,9 @@ const Setting = ({ closeModal, onBackdrop }) => {
     return () => window.removeEventListener('keydown', onEsc);
   }, [closeModal]);
 
-  // const uploadFile = async imgUrl => {
-  //   try {
-  //     dispatch(updAvatarThunk(imgUrl));
-
-  // URL.revokeObjectURL(imgUrl);
-  //   } catch (error) {
-  //     console.error('Error uploading file:', error);
-  //   }
-  // };
-
   const changeHandler = e => {
-    const file = e.target.files[0];
-    const imgUrl = URL.createObjectURL(file);
-    setUpdateAvatar(imgUrl);
-    // uploadFile(imgUrl);
+    const avatar = e.target.files[0];
+    dispatch(updAvatarThunk(avatar));
   };
 
   return (
@@ -60,7 +46,11 @@ const Setting = ({ closeModal, onBackdrop }) => {
             <PhotoBlock>
               <h3>Your photo</h3>
               <div>
-                <img src={updateAvatar || user.avatarURL} alt="avatarName" width={80} height={80} />
+                {!user.avatarURL ? (
+                  <NotAvatar>{user.userName.split('')[0]}</NotAvatar>
+                ) : (
+                  <img src={user.avatarURL} alt={user.userName} width={80} height={80} />
+                )}
                 <div>
                   <svg width="16" height="16">
                     <use href={icons + '#icon-upload'}></use>
@@ -71,7 +61,7 @@ const Setting = ({ closeModal, onBackdrop }) => {
               </div>
             </PhotoBlock>
 
-            <SettingForm onClose={closeModal} avatarURL={updateAvatar} />
+            <SettingForm onClose={closeModal} />
           </Modal>
         </WrapperModal>
       </Backdrop>

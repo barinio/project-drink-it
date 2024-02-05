@@ -20,7 +20,11 @@ const MonthStatsTable = () => {
 
   const isLoadingMonth = useSelector(selectIsLoadingMonthWater);
   const monthWater = useSelector(selectMonthWaterDetails);
+
   const dailyDrank = useSelector(selectDailyDrank);
+
+
+
 
   const d = formatDate(currentDate);
 

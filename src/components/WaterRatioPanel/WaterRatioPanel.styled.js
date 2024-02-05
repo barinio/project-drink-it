@@ -69,6 +69,8 @@ export const WaterRangeContainer = styled.div`
   height: 102px;
   display: flex;
   flex-direction: column;
+  padding-left: 11px;
+  padding-right: 11px;
 
   @media screen and (min-width: 768px) {
     width: 356px;

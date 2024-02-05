@@ -14,6 +14,7 @@ import {
   Avatar,
   ArrowDownSvg,
   SettingSvg,
+  NotAvatar,
 } from './UserMenu.styled';
 
 import icons from '../../img/icons.svg';
@@ -66,7 +67,12 @@ const UserMenu = () => {
         <>
           <UserContainer to="signin">
             {user.userName}
-            <Avatar src={user.avatarURL} alt={user.userName} width="28" height="28" />
+
+            {!user.avatarURL ? (
+              <NotAvatar>{user.userName.split('')[0]}</NotAvatar>
+            ) : (
+              <Avatar src={user.avatarURL} alt={user.userName} width="28" height="28" />
+            )}
 
             <Button
               id="basic-button"
@@ -79,7 +85,7 @@ const UserMenu = () => {
                 minWidth: '16px',
               }}
             >
-              <ArrowDownSvg className='dark-icon-arrow' width="16" height="16">
+              <ArrowDownSvg className="dark-icon-arrow" width="16" height="16">
                 <use href={icons + '#icon-arrow-down'}></use>
               </ArrowDownSvg>
             </Button>
@@ -112,7 +118,7 @@ const UserMenu = () => {
       ) : (
         <NavLinkSignin to="signin">
           <span>Sign in</span>
-          <UserSvg className='dark-user-menu' width="28" height="28">
+          <UserSvg className="dark-user-menu" width="28" height="28">
             <use href={icons + '#icon-user'}></use>
           </UserSvg>
         </NavLinkSignin>
