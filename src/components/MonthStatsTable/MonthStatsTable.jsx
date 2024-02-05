@@ -11,6 +11,8 @@ import {
 } from 'redux/monthWater/monthWaterselectors';
 import { formatDate } from 'redux/waterDetails/helpers';
 import Loader from 'components/Loader/Loader';
+import { selectDailyDrank } from 'redux/waterDetails/waterSelectors';
+import { isToday } from 'date-fns';
 
 const MonthStatsTable = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -18,7 +20,11 @@ const MonthStatsTable = () => {
 
   const isLoadingMonth = useSelector(selectIsLoadingMonthWater);
   const monthWater = useSelector(selectMonthWaterDetails);
-  // console.log(monthWater);
+
+  const dailyDrank = useSelector(selectDailyDrank);
+
+
+
 
   const d = formatDate(currentDate);
 
@@ -26,7 +32,7 @@ const MonthStatsTable = () => {
 
   useEffect(() => {
     dispatch(getMonthWater(d));
-  }, [dispatch, d]);
+  }, [dispatch, d, dailyDrank]);
 
   const handleChangeMonth = offset => {
     setCurrentDate(prevDate => new Date(prevDate.getFullYear(), prevDate.getMonth() + offset));
@@ -37,6 +43,14 @@ const MonthStatsTable = () => {
       start: startOfMonth(date),
       end: endOfMonth(date),
     };
+  };
+
+  const getBorderStyle = percentage => {
+    if (percentage === 100) {
+      return 'border';
+    } else if (percentage >= 100) {
+      return 'border-green';
+    }
   };
 
   const getMonthDays = date => {
@@ -70,36 +84,47 @@ const MonthStatsTable = () => {
     );
     if (waterInfo) {
       return (
-        <ContentPopover>
-          <p className="datePopover">{format(dateObj, 'd,MMMM')}</p>
-          <p className="datePopoverText">
-            Daily norma: <span className="popoverColorText">{waterInfo.dailyNorma}L</span>
-          </p>
-          <p className="datePopoverText">
-            Fulfillment of the daily norm:{' '}
-            <span className="popoverColorText">{waterInfo.persent.toFixed(0)}%</span>
-          </p>
-          <p className="datePopoverText">
-            How many servings of water: <span className="popoverColorText">{waterInfo.perDay}</span>
-          </p>
-          <button className="closeBtnPopover" onClick={() => setSelectedDate(null)}>
-            <svg width="14" height="14">
-              <use href={icons + '#icon-close-day-details'}></use>{' '}
-            </svg>
-          </button>
-        </ContentPopover>
-      );
-    } else {
-      return (
-        <ContentPopover>
-          <h3>{format(dateObj, 'd MMMM yyyy')}</h3>
-          <p>No information</p>
-          <button className="closeBtnPopover" onClick={() => setSelectedDate(null)}>
-            <svg width="14" height="14">
-              <use href={icons + '#icon-close-day-details'}></use>{' '}
-            </svg>
-          </button>
-        </ContentPopover>
+        <Popover
+          anchorOrigin={{
+            vertical: 'top',
+            horizontal: 'center',
+          }}
+          transformOrigin={{
+            vertical: 'bottom',
+            horizontal: 'right',
+          }}
+          id="alex"
+          open={Boolean(selectedDate)}
+          anchorEl={selectedDate}
+          onClose={() => setSelectedDate(null)}
+          slotProps={{
+            paper: { elevation: 3 },
+          }}
+          transitionDuration={{
+            enter: 500,
+            exit: 500,
+          }}
+        >
+          <ContentPopover>
+            <p className="datePopover">{format(dateObj, 'd,MMMM')}</p>
+            <p className="datePopoverText">
+              Daily norma: <span className="popoverColorText">{waterInfo.dailyNorma}L</span>
+            </p>
+            <p className="datePopoverText">
+              Fulfillment of the daily norm:{' '}
+              <span className="popoverColorText">{waterInfo.persent.toFixed(0)}%</span>
+            </p>
+            <p className="datePopoverText">
+              How many servings of water:{' '}
+              <span className="popoverColorText">{waterInfo.perDay}</span>
+            </p>
+            <button className="closeBtnPopover" onClick={() => setSelectedDate(null)}>
+              <svg width="14" height="14">
+                <use href={icons + '#icon-close-day-details'}></use>{' '}
+              </svg>
+            </button>
+          </ContentPopover>
+        </Popover>
       );
     }
   };
@@ -128,27 +153,19 @@ const MonthStatsTable = () => {
         </LoaderMonthWrapper>
       ) : (
         <ul className="month">
-          <Popover
-            anchorOrigin={{
-              vertical: 'top',
-              horizontal: 'center',
-            }}
-            transformOrigin={{
-              vertical: 'bottom',
-              horizontal: 'right',
-            }}
-            id="alex"
-            open={Boolean(selectedDate)}
-            anchorEl={selectedDate}
-            onClose={() => setSelectedDate(null)}
-            PaperProps={{ elevation: 3 }}
-            transitionDuration={{ enter: 500, exit: 500 }}
-          >
-            {selectedDate && renderPopover(monthWater)}
-          </Popover>
+          {selectedDate && renderPopover(monthWater)}
           {getMonthDays(currentDate).map(date => (
             <li key={format(date, 'yyyy-MM-dd')} className="day">
-              <button className="calendarDayBtn" onClick={e => setSelectedDate(e.target)}>
+              <button
+                className={`calendarDayBtn ${isToday(date) ? 'today' : ''} ${getBorderStyle(
+                  monthWater.find(
+                    item =>
+                      getFormattedDateWithTime(new Date(item._id)) ===
+                      getFormattedDateWithTime(date)
+                  )?.persent
+                )}`}
+                onClick={e => setSelectedDate(e.target)}
+              >
                 {format(date, 'd')}
               </button>
               <p className="progressWaterText">
