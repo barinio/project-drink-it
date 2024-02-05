@@ -21,7 +21,7 @@ import {
 export const DailyNorma = () => {
   const dispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [dailyNorma, setDailyNorma] = useState(2.0);
+  const [dailyNorma, setDailyNorma] = useState(0);
   const userId = useSelector(selectAuthUserData);
   const genderData = useSelector(selectDailyNormaGender);
   const weightData = useSelector(selectDailyNormaWeight);
