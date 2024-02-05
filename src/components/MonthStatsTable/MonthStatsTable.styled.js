@@ -53,10 +53,16 @@ export const CalendarStyle = styled.div`
       font-weight: 400;
       line-height: 20px;
     }
+
+    .today {
+      background-color: var(--secondary-color-blue);
+    }
+
     .day {
       display: flex;
       flex-direction: column;
       gap: 4px;
+      align-items: center;
     }
     .progressWaterText {
       color: var(--secondary-color-blue);
@@ -68,6 +74,10 @@ export const CalendarStyle = styled.div`
 
     .border {
       border: 1px solid var(--calendar-color-orange);
+    }
+
+    .border-green {
+      border: 1px solid var(--calendar-color-green);
     }
   }
 
