@@ -18,7 +18,7 @@ const MonthStatsTable = () => {
 
   const isLoadingMonth = useSelector(selectIsLoadingMonthWater);
   const monthWater = useSelector(selectMonthWaterDetails);
-  console.log(monthWater);
+  // console.log(monthWater);
 
   const d = formatDate(currentDate);
 

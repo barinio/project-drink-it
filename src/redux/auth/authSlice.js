@@ -41,6 +41,12 @@ const handlerefreshFulfilled = (state, { payload }) => {
   state.authenticated = true;
   state.user = payload;
 };
+// const handleUpdAvaFulfilled = (state, { payload }) => {
+//   // console.log('payload:', payload);
+//   state.isloading = false;
+//   state.authenticated = true;
+//   state.user = payload;
+// };
 
 const authSlice = createSlice({
   name: 'auth',
@@ -54,12 +60,20 @@ const authSlice = createSlice({
       .addCase(refreshThunk.fulfilled, handlerefreshFulfilled)
 
       .addCase(updUserInfoThunk.fulfilled, handlerefreshFulfilled)
+
       .addCase(updAvatarThunk.fulfilled, handlerefreshFulfilled)
 
       .addCase(logoutThunk.fulfilled, () => initialState)
 
       .addMatcher(
-        isAnyOf(logoutThunk.pending, signupThunk.pending, loginThunk.pending, refreshThunk.pending),
+        isAnyOf(
+          logoutThunk.pending,
+          signupThunk.pending,
+          loginThunk.pending,
+          refreshThunk.pending,
+          updUserInfoThunk.pending,
+          updAvatarThunk.pending
+        ),
         handlePending
       )
       .addMatcher(
@@ -67,7 +81,9 @@ const authSlice = createSlice({
           logoutThunk.rejected,
           signupThunk.rejected,
           loginThunk.rejected,
-          refreshThunk.rejected
+          refreshThunk.rejected,
+          updUserInfoThunk.rejected,
+          updAvatarThunk.rejected
         ),
         handleError
       ),

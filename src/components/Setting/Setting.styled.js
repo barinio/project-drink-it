@@ -80,11 +80,21 @@ export const CaptionBlock = styled.div`
 `;
 
 export const PhotoBlock = styled.div`
+  margin-bottom: 24px;
+  span {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 50px;
+    font-weight: 700;
+    margin: 0;
+  }
   div {
     display: flex;
     align-items: center;
     gap: 8px;
-    margin-bottom: 24px;
   }
   img {
     width: 80px;
