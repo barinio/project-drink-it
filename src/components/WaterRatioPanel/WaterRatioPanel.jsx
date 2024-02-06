@@ -38,7 +38,7 @@ export const WaterRatioPanel = () => {
   const getPosition = () => {
     const limit = Math.min(100, Math.max(0, waterPercent));
     return {
-      left: `calc(${limit}% - 2px)`,
+      left: `calc(${limit}% + 3%)`,
     };
   };
 

@@ -18,7 +18,6 @@ const waterSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(getTodayWater.fulfilled, (state, { payload }) => {
-        // console.log(payload);
         state.isLoading = false;
         state.today = payload;
         state.dailyDrank = state.today.drankWater;
