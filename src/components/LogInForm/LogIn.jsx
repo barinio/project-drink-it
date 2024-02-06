@@ -17,7 +17,7 @@ const LogInForm = () => {
     password: Yup.string()
       .min(8, 'Password must be at least 8 characters')
       .max(64, 'Password is too long')
-      .required('Password is requird'),
+      .required('Password is required'),
   });
 
   const formik = useFormik({
@@ -25,19 +25,19 @@ const LogInForm = () => {
       email: '',
       password: '',
     },
-    onSubmit: (values, { resetForm }) => {
-      // console.log('onSubmit', values);
-      dispatch(loginThunk(values));
+    onSubmit: ({ email, password }) => {
+      dispatch(loginThunk({ email, password }));
     },
     validationSchema: validationSchema,
   });
+
   return (
     <FormStyle onSubmit={formik.handleSubmit}>
-      <h3>Sing In</h3>
+      <h3>Sign In</h3>
       <div className="inputWrapper">
         <label>Enter your email</label>
         <div
-          className="dark-input"
+          className="dark-input sign-auth"
           style={{
             borderColor: formik.errors.email && formik.touched.email ? '#ef5050' : '#9ebbff',
             marginBottom: 4,
@@ -62,7 +62,7 @@ const LogInForm = () => {
       <div className="inputWrapper">
         <label>Enter your password</label>
         <div
-          className="dark-input"
+          className="dark-input sign-auth"
           style={{
             borderColor: formik.errors.password && formik.touched.password ? '#ef5050' : '#9ebbff',
             marginBottom: 4,
@@ -81,7 +81,7 @@ const LogInForm = () => {
               color: formik.errors.password && formik.touched.password ? '#ef5050' : '#407bff',
             }}
           />
-          <button className="icon-wrapper" onClick={() => setVisible(!visible)}>
+          <button type="button" className="icon-wrapper" onClick={() => setVisible(!visible)}>
             <svg width="16" height="16">
               <use href={visible ? icons + '#icon-opend-eye' : icons + '#icon-closed-eye'}></use>
             </svg>
