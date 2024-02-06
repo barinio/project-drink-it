@@ -14,7 +14,7 @@ export const WaterRatioPanelContainer = styled.div`
     align-items: center;
   }
 
-  @media screen and (min-width: 1200px) {
+  @media screen and (min-width: 1440px) {
     width: 592px;
     gap: 32px;
   }
@@ -165,7 +165,7 @@ export const AddWaterButton = styled.button`
     padding: 10px 104px 10px 104px;
   }
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1200px) {
     width: 178px;
     height: 44px;
     padding: 10px 30px 10px 30px;

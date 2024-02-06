@@ -19,7 +19,6 @@ export const DeleteWaterModal = ({ onClose, recordId, ownerId }) => {
   const dispatch = useDispatch();
 
   const handleDelete = () => {
-    console.log(ownerId);
     const dataDelete = {
       id: recordId,
       _id: ownerId,
@@ -31,7 +30,7 @@ export const DeleteWaterModal = ({ onClose, recordId, ownerId }) => {
   return (
     <>
       <Overlay onClick={onClose} />
-      <ModalContent className='dark-delete-modal'>
+      <ModalContent className="dark-delete-modal">
         <ModalHeader>
           <h2>Delete entry</h2>
           <CloseButton onClick={onClose}>
@@ -42,9 +41,13 @@ export const DeleteWaterModal = ({ onClose, recordId, ownerId }) => {
         </ModalHeader>
         <div>
           <BoxModal>
-            <TextStyle className='dark-delete-modal-text'>Are you sure you want to delete the entry?</TextStyle>
+            <TextStyle className="dark-delete-modal-text">
+              Are you sure you want to delete the entry?
+            </TextStyle>
             <ButtonBox>
-              <ButtonStyle className="dark-delete-button" onClick={handleDelete}>Delete</ButtonStyle>
+              <ButtonStyle className="dark-delete-button" onClick={handleDelete}>
+                Delete
+              </ButtonStyle>
               <ButtonStyle onClick={onClose}>Cancel</ButtonStyle>
             </ButtonBox>
           </BoxModal>
