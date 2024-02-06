@@ -5,7 +5,7 @@ import * as Yup from 'yup';
 import { NavLink } from 'react-router-dom';
 import icons from '../../img/icons.svg';
 import { useDispatch } from 'react-redux';
-import { loginThunk } from 'redux/auth/thunk';
+import { loginThunk } from 'redux/auth/authThunk';
 
 const LogInForm = () => {
   const [visible, setVisible] = useState(false);
@@ -28,7 +28,6 @@ const LogInForm = () => {
     onSubmit: (values, { resetForm }) => {
       // console.log('onSubmit', values);
       dispatch(loginThunk(values));
-      resetForm();
     },
     validationSchema: validationSchema,
   });
@@ -46,7 +45,7 @@ const LogInForm = () => {
           }}
         >
           <input
-            className='dark-sign-input'
+            className="dark-sign-input"
             type="email"
             placeholder="E-mail"
             name="email"
@@ -71,7 +70,7 @@ const LogInForm = () => {
           }}
         >
           <input
-            className='dark-sign-input'
+            className="dark-sign-input"
             type={visible ? 'text' : 'password'}
             placeholder="Password"
             name="password"

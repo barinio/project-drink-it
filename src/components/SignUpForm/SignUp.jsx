@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 import { SignupForm, ErrorMessage } from './SignUp.styled';
 import icons from '../../img/icons.svg';
 import { useDispatch } from 'react-redux';
-import { signupThunk } from 'redux/auth/thunk';
+import { signupThunk } from 'redux/auth/authThunk';
 
 const SignUpForm = () => {
   const dispatch = useDispatch();
@@ -60,7 +60,7 @@ const SignUpForm = () => {
           }}
         >
           <input
-            className='dark-sign-input'
+            className="dark-sign-input"
             type="email"
             name="email"
             placeholder="E-mail"
@@ -92,7 +92,7 @@ const SignUpForm = () => {
           }}
         >
           <input
-            className='dark-sign-input'
+            className="dark-sign-input"
             type={showPassword ? 'text' : 'password'}
             name="password"
             placeholder="Password"
@@ -131,7 +131,7 @@ const SignUpForm = () => {
           }}
         >
           <input
-            className='dark-sign-input'
+            className="dark-sign-input"
             type={showPassword ? 'text' : 'password'}
             name="repeatPassword"
             placeholder="Repeat password"

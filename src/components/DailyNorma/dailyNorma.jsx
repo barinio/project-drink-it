@@ -22,7 +22,7 @@ export const DailyNorma = () => {
   const dispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [dailyNorma, setDailyNorma] = useState(0);
-  
+
   const userId = useSelector(selectAuthUserData);
   const genderData = useSelector(selectDailyNormaGender);
   const weightData = useSelector(selectDailyNormaWeight);
@@ -33,9 +33,9 @@ export const DailyNorma = () => {
   useEffect(() => {
     dispatch(getDailyNorma(userId._id));
     const fetchedDailyNorma = dailyNormaData;
-    console.log(fetchedDailyNorma);
+    // console.log(fetchedDailyNorma);
     const formattedAmount = parseFloat(fetchedDailyNorma / 1000).toFixed(1);
-    console.log(formattedAmount);
+    // console.log(formattedAmount);
     setDailyNorma(formattedAmount);
   }, [dispatch, userId._id, dailyNormaData]);
 
@@ -50,13 +50,13 @@ export const DailyNorma = () => {
   //   const activityTimeData = useSelector(selectDailyNormaActivity);
   //   const dailyNormaData = useSelector(selectDailyNormaData);
   //   const willDrinkData = useSelector(selectDailyNormaWillDrink);
-  
+
   //   useEffect(() => {
   //     dispatch(getDailyNorma(userId._id))
-  //       .then(() => setLoading(false)) 
-  //       .catch(() => setLoading(false)); 
+  //       .then(() => setLoading(false))
+  //       .catch(() => setLoading(false));
   //   }, [dispatch, userId._id]);
-  
+
   //   useEffect(() => {
   //     if (!loading && !isNaN(dailyNormaData)) {
   //       console.log(dailyNormaData);
@@ -66,7 +66,6 @@ export const DailyNorma = () => {
   //     }
   //   }, [dailyNormaData, loading]);
 
-
   const handleModalOpen = () => {
     setIsModalOpen(true);
   };
@@ -74,7 +73,6 @@ export const DailyNorma = () => {
   const handleModalClose = () => {
     setIsModalOpen(false);
   };
-
 
   return (
     <DailyNormaBox className="dark-daily-norma-box">

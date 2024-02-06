@@ -3,6 +3,14 @@ import sun from '../../img/sun.png';
 import moon from '../../img/moon.png';
 import clouds from '../../img/cloudy.png';
 
+export const SwitcherBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 15px;
+`;
+
 export const SwitcherWrapp = styled.label`
   display: block;
   position: relative;
