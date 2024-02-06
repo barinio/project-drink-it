@@ -114,6 +114,16 @@ body[data-theme='dark'] {
     border-color: #676d7c;
   }
 
+  /* team modal */
+  .team-modal {
+    background: linear-gradient(to bottom, #433c3c, #d7cdaf);
+  }
+  .team-modal-title {
+    color: var(--bg-color-light-blue);
+    text-align: center;
+    /* margin: 0; */
+  }
+
   h3,
   h2 {
     color: var(--bg-color-light-blue);

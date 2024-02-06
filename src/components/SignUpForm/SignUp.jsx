@@ -11,7 +11,6 @@ import { useTranslation } from 'react-i18next';
 const SignUpForm = () => {
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
-  const validEmailDomains = ['gmail.com', 'i.ua', 'yahoo.com', 'ukr.net'];
   const { t } = useTranslation();
 
   const formik = useFormik({
@@ -24,7 +23,7 @@ const SignUpForm = () => {
       email: Yup.string()
         .email('Invalid email address')
         .required('Email is required')
-        .matches(new RegExp(`@(${validEmailDomains.join('|')})$`), 'Invalid email domain'),
+        .matches(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i, 'Invalid email address'),
       password: Yup.string()
         .required('Password is required')
         .min(8, 'Password must be at least 8 characters')
@@ -35,7 +34,6 @@ const SignUpForm = () => {
     }),
     onSubmit: async ({ email, password }) => {
       try {
-        // console.log('Form data submitted:', { email, password });
         dispatch(signupThunk({ email, password }));
       } catch (error) {
         console.error('Error:', error);
