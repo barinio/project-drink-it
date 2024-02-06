@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Button } from '@mui/material';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import { useTranslation } from 'react-i18next';
 
 import { selectAuthAuthenticated, selectAuthUserData } from 'redux/auth/auth.selectors';
 
@@ -27,6 +28,7 @@ import { logoutThunk } from 'redux/auth/authThunk';
 
 const UserMenu = () => {
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   const authenticated = useSelector(selectAuthAuthenticated);
 
@@ -102,13 +104,13 @@ const UserMenu = () => {
                 <SettingSvg width="16" height="16">
                   <use href={icons + '#icon-cog-tooth'}></use>
                 </SettingSvg>
-                Settings
+                {t('buttons.settings')}
               </MenuItem>
               <MenuItem className="logout" onClick={handleClose}>
                 <SettingSvg width="16" height="16">
                   <use href={icons + '#icon-log-out'}></use>
                 </SettingSvg>
-                Log out
+                {t('buttons.logout')}
               </MenuItem>
             </Menu>
           </UserContainer>
@@ -117,7 +119,7 @@ const UserMenu = () => {
         </>
       ) : (
         <NavLinkSignin to="signin">
-          <span>Sign in</span>
+          <span>{t('buttons.signin')}</span>
           <UserSvg className="dark-user-menu" width="28" height="28">
             <use href={icons + '#icon-user'}></use>
           </UserSvg>
