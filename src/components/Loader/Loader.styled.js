@@ -8,7 +8,7 @@ export const LoaderStyled = styled.div`
   height: 1em;
   border-radius: 50%;
   position: absolute;
-  top: 50%;
+  top: 15%;
   left: 50%;
   transform: translate(50%, 50%);
   text-indent: -9999em;
@@ -17,6 +17,7 @@ export const LoaderStyled = styled.div`
   -webkit-transform: translateZ(0);
   -ms-transform: translateZ(0);
   transform: translateZ(0);
+  z-index: 9999;
 
   @-webkit-keyframes load4 {
     0%,

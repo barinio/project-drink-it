@@ -1,6 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-// import { getDailyNormaData, updateDailyNormaData } from '../../services/api';
-import { fetchDailyNorma, newDailyNorma } from '../../services/api';
+import { fetchDailyNorma, newDailyNorm } from '../../services/api';
 
 export const getDailyNorma = createAsyncThunk(
   'auth/getDailyNorma',
@@ -16,9 +15,16 @@ export const getDailyNorma = createAsyncThunk(
 
 export const updateDailyNorma = createAsyncThunk(
   'auth/updateDailyNorma',
-  async (updatedData,  { rejectWithValue }) => {
+  async ({ id, dailyNorma, gender, weight, activityTime, willDrink }, { rejectWithValue }) => {
     try {
-      const updatedUser = await newDailyNorma(updatedData);
+      const updatedData = {
+        dailyNorma,
+        gender,
+        weight,
+        activityTime,
+        willDrink,
+      };
+      const updatedUser = await newDailyNorm({ id, updatedData });
       return updatedUser;
     } catch (error) {
       return rejectWithValue(error.message);

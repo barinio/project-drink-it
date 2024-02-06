@@ -7,6 +7,7 @@ import { Normalize } from 'styled-normalize';
 
 import 'react-toastify/dist/ReactToastify.css';
 import { persistor, store } from 'redux/store';
+import './i18n';
 
 import { App } from 'App';
 

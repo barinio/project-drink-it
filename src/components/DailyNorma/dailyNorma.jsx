@@ -11,35 +11,61 @@ import {
   EditWaterButton,
 } from './dailyNorma.styled';
 import { selectAuthUserData } from 'redux/auth/auth.selectors';
+import {
+  selectDailyNormaActivity,
+  selectDailyNormaData,
+  selectDailyNormaGender,
+  selectDailyNormaWeight,
+  selectDailyNormaWillDrink,
+} from 'redux/dailyNorma/dailyNorma.selectors';
 
 export const DailyNorma = () => {
   const dispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [dailyNorma, setDailyNorma] = useState(0);
+
   const userId = useSelector(selectAuthUserData);
-  // const userData = useSelector(selectAuthUserData);
+  const genderData = useSelector(selectDailyNormaGender);
+  const weightData = useSelector(selectDailyNormaWeight);
+  const activityTimeData = useSelector(selectDailyNormaActivity);
+  const dailyNormaData = useSelector(selectDailyNormaData);
+  const willDrinkData = useSelector(selectDailyNormaWillDrink);
 
   useEffect(() => {
-    dispatch(getDailyNorma(userId._id))
-      .then(
-        userData => {
-        console.log('UserData:', userData.payload);
-        const fetchedDailyNorma = userData.payload.dailyNorma;
-        console.log(fetchedDailyNorma);
-        
-        const formattedAmount = parseFloat(fetchedDailyNorma / 1000).toFixed(1);
-        // const formattedAmount = parseFloat(fetchedDailyNorma).toFixed(1);
+    dispatch(getDailyNorma(userId._id));
+    const fetchedDailyNorma = dailyNormaData;
+    // console.log(fetchedDailyNorma);
+    const formattedAmount = parseFloat(fetchedDailyNorma / 1000).toFixed(1);
+    // console.log(formattedAmount);
+    setDailyNorma(formattedAmount);
+  }, [dispatch, userId._id, dailyNormaData]);
 
-        console.log(formattedAmount);
+  // export const DailyNorma = () => {
+  //   const dispatch = useDispatch();
+  //   const [isModalOpen, setIsModalOpen] = useState(false);
+  //   const [dailyNorma, setDailyNorma] = useState(0);
+  //   const [loading, setLoading] = useState(true);
+  //   const userId = useSelector(selectAuthUserData);
+  //   const genderData = useSelector(selectDailyNormaGender);
+  //   const weightData = useSelector(selectDailyNormaWeight);
+  //   const activityTimeData = useSelector(selectDailyNormaActivity);
+  //   const dailyNormaData = useSelector(selectDailyNormaData);
+  //   const willDrinkData = useSelector(selectDailyNormaWillDrink);
 
-        setDailyNorma(formattedAmount);
-      })
-      .catch(error => {
-        console.error('Error getting dailyNorma:', error);
-        setDailyNorma(2.0);
-      });
+  //   useEffect(() => {
+  //     dispatch(getDailyNorma(userId._id))
+  //       .then(() => setLoading(false))
+  //       .catch(() => setLoading(false));
+  //   }, [dispatch, userId._id]);
 
-  }, [dispatch, userId._id]);
+  //   useEffect(() => {
+  //     if (!loading && !isNaN(dailyNormaData)) {
+  //       console.log(dailyNormaData);
+  //       const formattedAmount = parseFloat(dailyNormaData / 1000).toFixed(1);
+  //       console.log(formattedAmount);
+  //       setDailyNorma(formattedAmount);
+  //     }
+  //   }, [dailyNormaData, loading]);
 
   const handleModalOpen = () => {
     setIsModalOpen(true);
@@ -49,20 +75,25 @@ export const DailyNorma = () => {
     setIsModalOpen(false);
   };
 
-  let displayAmount = dailyNorma;
-  if (dailyNorma >= 99) {
-    displayAmount = '99+';
-  }
-
   return (
     <DailyNormaBox className="dark-daily-norma-box">
       <DailyText className="dark-daily-norma-text">My daily norma</DailyText>
       <BottomBox>
-        <RequiredWaterHeader>{displayAmount} L</RequiredWaterHeader>
+        <RequiredWaterHeader>{dailyNorma} L</RequiredWaterHeader>
         <EditWaterButton onClick={handleModalOpen}>Edit</EditWaterButton>
       </BottomBox>
 
-      <Modal isOpen={isModalOpen} onClose={handleModalClose} />
+      {isModalOpen && (
+        <Modal
+          onClose={handleModalClose}
+          genderData={genderData}
+          weightData={weightData}
+          activityTimeData={activityTimeData}
+          dailyNormaData={dailyNormaData}
+          willDrinkData={willDrinkData / 1000}
+          userId={userId._id}
+        />
+      )}
     </DailyNormaBox>
   );
 };

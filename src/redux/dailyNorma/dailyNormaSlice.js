@@ -2,11 +2,10 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import { getDailyNorma, updateDailyNorma } from './dailyNormaThunk';
 
-
 const initialState = {
   dailyNorma: 0,
   weight: 0,
-  gender: 'man',
+  gender: 'woman',
   activityTime: 0,
   willDrink: 0,
   isLoading: false,
@@ -34,15 +33,15 @@ export const dailyNormaSlice = createSlice({
       })
       .addCase(updateDailyNorma.pending, state => {
         state.isLoading = true;
-
       })
       .addCase(updateDailyNorma.fulfilled, (state, { payload }) => {
-        state.isloading = false;
-        state.dailyNorma = payload.dailyNorma || 0;
-        state.weight = payload.weight || 0;
-        state.gender = payload.gender || '';
-        state.activityTime = payload.activityTime || 0;
-        state.willDrink = payload.willDrink || 0;
+        state.isLoading = false;
+        console.log(payload);
+        state.dailyNorma = payload.updatedDailyNorma;
+        state.weight = payload.updatedWeight;
+        state.gender = payload.updatedGender;
+        state.activityTime = payload.updatedActivityTime;
+        state.willDrink = payload.updatedWillDrink;
       })
 
       .addCase(updateDailyNorma.rejected, state => {
@@ -54,4 +53,3 @@ export const dailyNormaSlice = createSlice({
 export const selectDailyNorma = state => state.dailyNorma.dailyNorma;
 
 export const dailyNormaReducer = dailyNormaSlice.reducer;
-

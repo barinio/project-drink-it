@@ -8,7 +8,6 @@ const instance = axios.create({
 export const setToken = token => {
   instance.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
-
 // ----------- auth-service -------------------
 
 export const requestSignup = async body => {
@@ -39,28 +38,42 @@ export const updUserInfo = async ({ body, id }) => {
 
   return data;
 };
-export const updAvatar = async ({ imgUrl }) => {
-  const { data } = await instance.patch(`/api/users/avatar`, imgUrl);
-  // console.log('data:', data);
-  setToken(data.token);
+export const updAvatar = async avatar => {
+  const formData = new FormData();
+  formData.append('avatar', avatar);
 
+  const config = {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  };
+  const { data } = await instance.patch(`/api/users/avatar`, formData, config);
+  setToken(data.token);
   return data;
 };
 
 // ----------- dailynorma-service -------------------
 
-export const fetchDailyNorma = async id => {
+// export const fetchDailyNorma = async id => {
+//   const { data } = await instance.get(`/api/users/dailynorma/${id}`);
+//   return data;
+// };
 
-  const { data } = await instance.get(`/api/users/dailynorma/${id}`);
+// export const newDailyNorm = async ({ id, updatedData }) => {
+//   console.log(updatedData);
+//   const { data } = await instance.patch(`/api/users/dailynorma/${id}`, updatedData);
+//   return data;
+// };
+export const fetchDailyNorma = async () => {
+  const { data } = await instance.get(`/api/users/dailynorma`);
   return data;
 };
 
-export const newDailyNorma = async (id, updatedData) => {
-  const { data } = await instance.patch(`/api/users/dailynorma/${id}`, updatedData);
+export const newDailyNorm = async ({ updatedData }) => {
+  console.log(updatedData);
+  const { data } = await instance.patch(`/api/users/dailynorma`, updatedData);
   return data;
-
 };
-
 // -------------------water----------------------
 
 export const fetchTodayWater = async () => {
