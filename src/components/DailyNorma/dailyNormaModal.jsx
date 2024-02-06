@@ -28,6 +28,15 @@ import {
     LabelText,
   } from './dailyNorma.styled';
 
+  // const DailyNormaModal = ({
+  //   onClose,
+  //   genderData,
+  //   weightData,
+  //   activityTimeData,
+  //   dailyNormaData,
+  //   willDrinkData,
+  //   userId,
+  // }) => {
   const DailyNormaModal = ({
     onClose,
     genderData,
@@ -35,8 +44,8 @@ import {
     activityTimeData,
     dailyNormaData,
     willDrinkData,
-    userId,
   }) => {
+    
     const dispatch = useDispatch();
   
     const [gender, setGender] = useState(genderData);
