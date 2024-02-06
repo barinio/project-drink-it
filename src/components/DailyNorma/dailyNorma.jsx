@@ -18,61 +18,54 @@ import {
   selectDailyNormaWillDrink,
 } from 'redux/dailyNorma/dailyNorma.selectors';
 
-// export const DailyNorma = () => {
-//   const dispatch = useDispatch();
-//   const [isModalOpen, setIsModalOpen] = useState(false);
-//   const [dailyNorma, setDailyNorma] = useState(0);
-//   const userId = useSelector(selectAuthUserData);
-//   const genderData = useSelector(selectDailyNormaGender);
-//   const weightData = useSelector(selectDailyNormaWeight);
-//   const activityTimeData = useSelector(selectDailyNormaActivity);
-//   const dailyNormaData = useSelector(selectDailyNormaData);
-//   const willDrinkData = useSelector(selectDailyNormaWillDrink);
+export const DailyNorma = () => {
+  const dispatch = useDispatch();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [dailyNorma, setDailyNorma] = useState(0);
+  
+  const userId = useSelector(selectAuthUserData);
+  const genderData = useSelector(selectDailyNormaGender);
+  const weightData = useSelector(selectDailyNormaWeight);
+  const activityTimeData = useSelector(selectDailyNormaActivity);
+  const dailyNormaData = useSelector(selectDailyNormaData);
+  const willDrinkData = useSelector(selectDailyNormaWillDrink);
 
-  // useEffect(() => {
-  //   dispatch(getDailyNorma(userId._id));
+  useEffect(() => {
+    dispatch(getDailyNorma(userId._id));
+    const fetchedDailyNorma = dailyNormaData;
+    console.log(fetchedDailyNorma);
+    const formattedAmount = parseFloat(fetchedDailyNorma / 1000).toFixed(1);
+    console.log(formattedAmount);
+    setDailyNorma(formattedAmount);
+  }, [dispatch, userId._id, dailyNormaData]);
 
-  //     let fetchedDailyNorma; // Declare the variable outside the if block
-
-  //     if (!isNaN(dailyNormaData)) {
-  //       fetchedDailyNorma = dailyNormaData;
+  // export const DailyNorma = () => {
+  //   const dispatch = useDispatch();
+  //   const [isModalOpen, setIsModalOpen] = useState(false);
+  //   const [dailyNorma, setDailyNorma] = useState(0);
+  //   const [loading, setLoading] = useState(true);
+  //   const userId = useSelector(selectAuthUserData);
+  //   const genderData = useSelector(selectDailyNormaGender);
+  //   const weightData = useSelector(selectDailyNormaWeight);
+  //   const activityTimeData = useSelector(selectDailyNormaActivity);
+  //   const dailyNormaData = useSelector(selectDailyNormaData);
+  //   const willDrinkData = useSelector(selectDailyNormaWillDrink);
+  
+  //   useEffect(() => {
+  //     dispatch(getDailyNorma(userId._id))
+  //       .then(() => setLoading(false)) 
+  //       .catch(() => setLoading(false)); 
+  //   }, [dispatch, userId._id]);
+  
+  //   useEffect(() => {
+  //     if (!loading && !isNaN(dailyNormaData)) {
+  //       console.log(dailyNormaData);
+  //       const formattedAmount = parseFloat(dailyNormaData / 1000).toFixed(1);
+  //       console.log(formattedAmount);
+  //       setDailyNorma(formattedAmount);
   //     }
+  //   }, [dailyNormaData, loading]);
 
-
-  //   // const fetchedDailyNorma = dailyNormaData;
-
-  //   console.log(fetchedDailyNorma);
-  //   const formattedAmount = parseFloat(fetchedDailyNorma / 1000).toFixed(1);
-  //   console.log(formattedAmount);
-  //   setDailyNorma(formattedAmount);
-  // }, [dispatch, userId._id, dailyNormaData]);
-
-  export const DailyNorma = () => {
-    const dispatch = useDispatch();
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [dailyNorma, setDailyNorma] = useState(0);
-    const [loading, setLoading] = useState(true); // Add loading state
-    const userId = useSelector(selectAuthUserData);
-    const genderData = useSelector(selectDailyNormaGender);
-    const weightData = useSelector(selectDailyNormaWeight);
-    const activityTimeData = useSelector(selectDailyNormaActivity);
-    const dailyNormaData = useSelector(selectDailyNormaData);
-    const willDrinkData = useSelector(selectDailyNormaWillDrink);
-  
-    useEffect(() => {
-      dispatch(getDailyNorma(userId._id))
-        .then(() => setLoading(false)) // Set loading to false after the fetch
-        .catch(() => setLoading(false)); // Handle fetch error by setting loading to false
-    }, [dispatch, userId._id]);
-  
-    useEffect(() => {
-      if (!loading && dailyNormaData !== undefined) {
-        console.log(dailyNormaData);
-        const formattedAmount = parseFloat(dailyNormaData / 1000).toFixed(1);
-        console.log(formattedAmount);
-        setDailyNorma(formattedAmount);
-      }
-    }, [dailyNormaData, loading]);
 
   const handleModalOpen = () => {
     setIsModalOpen(true);
