@@ -6,11 +6,13 @@ import { SignupForm, ErrorMessage } from './SignUp.styled';
 import icons from '../../img/icons.svg';
 import { useDispatch } from 'react-redux';
 import { signupThunk } from 'redux/auth/authThunk';
+import { useTranslation } from 'react-i18next';
 
 const SignUpForm = () => {
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
   const validEmailDomains = ['gmail.com', 'i.ua', 'yahoo.com', 'ukr.net'];
+  const { t } = useTranslation();
 
   const formik = useFormik({
     initialValues: {
@@ -47,8 +49,8 @@ const SignUpForm = () => {
 
   return (
     <SignupForm onSubmit={formik.handleSubmit}>
-      <h3>Sign Up</h3>
-      <label>Enter your email</label>
+      <h3>{t('signup')}</h3>
+      <label>{t('forms.email')}</label>
       <div>
         <div
           className="password-wrapper"
@@ -80,7 +82,7 @@ const SignUpForm = () => {
         ) : null}
       </div>
 
-      <label>Enter your password</label>
+      <label>{t('forms.password')}</label>
       <div>
         <div
           className="password-wrapper"
@@ -119,7 +121,7 @@ const SignUpForm = () => {
         ) : null}
       </div>
 
-      <label>Repeat password</label>
+      <label>{t('forms.repeatPassword')}</label>
       <div>
         <div
           className="password-wrapper"
@@ -158,8 +160,8 @@ const SignUpForm = () => {
         ) : null}
       </div>
 
-      <button type="submit">Sign Up</button>
-      <NavLink to="/signin">Sign in</NavLink>
+      <button type="submit">{t('buttons.signup')}</button>
+      <NavLink to="/signin">{t('buttons.signin')}</NavLink>
     </SignupForm>
   );
 };
