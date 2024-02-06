@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { CalendarStyle, ContentPopover, LoaderMonthWrapper } from './MonthStatsTable.styled';
+import {
+  CalendarStyle,
+  ContentPopover,
+  ContentPopoverErr,
+  LoaderMonthWrapper,
+} from './MonthStatsTable.styled';
 import icons from '../../img/icons.svg';
 import { Popover } from '@mui/material';
 import { format, startOfMonth, endOfMonth, eachDayOfInterval } from 'date-fns';
@@ -11,7 +16,11 @@ import {
 } from 'redux/monthWater/monthWaterselectors';
 import { formatDate } from 'redux/waterDetails/helpers';
 import Loader from 'components/Loader/Loader';
-import { selectDailyDrank } from 'redux/waterDetails/waterSelectors';
+import {
+  selectIsLoadingList,
+  selectNorma,
+  selectTodayWater,
+} from 'redux/waterDetails/waterSelectors';
 import { isToday } from 'date-fns';
 
 const MonthStatsTable = () => {
@@ -21,10 +30,10 @@ const MonthStatsTable = () => {
   const isLoadingMonth = useSelector(selectIsLoadingMonthWater);
   const monthWater = useSelector(selectMonthWaterDetails);
 
-  const dailyDrank = useSelector(selectDailyDrank);
+  const { waterlist } = useSelector(selectTodayWater);
+  const isLoadingList = useSelector(selectIsLoadingList);
 
-
-
+  const dailyNorm = useSelector(selectNorma);
 
   const d = formatDate(currentDate);
 
@@ -32,7 +41,7 @@ const MonthStatsTable = () => {
 
   useEffect(() => {
     dispatch(getMonthWater(d));
-  }, [dispatch, d, dailyDrank]);
+  }, [dispatch, d, waterlist, dailyNorm, isLoadingList]);
 
   const handleChangeMonth = offset => {
     setCurrentDate(prevDate => new Date(prevDate.getFullYear(), prevDate.getMonth() + offset));
@@ -46,7 +55,7 @@ const MonthStatsTable = () => {
   };
 
   const getBorderStyle = percentage => {
-    if (percentage === 100) {
+    if (percentage < 100) {
       return 'border';
     } else if (percentage >= 100) {
       return 'border-green';
@@ -67,15 +76,37 @@ const MonthStatsTable = () => {
 
     if (!data || data.length === 0) {
       return (
-        <ContentPopover>
-          <h3>{format(dateObj, 'd MMMM yyyy')}</h3>
-          <p>No information</p>
-          <button className="closeBtnPopover" onClick={() => setSelectedDate(null)}>
-            <svg width="14" height="14">
-              <use href={icons + '#icon-close-day-details'}></use>{' '}
-            </svg>
-          </button>
-        </ContentPopover>
+        <Popover
+          anchorOrigin={{
+            vertical: 'top',
+            horizontal: 'center',
+          }}
+          transformOrigin={{
+            vertical: 'bottom',
+            horizontal: 'right',
+          }}
+          id="alex"
+          open={Boolean(selectedDate)}
+          anchorEl={selectedDate}
+          onClose={() => setSelectedDate(null)}
+          slotProps={{
+            paper: { elevation: 3 },
+          }}
+          transitionDuration={{
+            enter: 500,
+            exit: 500,
+          }}
+        >
+          <ContentPopoverErr>
+            <h3 className="datePopover">{format(dateObj, 'd MMMM yyyy')}</h3>
+            <p className="errText">No information</p>
+            <button className="closeBtnPopover" onClick={() => setSelectedDate(null)}>
+              <svg width="14" height="14">
+                <use href={icons + '#icon-close-day-details'}></use>{' '}
+              </svg>
+            </button>
+          </ContentPopoverErr>
+        </Popover>
       );
     }
 
@@ -108,7 +139,7 @@ const MonthStatsTable = () => {
           <ContentPopover>
             <p className="datePopover">{format(dateObj, 'd,MMMM')}</p>
             <p className="datePopoverText">
-              Daily norma: <span className="popoverColorText">{waterInfo.dailyNorma}L</span>
+              Daily norma: <span className="popoverColorText">{waterInfo.dailyNorma / 1000}L</span>
             </p>
             <p className="datePopoverText">
               Fulfillment of the daily norm:{' '}
