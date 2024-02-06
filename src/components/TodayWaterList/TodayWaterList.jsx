@@ -27,6 +27,7 @@ import {
 } from './TodayWaterList.styled';
 import { formatTime } from 'redux/waterDetails/helpers';
 import Loader from 'components/Loader/Loader';
+import { useTranslation } from 'react-i18next';
 
 const iconsList = {
   edit: `${icons}#icon-edit`,
@@ -36,6 +37,8 @@ const iconsList = {
 };
 
 export const TodayWaterList = () => {
+  const { t } = useTranslation();
+
   const dispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedWaterItem, setSelectedWaterItem] = useState(null);
@@ -65,7 +68,7 @@ export const TodayWaterList = () => {
 
   return (
     <TodayWrapper>
-      <TodayTitle>Today</TodayTitle>
+      <TodayTitle>{t('today')}</TodayTitle>
       {isLoadingList ? (
         <LoaderWrapper>
           <Loader />
@@ -73,7 +76,7 @@ export const TodayWaterList = () => {
       ) : (
         <TodayList>
           {waterlist?.length === 0 || waterlist === undefined ? (
-            <Forget>You haven't drunk water yet. Don't forget to meet your daily norma! </Forget>
+            <Forget>{t('haveNotDrunkYet')}</Forget>
           ) : (
             waterlist?.map(item => (
               <TodayItem key={item.id}>
@@ -81,7 +84,9 @@ export const TodayWaterList = () => {
                   <IconGlass>
                     <use href={iconsList.glass}></use>
                   </IconGlass>
-                  <TodayVolume>{item.waterVolume} ml</TodayVolume>
+                  <TodayVolume>
+                    {item.waterVolume} {t('ml')}
+                  </TodayVolume>
                   <TodayTime>{formatTime(item.time)}</TodayTime>
                 </TodayInfo>
                 <TodayTools>
@@ -105,7 +110,7 @@ export const TodayWaterList = () => {
         <svg>
           <use href={iconsList.add}></use>
         </svg>
-        Add Water
+        {t('addWater')}
       </AddWaterBtn>
       {isDeleteWaterModalOpen && (
         <DeleteWaterModal

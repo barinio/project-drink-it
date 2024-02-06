@@ -20,8 +20,11 @@ import { ErrorMessage } from 'components/SignUpForm/SignUp.styled';
 import icons from '../../img/icons.svg';
 import { selectAuthUserData } from 'redux/auth/auth.selectors';
 import { updUserInfoThunk } from 'redux/auth/authThunk';
+import { useTranslation } from 'react-i18next';
 
 const SettingForm = ({ onClose }) => {
+  const { t } = useTranslation();
+
   const dispatch = useDispatch();
 
   const user = useSelector(selectAuthUserData);
@@ -38,14 +41,20 @@ const SettingForm = ({ onClose }) => {
     email: Yup.string()
       .email('Invalid email address')
       .required('Email is required')
-      .matches(new RegExp(`@(${validEmailDomains.join('|')})$`), 'Invalid email domain'),
+      .matches(
+        new RegExp(`@(${validEmailDomains.join('|')})$`),
+        'Invalid email domain'
+      ),
     password: Yup.string()
       .min(8, 'Password must be at least 8 characters')
       .max(64, 'Password must be at most 64 characters'),
     newPassword: Yup.string()
       .min(8, 'Password must be at least 8 characters')
       .max(64, 'Password must be at most 64 characters'),
-    repeatPassword: Yup.string().oneOf([Yup.ref('newPassword'), null], 'Passwords must match'),
+    repeatPassword: Yup.string().oneOf(
+      [Yup.ref('newPassword'), null],
+      'Passwords must match'
+    ),
   });
 
   const formik = useFormik({
@@ -88,7 +97,7 @@ const SettingForm = ({ onClose }) => {
         <FormWrapper>
           <div>
             <GenderPart>
-              <h3>Your gender identity</h3>
+              <h3>{t('yourGender')}</h3>
               <div>
                 <RadioLabel>
                   <InputHidden
@@ -103,7 +112,7 @@ const SettingForm = ({ onClose }) => {
                     <svg width="14" height="14">
                       <use href={icons + '#icon-checkbox'}></use>
                     </svg>
-                    Woman
+                    {t('female')}
                   </label>
                 </RadioLabel>
 
@@ -120,7 +129,7 @@ const SettingForm = ({ onClose }) => {
                     <svg width="14" height="14">
                       <use href={icons + '#icon-checkbox'}></use>
                     </svg>
-                    Man
+                    {t('male')}
                   </label>
                 </RadioLabel>
               </div>
@@ -128,7 +137,7 @@ const SettingForm = ({ onClose }) => {
 
             <ContainerUserInfo>
               <UserInfoBox>
-                <h3>Your name</h3>
+                <h3>{t('yourName')}</h3>
                 <input
                   type="text"
                   name="userName"
@@ -148,7 +157,7 @@ const SettingForm = ({ onClose }) => {
                 ) : null}
               </UserInfoBox>
               <UserInfoBox>
-                <h3>E-mail</h3>
+                <h3>{t('email')}</h3>
                 <input
                   type="text"
                   placeholder="E-mail"
@@ -171,9 +180,9 @@ const SettingForm = ({ onClose }) => {
           </div>
 
           <PasswordBox>
-            <h3>Password</h3>
+            <h3>{t('password')}</h3>
             <div>
-              <h4>Outdated password:</h4>
+              <h4>{t('outdatedPassword')}</h4>
               <PasswordInputContainer>
                 <button
                   className="dark-icon-wrapper"
@@ -182,7 +191,10 @@ const SettingForm = ({ onClose }) => {
                 >
                   <svg width="16" height="16">
                     <use
-                      href={icons + (showPassword ? '#icon-opend-eye' : '#icon-closed-eye')}
+                      href={
+                        icons +
+                        (showPassword ? '#icon-opend-eye' : '#icon-closed-eye')
+                      }
                     ></use>
                   </svg>
                 </button>
@@ -201,12 +213,14 @@ const SettingForm = ({ onClose }) => {
                   }}
                 />
                 {formik.touched.password && formik.errors.password ? (
-                  <ErrorMessage>{formik.touched.password && formik.errors.password}</ErrorMessage>
+                  <ErrorMessage>
+                    {formik.touched.password && formik.errors.password}
+                  </ErrorMessage>
                 ) : null}
               </PasswordInputContainer>
             </div>
             <div>
-              <h4>New Password:</h4>
+              <h4>{t('newPassword')}</h4>
               <PasswordInputContainer>
                 <button
                   className="dark-icon-wrapper"
@@ -215,7 +229,10 @@ const SettingForm = ({ onClose }) => {
                 >
                   <svg width="16" height="16">
                     <use
-                      href={icons + (showPassword ? '#icon-opend-eye' : '#icon-closed-eye')}
+                      href={
+                        icons +
+                        (showPassword ? '#icon-opend-eye' : '#icon-closed-eye')
+                      }
                     ></use>
                   </svg>
                 </button>
@@ -241,7 +258,7 @@ const SettingForm = ({ onClose }) => {
               </PasswordInputContainer>
             </div>
             <div>
-              <h4>Repeat new password:</h4>
+              <h4>{t('repeatNewPassword')}</h4>
               <PasswordInputContainer>
                 <button
                   className="dark-icon-wrapper"
@@ -250,7 +267,10 @@ const SettingForm = ({ onClose }) => {
                 >
                   <svg width="16" height="16">
                     <use
-                      href={icons + (showPassword ? '#icon-opend-eye' : '#icon-closed-eye')}
+                      href={
+                        icons +
+                        (showPassword ? '#icon-opend-eye' : '#icon-closed-eye')
+                      }
                     ></use>
                   </svg>
                 </button>
@@ -278,7 +298,7 @@ const SettingForm = ({ onClose }) => {
           </PasswordBox>
         </FormWrapper>
         <BtnSettingSave>
-          <button type="submit">Save</button>
+          <button type="submit">{t('save')}</button>
         </BtnSettingSave>
       </SettingFormik>
     </>

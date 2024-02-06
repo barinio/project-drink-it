@@ -150,7 +150,7 @@ export const AddWaterButton = styled.button`
   justify-content: center;
   align-items: center;
   border-radius: 10px;
-  padding: 6px 76px 6px 76px;
+  padding: 6px 72px;
   background-color: #407bff;
   color: #fff;
   border: none;
@@ -162,13 +162,13 @@ export const AddWaterButton = styled.button`
 
   @media screen and (min-width: 768px) {
     width: 336px;
-    padding: 10px 104px 10px 104px;
+    padding: 10px 75px;
   }
 
   @media screen and (min-width: 1440px) {
     width: 178px;
     height: 44px;
-    padding: 10px 30px 10px 30px;
+    padding: 10px 20px;
   }
 `;
 

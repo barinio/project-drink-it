@@ -22,7 +22,10 @@ const SignUpForm = () => {
       email: Yup.string()
         .email('Invalid email address')
         .required('Email is required')
-        .matches(new RegExp(`@(${validEmailDomains.join('|')})$`), 'Invalid email domain'),
+        .matches(
+          new RegExp(`@(${validEmailDomains.join('|')})$`),
+          'Invalid email domain'
+        ),
       password: Yup.string()
         .required('Password is required')
         .min(8, 'Password must be at least 8 characters')
@@ -33,7 +36,6 @@ const SignUpForm = () => {
     }),
     onSubmit: async ({ email, password }) => {
       try {
-        // console.log('Form data submitted:', { email, password });
         dispatch(signupThunk({ email, password }));
       } catch (error) {
         console.error('Error:', error);
@@ -106,16 +108,26 @@ const SignUpForm = () => {
                   : 'var(--primery-color-blue)',
             }}
           />
-          <button type="button" className="eye-icon" onClick={togglePasswordVisibility}>
+          <button
+            type="button"
+            className="eye-icon"
+            onClick={togglePasswordVisibility}
+          >
             <svg width="16" height="16">
               <use
-                href={showPassword ? icons + '#icon-opend-eye' : icons + '#icon-closed-eye'}
+                href={
+                  showPassword
+                    ? icons + '#icon-opend-eye'
+                    : icons + '#icon-closed-eye'
+                }
               ></use>
             </svg>
           </button>
         </div>
         {formik.touched.password && formik.errors.password ? (
-          <ErrorMessage>{formik.touched.password && formik.errors.password}</ErrorMessage>
+          <ErrorMessage>
+            {formik.touched.password && formik.errors.password}
+          </ErrorMessage>
         ) : null}
       </div>
 
@@ -145,10 +157,18 @@ const SignUpForm = () => {
                   : 'var(--primery-color-blue)',
             }}
           />
-          <button type="button" className="eye-icon" onClick={togglePasswordVisibility}>
+          <button
+            type="button"
+            className="eye-icon"
+            onClick={togglePasswordVisibility}
+          >
             <svg width="16" height="16">
               <use
-                href={showPassword ? icons + '#icon-opend-eye' : icons + '#icon-closed-eye'}
+                href={
+                  showPassword
+                    ? icons + '#icon-opend-eye'
+                    : icons + '#icon-closed-eye'
+                }
               ></use>
             </svg>
           </button>

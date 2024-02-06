@@ -5,7 +5,10 @@ import { Button } from '@mui/material';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 
-import { selectAuthAuthenticated, selectAuthUserData } from 'redux/auth/auth.selectors';
+import {
+  selectAuthAuthenticated,
+  selectAuthUserData,
+} from 'redux/auth/auth.selectors';
 
 import {
   UserContainer,
@@ -19,13 +22,16 @@ import {
 
 import icons from '../../img/icons.svg';
 
-import { menuStyle } from './menu-style';
+import { menuStyle } from './Mui-menu-style';
 
 import Setting from 'components/Setting/Setting';
 import { LogOut } from 'components/LogOut/LogOut';
 import { logoutThunk } from 'redux/auth/authThunk';
+import { useTranslation } from 'react-i18next';
 
 const UserMenu = () => {
+  const { t } = useTranslation();
+
   const dispatch = useDispatch();
 
   const authenticated = useSelector(selectAuthAuthenticated);
@@ -71,7 +77,12 @@ const UserMenu = () => {
             {!user.avatarURL ? (
               <NotAvatar>{user.userName.split('')[0]}</NotAvatar>
             ) : (
-              <Avatar src={user.avatarURL} alt={user.userName} width="28" height="28" />
+              <Avatar
+                src={user.avatarURL}
+                alt={user.userName}
+                width="28"
+                height="28"
+              />
             )}
 
             <Button
@@ -102,17 +113,19 @@ const UserMenu = () => {
                 <SettingSvg width="16" height="16">
                   <use href={icons + '#icon-cog-tooth'}></use>
                 </SettingSvg>
-                Settings
+                {t('setting')}
               </MenuItem>
               <MenuItem className="logout" onClick={handleClose}>
                 <SettingSvg width="16" height="16">
                   <use href={icons + '#icon-log-out'}></use>
                 </SettingSvg>
-                Log out
+                {t('logOut')}
               </MenuItem>
             </Menu>
           </UserContainer>
-          {isOpenSetting && <Setting closeModal={closeModal} onBackdrop={onBackdrop} />}
+          {isOpenSetting && (
+            <Setting closeModal={closeModal} onBackdrop={onBackdrop} />
+          )}
           {isSureLogOut && <LogOut onClose={onClose} onLogout={onLogout} />}
         </>
       ) : (

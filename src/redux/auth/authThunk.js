@@ -21,15 +21,18 @@ export const loginThunk = createAsyncThunk('auth/login', async (body, thunkAPI) 
   }
 });
 
-export const signupThunk = createAsyncThunk('auth/signup', async (body, thunkAPI) => {
-  try {
-    const authData = await requestSignup(body);
-    return authData;
-  } catch (error) {
-    toast.error(`Sorry, this account already exists`);
-    return thunkAPI.rejectWithValue(error.message);
+export const signupThunk = createAsyncThunk(
+  'auth/signup',
+  async (body, thunkAPI) => {
+    try {
+      const authData = await requestSignup(body);
+      return authData;
+    } catch (error) {
+      toast.error(`Sorry, this account already exists`);
+      return thunkAPI.rejectWithValue(error.message);
+    }
   }
-});
+);
 
 export const refreshThunk = createAsyncThunk(
   'auth/refresh',
@@ -54,30 +57,34 @@ export const refreshThunk = createAsyncThunk(
   }
 );
 
-export const updUserInfoThunk = createAsyncThunk('auth/updUserInfo', async (body, thunkAPI) => {
-  const state = thunkAPI.getState();
-  const id = state.auth.user._id;
-  // console.log('id :', id);
-  const token = state.auth.token;
-  try {
-    setToken(token);
-    const authData = await updUserInfo({ body, id });
-    return authData;
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
+export const updUserInfoThunk = createAsyncThunk(
+  'auth/updUserInfo',
+  async (body, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const token = state.auth.token;
+    try {
+      setToken(token);
+      const authData = await updUserInfo({ body });
+      return authData;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
   }
-});
-export const updAvatarThunk = createAsyncThunk('auth/updAvatar', async (avatar, thunkAPI) => {
-  const state = thunkAPI.getState();
-  const token = state.auth.token;
-  try {
-    setToken(token);
-    const authData = await updAvatar(avatar);
-    return authData;
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
+);
+export const updAvatarThunk = createAsyncThunk(
+  'auth/updAvatar',
+  async (avatar, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const token = state.auth.token;
+    try {
+      setToken(token);
+      const authData = await updAvatar(avatar);
+      return authData;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
   }
-});
+);
 
 export const logoutThunk = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {

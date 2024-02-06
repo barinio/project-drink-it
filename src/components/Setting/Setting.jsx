@@ -14,8 +14,11 @@ import { selectAuthUserData } from 'redux/auth/auth.selectors';
 import SettingForm from './SettingForm';
 import { updAvatarThunk } from 'redux/auth/authThunk';
 import { NotAvatar } from 'components/UserMenu/UserMenu.styled';
+import { useTranslation } from 'react-i18next';
 
 const Setting = ({ closeModal, onBackdrop }) => {
+  const { t } = useTranslation();
+
   const dispatch = useDispatch();
   const user = useSelector(selectAuthUserData);
 
@@ -36,7 +39,7 @@ const Setting = ({ closeModal, onBackdrop }) => {
         <WrapperModal onClick={onBackdrop}>
           <Modal className="dark-settings-modal">
             <CaptionBlock>
-              <h2>Setting</h2>
+              <h2>{t('setting')}</h2>
               <button type="button" onClick={closeModal}>
                 <svg width="24" height="24">
                   <use href={icons + '#icon-close-setting'}></use>
@@ -44,19 +47,28 @@ const Setting = ({ closeModal, onBackdrop }) => {
               </button>
             </CaptionBlock>
             <PhotoBlock>
-              <h3>Your photo</h3>
+              <h3>{t('yourPhoto')}</h3>
               <div>
                 {!user.avatarURL ? (
                   <NotAvatar>{user.userName.split('')[0]}</NotAvatar>
                 ) : (
-                  <img src={user.avatarURL} alt={user.userName} width={80} height={80} />
+                  <img
+                    src={user.avatarURL}
+                    alt={user.userName}
+                    width={80}
+                    height={80}
+                  />
                 )}
                 <div>
                   <svg width="16" height="16">
                     <use href={icons + '#icon-upload'}></use>
                   </svg>
-                  <InputUpload accept="image/*" type="file" onChange={e => changeHandler(e)} />
-                  Upload a photo
+                  <InputUpload
+                    accept="image/*"
+                    type="file"
+                    onChange={e => changeHandler(e)}
+                  />
+                  {t('uploadPhoto')}
                 </div>
               </div>
             </PhotoBlock>

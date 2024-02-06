@@ -14,8 +14,11 @@ import {
   CloseButton,
   CloseIcon,
 } from 'components/TodayListModal/TodayListModal.styled';
+import { useTranslation } from 'react-i18next';
 
 export const DeleteWaterModal = ({ onClose, recordId, ownerId }) => {
+  const { t } = useTranslation();
+
   const dispatch = useDispatch();
 
   const handleDelete = () => {
@@ -31,9 +34,9 @@ export const DeleteWaterModal = ({ onClose, recordId, ownerId }) => {
   return (
     <>
       <Overlay onClick={onClose} />
-      <ModalContent className='dark-delete-modal'>
+      <ModalContent className="dark-delete-modal">
         <ModalHeader>
-          <h2>Delete entry</h2>
+          <h2>{t('deleteEntry')}</h2>
           <CloseButton onClick={onClose}>
             <CloseIcon>
               <use href={`${icons}#icon-outline`}></use>
@@ -42,10 +45,14 @@ export const DeleteWaterModal = ({ onClose, recordId, ownerId }) => {
         </ModalHeader>
         <div>
           <BoxModal>
-            <TextStyle className='dark-delete-modal-text'>Are you sure you want to delete the entry?</TextStyle>
+            <TextStyle className="dark-delete-modal-text">
+              {t('sureDeleteEntry')}
+            </TextStyle>
             <ButtonBox>
-              <ButtonStyle className="dark-delete-button" onClick={handleDelete}>Delete</ButtonStyle>
-              <ButtonStyle onClick={onClose}>Cancel</ButtonStyle>
+              <ButtonStyle className="dark-delete-button" onClick={handleDelete}>
+                {t('delete')}
+              </ButtonStyle>
+              <ButtonStyle onClick={onClose}>{t('cancel')}</ButtonStyle>
             </ButtonBox>
           </BoxModal>
         </div>

@@ -8,7 +8,7 @@ export const GlobalStyles = styled.div`
       margin: 0;
     }
 
-    input[type=number] {
+    input[type='number'] {
       -moz-appearance: textfield;
     }
   }
@@ -132,10 +132,6 @@ export const CaptionBox = styled.div`
   padding: 10px;
   margin-top: 12px;
   width: 100%;
-
-  @media screen and (min-width: 320px) {
-    height: 100px;
-  }
 
   @media screen and (min-width: 768px) {
     height: 52px;
@@ -319,17 +315,14 @@ export const DailyNormaBox = styled.div`
   flex-direction: column;
   padding: 8px 20px;
   height: 76px;
-  width: 164px;
+  max-width: 191px;
   border-radius: 10px;
   border: 1px solid var(--bg-color-light-blue);
   box-shadow: 0 4px 8px 0 rgba(158, 187, 255, 0.12);
 
-
   &:hover {
     // box-shadow: 0 4px 4px 0 rgba(158, 187, 255, 0.3);
   }
-
-
 `;
 
 export const DailyText = styled.div`
@@ -338,7 +331,7 @@ export const DailyText = styled.div`
   font-weight: 500;
   font-size: 18px;
   line-height: 24px;
-  width: 124px;
+  width: 151px;
 `;
 
 export const RequiredWaterHeader = styled.div`
@@ -366,8 +359,7 @@ export const EditWaterButton = styled.button`
 
   margin-top: 5px;
   margin-right: 10px;
-  margin-left: auto;
-
+  margin-left: 12px;
 
   &:hover {
   }
