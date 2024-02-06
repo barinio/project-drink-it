@@ -16,11 +16,13 @@ import {
 } from 'redux/monthWater/monthWaterselectors';
 import { formatDate } from 'redux/waterDetails/helpers';
 import Loader from 'components/Loader/Loader';
+
 import {
   selectIsLoadingList,
   selectNorma,
   selectTodayWater,
 } from 'redux/waterDetails/waterSelectors';
+
 import { isToday } from 'date-fns';
 
 const MonthStatsTable = () => {
@@ -35,6 +37,7 @@ const MonthStatsTable = () => {
 
   const dailyNorm = useSelector(selectNorma);
 
+
   const d = formatDate(currentDate);
 
   const dispatch = useDispatch();
@@ -42,6 +45,7 @@ const MonthStatsTable = () => {
   useEffect(() => {
     dispatch(getMonthWater(d));
   }, [dispatch, d, waterlist, dailyNorm, isLoadingList]);
+
 
   const handleChangeMonth = offset => {
     setCurrentDate(prevDate => new Date(prevDate.getFullYear(), prevDate.getMonth() + offset));
