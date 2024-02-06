@@ -28,7 +28,6 @@ const LogInForm = () => {
     onSubmit: (values, { resetForm }) => {
       // console.log('onSubmit', values);
       dispatch(loginThunk(values));
-      resetForm();
     },
     validationSchema: validationSchema,
   });
