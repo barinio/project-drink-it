@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Modal from './dailyNormaModal';
 import { getDailyNorma } from '../../redux/dailyNorma/dailyNormaThunk';
 import { useDispatch, useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
 import {
   DailyNormaBox,
   DailyText,
@@ -14,16 +15,21 @@ import { selectAuthUserData } from 'redux/auth/auth.selectors';
 export const DailyNorma = () => {
   const dispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [dailyNorma, setDailyNorma] = useState(2.0);
-  const userId = useSelector(selectAuthUserData); // витягнула юзера з стейту
+  const [dailyNorma, setDailyNorma] = useState(0);
+  const userId = useSelector(selectAuthUserData);
+  // const userData = useSelector(selectAuthUserData);
 
   useEffect(() => {
-    dispatch(getDailyNorma(userId._id)) // передала в thunk id юзера
-      .then(userData => {
+    dispatch(getDailyNorma(userId._id))
+      .then(
+        userData => {
         console.log('UserData:', userData.payload);
         const fetchedDailyNorma = userData.payload.dailyNorma;
         console.log(fetchedDailyNorma);
+        
         const formattedAmount = parseFloat(fetchedDailyNorma / 1000).toFixed(1);
+        // const formattedAmount = parseFloat(fetchedDailyNorma).toFixed(1);
+
         console.log(formattedAmount);
 
         setDailyNorma(formattedAmount);
@@ -33,7 +39,7 @@ export const DailyNorma = () => {
         setDailyNorma(2.0);
       });
 
-  }, [dispatch, userId._id]); // Додала в залежність id юзера
+  }, [dispatch, userId._id]);
 
   const handleModalOpen = () => {
     setIsModalOpen(true);
