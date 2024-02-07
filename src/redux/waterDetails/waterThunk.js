@@ -4,7 +4,6 @@ import { fetchTodayWater, addWaters, editWater, deleteWater } from 'services/api
 export const getTodayWater = createAsyncThunk('water/getTodayWater', async (_, thunkAPI) => {
   try {
     const water = await fetchTodayWater();
-    // console.log(water);
     return water;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
@@ -15,7 +14,6 @@ export const addWatersThunk = createAsyncThunk(
   async (newWater, { rejectWithValue }) => {
     try {
       const data = await addWaters(newWater);
-      console.log(data);
       return data;
     } catch (error) {
       return rejectWithValue(error.message);

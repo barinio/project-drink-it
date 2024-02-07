@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import img from '../../img/bg1.png';
 
 export const TodayWrapper = styled.div`
   margin-bottom: 24px;
@@ -30,8 +31,30 @@ export const TodayTitle = styled.h2`
   }
 `;
 
+export const WrapNoList = styled.li`
+  margin: 0 auto;
+  height: 212px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  &::before {
+    position: absolute;
+    content: '|';
+    background-image: url(${img});
+    height: 212px;
+    width: 100%;
+    background-position: center;
+    background-repeat: repeat;
+    background-size: contain;
+    opacity: 0.1;
+  }
+`;
+
 export const Forget = styled.p`
-  color: var(--secondary-color-blue);
+  font-size: 20px;
+  text-align: center;
+  color: var(--primery-color-blue);
 `;
 
 export const TodayList = styled.ul`

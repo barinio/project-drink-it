@@ -33,6 +33,7 @@ export const requestRefreshUser = async () => {
 
 export const updUserInfo = async ({ body }) => {
   const { data } = await instance.patch(`/api/users/info`, body);
+
   setToken(data.token);
 
   return data;
@@ -76,12 +77,12 @@ export const addWaters = async newWater => {
 };
 
 export const editWater = async ({ _id, id, newWater }) => {
-  const { data } = await instance.put(`/api/user/water/${_id}?_id=${id}`, newWater);
+  const { data } = await instance.put(`/api/user/water/${_id}?portionID=${id}`, newWater);
   return data;
 };
 
 export const deleteWater = async ({ id, _id }) => {
-  await instance.delete(`/api/user/water/${_id}?_id=${id}`);
+  await instance.delete(`/api/user/water/${_id}?portionID=${id}`);
 };
 
 // -------------------waterMonth----------------------

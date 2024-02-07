@@ -22,7 +22,6 @@ export const DeleteWaterModal = ({ onClose, recordId, ownerId }) => {
   const dispatch = useDispatch();
 
   const handleDelete = () => {
-    console.log(ownerId);
     const dataDelete = {
       id: recordId,
       _id: ownerId,
@@ -53,6 +52,7 @@ export const DeleteWaterModal = ({ onClose, recordId, ownerId }) => {
                 {t('delete')}
               </ButtonStyle>
               <ButtonStyle onClick={onClose}>{t('cancel')}</ButtonStyle>
+
             </ButtonBox>
           </BoxModal>
         </div>

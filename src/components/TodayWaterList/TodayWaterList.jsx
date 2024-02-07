@@ -24,6 +24,7 @@ import {
   TodayWrapper,
   Forget,
   LoaderWrapper,
+  WrapNoList,
 } from './TodayWaterList.styled';
 import { formatTime } from 'redux/waterDetails/helpers';
 import Loader from 'components/Loader/Loader';
@@ -76,7 +77,17 @@ export const TodayWaterList = () => {
       ) : (
         <TodayList>
           {waterlist?.length === 0 || waterlist === undefined ? (
+
             <Forget>{t('haveNotDrunkYet')}</Forget>
+
+            <WrapNoList>
+              <Forget>
+                Oops&#128561;... Looks like you didn't drink ANY water today!<br></br> It hurts
+                &#129319;
+                <br></br> BUT if you drank, quickly add it before you forget <br></br>&#128540;
+                &#129325; &#128527;
+              </Forget>
+            </WrapNoList>
           ) : (
             waterlist?.map(item => (
               <TodayItem key={item.id}>
