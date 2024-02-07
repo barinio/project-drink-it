@@ -98,7 +98,7 @@ const Setting = ({
               type="button"
               onClick={openSureDeleteModal}
             >
-              {t('logOut')}
+              {t('delete')}
             </DeleteButton>
           </Modal>
         </WrapperModal>
