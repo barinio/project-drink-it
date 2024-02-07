@@ -148,7 +148,7 @@ export const RightSide = styled.div`
 
   @media screen and (min-width: 1440px) {
     max-width: 494px;
-    height: 332px;
+
     margin-top: 34px;
   }
 `;
