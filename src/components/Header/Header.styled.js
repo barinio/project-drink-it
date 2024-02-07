@@ -2,14 +2,15 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
 export const HeaderSection = styled.header`
-  margin-bottom: 24px;
+  /* margin-bottom: 24px; */
   padding-bottom: 17px;
   border-bottom: 3px solid transparent;
+
   @media (min-width: 768px) {
-    margin-bottom: 40px;
+    /* margin-bottom: 40px; */
   }
-  @media (min-width: 1200px) {
-    margin-bottom: 20px;
+  @media (min-width: 1440px) {
+    /* margin-bottom: 20px; */
   }
 `;
 
@@ -29,7 +30,7 @@ export const HeaderContainer = styled.div`
   @media (min-width: 768px) {
     padding: 16px 32px 0;
   }
-  @media (min-width: 1200px) {
+  @media (min-width: 1440px) {
     padding: 12px 112px 0;
   }
 `;

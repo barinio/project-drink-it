@@ -39,19 +39,19 @@ export const LoginSection = styled.section`
 export const LoginContainer = styled.div`
   @media screen and (max-width: 767px) {
     max-width: 320px;
-    padding: 0 20px;
+    padding: 24px 20px;
 
     margin: 0 auto;
     height: 100vh;
   }
   @media screen and (min-width: 768px) {
     max-width: 768px;
-    padding: 0 32px;
+    padding: 40px 32px;
     margin: 0;
   }
   @media screen and (min-width: 1200px) {
     max-width: 1200px;
-    padding: 0 104px;
+    padding: 20px 104px;
 
     display: flex;
     justify-content: flex-end;
