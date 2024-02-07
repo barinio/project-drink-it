@@ -11,3 +11,12 @@ export const SwitcherWrapper = styled.div`
     }
   }
 `;
+export const FlagBtn = styled.button`
+  background-color: transparent;
+  border: none;
+  height: 26px;
+`;
+export const FlagSvg = styled.svg`
+  stroke: none;
+  border: none;
+`;
