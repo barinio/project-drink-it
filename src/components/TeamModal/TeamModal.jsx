@@ -13,7 +13,14 @@ import card9 from '../../img/team/Diana Akhanonu.jpg';
 import card10 from '../../img/team/Christian Aviss.jpg';
 import card11 from '../../img/team/Viktor Katerinich.jpg';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, A11y, FreeMode, Keyboard, Autoplay } from 'swiper/modules';
+import {
+  Navigation,
+  Pagination,
+  A11y,
+  FreeMode,
+  Keyboard,
+  Autoplay,
+} from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
@@ -60,7 +67,14 @@ const TeamModal = ({ onClose }) => {
             </div>
 
             <Swiper
-              modules={[Navigation, Pagination, A11y, FreeMode, Keyboard, Autoplay]}
+              modules={[
+                Navigation,
+                Pagination,
+                A11y,
+                FreeMode,
+                Keyboard,
+                Autoplay,
+              ]}
               spaceBetween={30}
               slidesPerView={slidesPerView}
               keyboard={{ enabled: true }}
@@ -71,8 +85,6 @@ const TeamModal = ({ onClose }) => {
               navigation
               pagination={{ clickable: true }}
               scrollbar={{ draggable: true }}
-              // onSlideChange={() => console.log('slide change')}
-              // onSwiper={swiper => console.log(swiper)}
               className="card-container"
             >
               <SwiperSlide key={1} className="team-list">
@@ -280,7 +292,12 @@ const TeamModal = ({ onClose }) => {
                 </div>
               </SwiperSlide>
               <SwiperSlide key={7} className="team-list">
-                <img src={card7} width="195" alt="" style={{ width: '266px' }} />
+                <img
+                  src={card7}
+                  width="195"
+                  alt=""
+                  style={{ width: '266px' }}
+                />
                 <div className="card-content">
                   <h3>Vladislav Zhykhariev</h3>
                   <p>Back-end Developer</p>

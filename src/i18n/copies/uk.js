@@ -1,6 +1,4 @@
 export const uk = {
-  test: 'Українська',
-
   // Homepage dailyNorma
   myDailyNorma: 'Моя денна норма',
   edit: 'Редагувати',
@@ -45,7 +43,8 @@ export const uk = {
 
   // Homepage WaterTodayList
   today: 'Сьогодні',
-  haveNotDrunkYet: 'Ви ще не випили воду сьогодні. Не забувайте відповідати своїй щоденній нормі!',
+  haveNotDrunkYet:
+    'Ви ще не випили воду сьогодні. Не забувайте відповідати своїй щоденній нормі!',
 
   //SettingUser
   logOut: 'Вийти',

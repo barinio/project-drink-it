@@ -3,7 +3,7 @@ import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 
 import { LOCALS } from './constants';
-import { en, fr, uk } from './copies';
+import { de, en, es, fr, it, ja, pl, pt, uk } from './copies';
 
 const resources = {
   [LOCALS.UK]: {
@@ -14,6 +14,24 @@ const resources = {
   },
   [LOCALS.FR]: {
     translation: fr,
+  },
+  [LOCALS.ES]: {
+    translation: es,
+  },
+  [LOCALS.IT]: {
+    translation: it,
+  },
+  [LOCALS.DE]: {
+    translation: de,
+  },
+  [LOCALS.PT]: {
+    translation: pt,
+  },
+  [LOCALS.JA]: {
+    translation: ja,
+  },
+  [LOCALS.PL]: {
+    translation: pl,
   },
 };
 

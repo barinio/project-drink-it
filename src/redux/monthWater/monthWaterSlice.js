@@ -16,7 +16,6 @@ const monthWaterSlice = createSlice({
         state.isLoading = false;
         state.error = null;
         state.month = action.payload;
-        // console.log('state.month :>> ', state.month);
       })
 
       .addMatcher(isAnyOf(getMonthWater.pending), state => {

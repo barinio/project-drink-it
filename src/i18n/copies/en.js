@@ -1,6 +1,4 @@
 export const en = {
-  test: 'English',
-
   // Homepage dailyNorma
   myDailyNorma: 'My daily norma',
   edit: 'Edit',
@@ -45,7 +43,8 @@ export const en = {
 
   // Homepage WaterTodayList
   today: 'Today',
-  haveNotDrunkYet: "You haven't drunk water yet. Don't forget to meet your daily norma!",
+  haveNotDrunkYet:
+    "You haven't drunk water yet. Don't forget to meet your daily norma!",
 
   //SettingUser
   logOut: 'Log out',

@@ -36,7 +36,6 @@ export const dailyNormaSlice = createSlice({
       })
       .addCase(updateDailyNorma.fulfilled, (state, { payload }) => {
         state.isLoading = false;
-        console.log(payload);
         state.dailyNorma = payload.updatedDailyNorma;
         state.weight = payload.updatedWeight;
         state.gender = payload.updatedGender;
