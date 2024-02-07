@@ -17,8 +17,11 @@ import {
   selectDailyNormaWeight,
   selectDailyNormaWillDrink,
 } from 'redux/dailyNorma/dailyNorma.selectors';
+import { useTranslation } from 'react-i18next';
 
 export const DailyNorma = () => {
+  const { t } = useTranslation();
+
   const dispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [dailyNorma, setDailyNorma] = useState(0);
@@ -33,38 +36,9 @@ export const DailyNorma = () => {
   useEffect(() => {
     dispatch(getDailyNorma(userId._id));
     const fetchedDailyNorma = dailyNormaData;
-    // console.log(fetchedDailyNorma);
     const formattedAmount = parseFloat(fetchedDailyNorma / 1000).toFixed(1);
-    // console.log(formattedAmount);
     setDailyNorma(formattedAmount);
   }, [dispatch, userId._id, dailyNormaData]);
-
-  // export const DailyNorma = () => {
-  //   const dispatch = useDispatch();
-  //   const [isModalOpen, setIsModalOpen] = useState(false);
-  //   const [dailyNorma, setDailyNorma] = useState(0);
-  //   const [loading, setLoading] = useState(true);
-  //   const userId = useSelector(selectAuthUserData);
-  //   const genderData = useSelector(selectDailyNormaGender);
-  //   const weightData = useSelector(selectDailyNormaWeight);
-  //   const activityTimeData = useSelector(selectDailyNormaActivity);
-  //   const dailyNormaData = useSelector(selectDailyNormaData);
-  //   const willDrinkData = useSelector(selectDailyNormaWillDrink);
-
-  //   useEffect(() => {
-  //     dispatch(getDailyNorma(userId._id))
-  //       .then(() => setLoading(false))
-  //       .catch(() => setLoading(false));
-  //   }, [dispatch, userId._id]);
-
-  //   useEffect(() => {
-  //     if (!loading && !isNaN(dailyNormaData)) {
-  //       console.log(dailyNormaData);
-  //       const formattedAmount = parseFloat(dailyNormaData / 1000).toFixed(1);
-  //       console.log(formattedAmount);
-  //       setDailyNorma(formattedAmount);
-  //     }
-  //   }, [dailyNormaData, loading]);
 
   const handleModalOpen = () => {
     setIsModalOpen(true);
@@ -76,10 +50,12 @@ export const DailyNorma = () => {
 
   return (
     <DailyNormaBox className="dark-daily-norma-box">
-      <DailyText className="dark-daily-norma-text">My daily norma</DailyText>
+      <DailyText className="dark-daily-norma-text">{t('dailyNorma')}</DailyText>
       <BottomBox>
-        <RequiredWaterHeader>{dailyNorma} L</RequiredWaterHeader>
-        <EditWaterButton onClick={handleModalOpen}>Edit</EditWaterButton>
+        <RequiredWaterHeader>
+          {dailyNorma} {t('l')}
+        </RequiredWaterHeader>
+        <EditWaterButton onClick={handleModalOpen}>{t('edit')}</EditWaterButton>
       </BottomBox>
 
       {isModalOpen && (

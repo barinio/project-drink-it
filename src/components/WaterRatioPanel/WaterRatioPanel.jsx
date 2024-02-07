@@ -18,8 +18,10 @@ import { useState } from 'react';
 
 import icons from '../../img/icons.svg';
 import { selectDailyDrank, selectNorma } from 'redux/waterDetails/waterSelectors';
+import { useTranslation } from 'react-i18next';
 
 export const WaterRatioPanel = () => {
+  const { t } = useTranslation();
   const dailyNorm = useSelector(selectNorma);
   const dailyDrank = useSelector(selectDailyDrank);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -55,7 +57,7 @@ export const WaterRatioPanel = () => {
   return (
     <WaterRatioPanelContainer>
       <WaterRangeContainer>
-        <WaterRangeHeader>Today</WaterRangeHeader>
+        <WaterRangeHeader>{t('today')}</WaterRangeHeader>
         <WaterRange
           type="range"
           value={Number.isNaN(waterPercent) ? `0` : waterPercent}
@@ -66,7 +68,10 @@ export const WaterRatioPanel = () => {
         <RateContainer>
           <StartMark>0%</StartMark>
           {isShow && (
-            <MiddleMark id="waterMark" style={getPosition()}>{`${waterPercent}%`}</MiddleMark>
+            <MiddleMark
+              id="waterMark"
+              style={getPosition()}
+            >{`${waterPercent}%`}</MiddleMark>
           )}
           <EndMark>100%</EndMark>
         </RateContainer>
@@ -79,7 +84,7 @@ export const WaterRatioPanel = () => {
         <Icon>
           <use href={`${icons}#icon-add-button`}></use>
         </Icon>
-        Add Water
+        {t('addWater')}
       </AddWaterButton>
       {isModalOpen && (
         <TodayListModal

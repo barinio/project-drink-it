@@ -13,8 +13,11 @@ import {
   CloseIcon,
 } from 'components/TodayListModal/TodayListModal.styled';
 import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 
 export const LogOut = ({ onClose, onLogout }) => {
+  const { t } = useTranslation();
+
   useEffect(() => {
     const onEsc = e => e.key === 'Escape' && onClose();
     window.addEventListener('keydown', onEsc);
@@ -25,7 +28,7 @@ export const LogOut = ({ onClose, onLogout }) => {
       <Overlay className="overlay" onClick={onClose} />
       <ModalContent className="dark-logout-modal">
         <ModalHeader>
-          <h2>Log out</h2>
+          <h2>{t('logOut')}</h2>
           <CloseButton type="button" onClick={onClose}>
             <CloseIcon>
               <use href={`${icons}#icon-outline`}></use>
@@ -34,13 +37,17 @@ export const LogOut = ({ onClose, onLogout }) => {
         </ModalHeader>
         <div>
           <BoxModal>
-            <TextStyle>Do you really want to leave?</TextStyle>
+            <TextStyle>{t('wantToLeave')}</TextStyle>
             <ButtonBox>
-              <ButtonStyle className='dark-logout-button' type="button" onClick={onLogout}>
-                Log out
+              <ButtonStyle
+                className="dark-logout-button"
+                type="button"
+                onClick={onLogout}
+              >
+                {t('logOut')}
               </ButtonStyle>
               <ButtonStyle type="button" onClick={onClose}>
-                Cancel
+                {t('cancel')}
               </ButtonStyle>
             </ButtonBox>
           </BoxModal>

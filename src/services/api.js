@@ -31,8 +31,9 @@ export const requestRefreshUser = async () => {
   return data;
 };
 
-export const updUserInfo = async ({ body, id }) => {
-  const { data } = await instance.patch(`/api/users/info/${id}`, body);
+export const updUserInfo = async ({ body }) => {
+  const { data } = await instance.patch(`/api/users/info`, body);
+
   setToken(data.token);
 
   return data;
@@ -52,17 +53,6 @@ export const updAvatar = async avatar => {
 };
 
 // ----------- dailynorma-service -------------------
-
-// export const fetchDailyNorma = async id => {
-//   const { data } = await instance.get(`/api/users/dailynorma/${id}`);
-//   return data;
-// };
-
-// export const newDailyNorm = async ({ id, updatedData }) => {
-//   console.log(updatedData);
-//   const { data } = await instance.patch(`/api/users/dailynorma/${id}`, updatedData);
-//   return data;
-// };
 export const fetchDailyNorma = async () => {
   const { data } = await instance.get(`/api/users/dailynorma`);
   return data;

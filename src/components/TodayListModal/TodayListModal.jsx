@@ -23,9 +23,14 @@ import {
   FooterModal,
   AddButtonSave,
 } from './TodayListModal.styled';
-import { IconGlass, TodayTime, TodayVolume } from '../TodayWaterList/TodayWaterList.styled';
+import {
+  IconGlass,
+  TodayTime,
+  TodayVolume,
+} from '../TodayWaterList/TodayWaterList.styled';
 import icons from '../../img/icons.svg';
 import { addWatersThunk, editWaterThunk } from 'redux/waterDetails/waterThunk';
+import { useTranslation } from 'react-i18next';
 
 export const TodayListModal = ({
   onClose,
@@ -35,9 +40,12 @@ export const TodayListModal = ({
   existingRecordId,
   ownerId,
 }) => {
+  const { t } = useTranslation();
   const [amount, setAmount] = useState(initialAmount || 0);
   const [times, setTime] = useState(
-    isEditing && initialTime ? format(new Date(initialTime), 'HH:mm') : format(new Date(), 'HH:mm')
+    isEditing && initialTime
+      ? format(new Date(initialTime), 'HH:mm')
+      : format(new Date(), 'HH:mm')
   );
   const dispatch = useDispatch();
 
@@ -57,7 +65,8 @@ export const TodayListModal = ({
     setAmount(prevAmount => prevAmount + 50);
   };
 
-  const decreaseAmount = () => setAmount(prevAmount => (prevAmount > 0 ? prevAmount - 50 : 0));
+  const decreaseAmount = () =>
+    setAmount(prevAmount => (prevAmount > 0 ? prevAmount - 50 : 0));
 
   const handleAmountChange = e => {
     let newValue = e.target.value;
@@ -114,7 +123,9 @@ export const TodayListModal = ({
     };
 
     if (isEditing) {
-      dispatch(editWaterThunk({ _id: ownerId, id: existingRecordId, ...waterData })).then(data => {
+      dispatch(
+        editWaterThunk({ _id: ownerId, id: existingRecordId, ...waterData })
+      ).then(data => {
         if (!data.error) onClose();
       });
     } else {
@@ -137,14 +148,14 @@ export const TodayListModal = ({
     setAmount(0);
   };
 
-  const title = isEditing ? 'Edit the entered amount of water' : 'Add water';
+  const title = isEditing ? t('editWater') : t('addWater');
 
   const displayTime = isEditing && initialTime ? formatTime(initialTime) : '';
 
   return (
     <>
       <Overlay onClick={handleOnClose} />
-      <ModalContent className='dark-water-modal'>
+      <ModalContent className="dark-water-modal">
         <ModalHeader>
           <h2>{title}</h2>
           <CloseButton onClick={onClose}>
@@ -160,21 +171,27 @@ export const TodayListModal = ({
                 <IconGlass>
                   <use href={`${icons}#icon-glass`}></use>
                 </IconGlass>
-                <TodayVolume>{initialAmount ? `${initialAmount} ml` : 'No notes yet'}</TodayVolume>
+                <TodayVolume>
+                  {initialAmount ? `${initialAmount} ${t('ml')}` : t('noNotesYet')}
+                </TodayVolume>
                 <TodayTime>{initialTime ? `${displayTime}` : ''}</TodayTime>
               </PreviousInfo>
             )}
-            <h3>{isEditing ? 'Correct entered data:' : 'Choose a value:'}</h3>
+            <h3>{isEditing ? `${t('correctData')}` : `${t('chooseValue')}`}</h3>
             <AddWater>
-              <AddParagraph className='dark-modal-text'>Amount of water:</AddParagraph>
+              <AddParagraph className="dark-modal-text">
+                {t('amountWater')}
+              </AddParagraph>
               <div>
                 <ButtonMl onClick={decreaseAmount}>
                   <Icon>
                     <use href={`${icons}#icon-decrement-outline`}></use>
                   </Icon>
                 </ButtonMl>
-                <Label className='dark-water-modal-button'>
-                  <Water>{Number.isNaN(amount) ? '0' : `${amount}`} ml</Water>
+                <Label className="dark-water-modal-button">
+                  <Water>
+                    {Number.isNaN(amount) ? '0' : `${amount}`} {t('ml')}
+                  </Water>
                 </Label>
                 <ButtonMl onClick={increaseAmount}>
                   <Icon>
@@ -184,7 +201,9 @@ export const TodayListModal = ({
               </div>
             </AddWater>
             <AddTime>
-              <AddParagraph className='dark-modal-text'>Recording time:</AddParagraph>
+              <AddParagraph className="dark-modal-text">
+                {t('recordingTime')}
+              </AddParagraph>
               <InputTime
                 type="time"
                 value={times}
@@ -193,17 +212,22 @@ export const TodayListModal = ({
               />
             </AddTime>
             <div>
-              <h3>Enter the value of the water used:</h3>
+              <h3>{t('waterUsed')}</h3>
               <Input
                 type="number"
                 value={Number.isNaN(amount) ? '0' : `${amount}`}
                 onChange={handleAmountChange}
-                onBlur={() => setAmount(prevAmount => prevAmount || initialAmount || 0)}
+                onBlur={() =>
+                  setAmount(prevAmount => prevAmount || initialAmount || 0)
+                }
               />
             </div>
             <FooterModal>
-              <span>{Number.isNaN(amount) ? `0` : `${amount}`}ml</span>
-              <AddButtonSave onClick={handleSubmit}>Save</AddButtonSave>
+              <span>
+                {Number.isNaN(amount) ? `0 ` : `${amount} `}
+                {t('ml')}
+              </span>
+              <AddButtonSave onClick={handleSubmit}>{t('save')}</AddButtonSave>
             </FooterModal>
           </BoxAddModal>
         </div>

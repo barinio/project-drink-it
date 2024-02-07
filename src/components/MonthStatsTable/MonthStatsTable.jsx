@@ -24,8 +24,10 @@ import {
 } from 'redux/waterDetails/waterSelectors';
 
 import { isToday } from 'date-fns';
+import { useTranslation } from 'react-i18next';
 
 const MonthStatsTable = () => {
+  const { t } = useTranslation();
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(null);
 
@@ -37,7 +39,6 @@ const MonthStatsTable = () => {
 
   const dailyNorm = useSelector(selectNorma);
 
-
   const d = formatDate(currentDate);
 
   const dispatch = useDispatch();
@@ -45,7 +46,6 @@ const MonthStatsTable = () => {
   useEffect(() => {
     dispatch(getMonthWater(d));
   }, [dispatch, d, waterlist, dailyNorm, isLoadingList]);
-
 
   const handleChangeMonth = offset => {
     setCurrentDate(prevDate => new Date(prevDate.getFullYear(), prevDate.getMonth() + offset));
@@ -146,11 +146,11 @@ const MonthStatsTable = () => {
               Daily norma: <span className="popoverColorText">{waterInfo.dailyNorma / 1000}L</span>
             </p>
             <p className="datePopoverText">
-              Fulfillment of the daily norm:{' '}
+              {t('fulfillment')}
               <span className="popoverColorText">{waterInfo.persent.toFixed(0)}%</span>
             </p>
             <p className="datePopoverText">
-              How many servings of water:{' '}
+              {t('servingsOfWater')}
               <span className="popoverColorText">{waterInfo.perDay}</span>
             </p>
             <button className="closeBtnPopover" onClick={() => setSelectedDate(null)}>
@@ -167,7 +167,7 @@ const MonthStatsTable = () => {
   return (
     <CalendarStyle>
       <div className="header">
-        <span className="sectionText">Month</span>
+        <span className="sectionText">{t('month')}</span>
         <div className="monthNav">
           <button className="navBtn" onClick={() => handleChangeMonth(-1)}>
             <svg width="14" height="14">
