@@ -40,7 +40,6 @@ export const requestRefreshUser = async () => {
 
 export const updUserInfo = async ({ body }) => {
   const { data } = await instance.patch(`/api/users/info`, body);
-  setToken(data.token);
   return data;
 };
 
@@ -53,7 +52,6 @@ export const updAvatar = async avatar => {
     },
   };
   const { data } = await instance.patch(`/api/users/avatar`, formData, config);
-  setToken(data.token);
   return data;
 };
 
@@ -64,7 +62,6 @@ export const fetchDailyNorma = async () => {
 };
 
 export const newDailyNorm = async ({ updatedData }) => {
-  console.log(updatedData);
   const { data } = await instance.patch(`/api/users/dailynorma`, updatedData);
   return data;
 };

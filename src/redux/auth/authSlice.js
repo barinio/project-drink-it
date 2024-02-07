@@ -44,7 +44,6 @@ const handlerefreshFulfilled = (state, { payload }) => {
 };
 
 const handleUpdUserInfoFulfilled = (state, { payload }) => {
-  console.log('payload:', payload);
   state.isLoading = false;
   state.authenticated = true;
   state.user = { ...state.user, ...payload };

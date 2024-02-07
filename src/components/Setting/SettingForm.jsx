@@ -31,7 +31,6 @@ const SettingForm = ({ onClose }) => {
 
   const [isMan, setIsMan] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const validEmailDomains = ['gmail.com', 'i.ua', 'yahoo.com', 'ukr.net'];
 
   const validationSchema = Yup.object({
     userName: Yup.string()
@@ -42,8 +41,8 @@ const SettingForm = ({ onClose }) => {
       .email('Invalid email address')
       .required('Email is required')
       .matches(
-        new RegExp(`@(${validEmailDomains.join('|')})$`),
-        'Invalid email domain'
+        /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+        'Invalid email address'
       ),
     password: Yup.string()
       .min(8, 'Password must be at least 8 characters')
