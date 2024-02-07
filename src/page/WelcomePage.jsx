@@ -25,7 +25,7 @@ const Welcome = () => {
       <HomeWrapper>
         <Home>
           <LeftSide>
-            <TitleLeft>{t('textLeft.title')}</TitleLeft>
+            <TitleLeft className='dark-title-left'>{t('textLeft.title')}</TitleLeft>
             <TextH3Left>{t('textLeft.text1')}</TextH3Left>
             <TextP className='dark-welcome-page-text'>{t('textLeft.text2')}</TextP>
             <ListLeft>

@@ -9,6 +9,9 @@ export const SwitcherBox = styled.div`
   align-items: center;
 
   gap: 15px;
+  @media (min-width: 768px) {
+    flex-direction: row;
+  }
 `;
 
 export const SwitcherWrapp = styled.label`
