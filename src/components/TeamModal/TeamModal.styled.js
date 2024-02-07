@@ -41,7 +41,6 @@ export const TeamModalWrapper = styled.div`
     color: #424242;
     text-align: center;
     font-size: 24px;
-    /* margin: 0; */
 
     margin-top: 24px;
   }

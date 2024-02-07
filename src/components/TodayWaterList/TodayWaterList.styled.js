@@ -51,10 +51,13 @@ export const WrapNoList = styled.li`
   }
 `;
 
-export const Forget = styled.p`
+export const Forget = styled.div`
   font-size: 20px;
   text-align: center;
   color: var(--primery-color-blue);
+  @media (min-width: 700px) and (max-width: 1199px) {
+    font-size: 30px;
+  }
 `;
 
 export const TodayList = styled.ul`

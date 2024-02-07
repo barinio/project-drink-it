@@ -77,15 +77,15 @@ export const TodayWaterList = () => {
       ) : (
         <TodayList>
           {waterlist?.length === 0 || waterlist === undefined ? (
-
-            <Forget>{t('haveNotDrunkYet')}</Forget>
+            // <Forget>{t('haveNotDrunkYet')}</Forget>
 
             <WrapNoList>
               <Forget>
-                Oops&#128561;... Looks like you didn't drink ANY water today!<br></br> It hurts
-                &#129319;
-                <br></br> BUT if you drank, quickly add it before you forget <br></br>&#128540;
-                &#129325; &#128527;
+                <p>Oops&#128561;...</p>
+                <p>Looks like you didn't drink ANY water today!</p>
+                <p>It hurts&#129319;</p>
+                <p>BUT if you drank, quickly add it before you forget</p>
+                <>&#128540; &#129325; &#128527;</>
               </Forget>
             </WrapNoList>
           ) : (
