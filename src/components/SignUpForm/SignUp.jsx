@@ -6,11 +6,12 @@ import { SignupForm, ErrorMessage } from './SignUp.styled';
 import icons from '../../img/icons.svg';
 import { useDispatch } from 'react-redux';
 import { signupThunk } from 'redux/auth/authThunk';
+import { useTranslation } from 'react-i18next';
 
 const SignUpForm = () => {
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
-  const validEmailDomains = ['gmail.com', 'i.ua', 'yahoo.com', 'ukr.net'];
+  const { t } = useTranslation();
 
   const formik = useFormik({
     initialValues: {
@@ -22,10 +23,7 @@ const SignUpForm = () => {
       email: Yup.string()
         .email('Invalid email address')
         .required('Email is required')
-        .matches(
-          new RegExp(`@(${validEmailDomains.join('|')})$`),
-          'Invalid email domain'
-        ),
+        .matches(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i, 'Invalid email address'),
       password: Yup.string()
         .required('Password is required')
         .min(8, 'Password must be at least 8 characters')
@@ -49,8 +47,8 @@ const SignUpForm = () => {
 
   return (
     <SignupForm onSubmit={formik.handleSubmit}>
-      <h3>Sign Up</h3>
-      <label>Enter your email</label>
+      <h3>{t('signup')}</h3>
+      <label>{t('forms.email')}</label>
       <div>
         <div
           className="password-wrapper"
@@ -82,7 +80,7 @@ const SignUpForm = () => {
         ) : null}
       </div>
 
-      <label>Enter your password</label>
+      <label>{t('forms.password')}</label>
       <div>
         <div
           className="password-wrapper"
@@ -108,30 +106,20 @@ const SignUpForm = () => {
                   : 'var(--primery-color-blue)',
             }}
           />
-          <button
-            type="button"
-            className="eye-icon"
-            onClick={togglePasswordVisibility}
-          >
+          <button type="button" className="eye-icon" onClick={togglePasswordVisibility}>
             <svg width="16" height="16">
               <use
-                href={
-                  showPassword
-                    ? icons + '#icon-opend-eye'
-                    : icons + '#icon-closed-eye'
-                }
+                href={showPassword ? icons + '#icon-opend-eye' : icons + '#icon-closed-eye'}
               ></use>
             </svg>
           </button>
         </div>
         {formik.touched.password && formik.errors.password ? (
-          <ErrorMessage>
-            {formik.touched.password && formik.errors.password}
-          </ErrorMessage>
+          <ErrorMessage>{formik.touched.password && formik.errors.password}</ErrorMessage>
         ) : null}
       </div>
 
-      <label>Repeat password</label>
+      <label>{t('forms.repeatPassword')}</label>
       <div>
         <div
           className="password-wrapper"
@@ -157,18 +145,10 @@ const SignUpForm = () => {
                   : 'var(--primery-color-blue)',
             }}
           />
-          <button
-            type="button"
-            className="eye-icon"
-            onClick={togglePasswordVisibility}
-          >
+          <button type="button" className="eye-icon" onClick={togglePasswordVisibility}>
             <svg width="16" height="16">
               <use
-                href={
-                  showPassword
-                    ? icons + '#icon-opend-eye'
-                    : icons + '#icon-closed-eye'
-                }
+                href={showPassword ? icons + '#icon-opend-eye' : icons + '#icon-closed-eye'}
               ></use>
             </svg>
           </button>
@@ -178,8 +158,8 @@ const SignUpForm = () => {
         ) : null}
       </div>
 
-      <button type="submit">Sign Up</button>
-      <NavLink to="/signin">Sign in</NavLink>
+      <button type="submit">{t('buttons.signup')}</button>
+      <NavLink to="/signin">{t('buttons.signin')}</NavLink>
     </SignupForm>
   );
 };

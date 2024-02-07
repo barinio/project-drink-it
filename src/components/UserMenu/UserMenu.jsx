@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Button } from '@mui/material';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import { useTranslation } from 'react-i18next';
 
 import {
   selectAuthAuthenticated,
@@ -27,7 +28,6 @@ import { menuStyle } from './Mui-menu-style';
 import Setting from 'components/Setting/Setting';
 import { LogOut } from 'components/LogOut/LogOut';
 import { logoutThunk } from 'redux/auth/authThunk';
-import { useTranslation } from 'react-i18next';
 
 const UserMenu = () => {
   const { t } = useTranslation();
@@ -130,7 +130,7 @@ const UserMenu = () => {
         </>
       ) : (
         <NavLinkSignin to="signin">
-          <span>Sign in</span>
+          <span>{t('buttons.signin')}</span>
           <UserSvg className="dark-user-menu" width="28" height="28">
             <use href={icons + '#icon-user'}></use>
           </UserSvg>

@@ -238,6 +238,10 @@ export const Home = styled.div`
     padding-right: 32px;
     padding-top: 50px;
   }
+  @media (min-width: 1200px) {
+    padding-left: 112px;
+    padding-right: 112px;
+  }
   @media screen and (min-width: 1440px) {
     display: flex;
     gap: 81px;

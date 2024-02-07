@@ -34,8 +34,18 @@ const DailyNormaModal = ({
   activityTimeData,
   dailyNormaData,
   willDrinkData,
+  userId,
 }) => {
-  const { t } = useTranslation();
+  // const DailyNormaModal = ({
+  //   onClose,
+  //   genderData,
+  //   weightData,
+  //   activityTimeData,
+  //   dailyNormaData,
+  //   willDrinkData,
+  //   // userData,
+  //   // setUserData,
+  // }) => {
 
   const dispatch = useDispatch();
 
@@ -44,6 +54,12 @@ const DailyNormaModal = ({
   const [activityTime, setActivityTime] = useState(activityTimeData);
   const [dailyNorma, setDailyNorma] = useState(dailyNormaData);
   const [willDrink, setWillDrink] = useState(willDrinkData);
+
+  // const [gender, setGender] = useState(userData.gender);
+  // const [weight, setWeight] = useState(userData.weight);
+  // const [activityTime, setActivityTime] = useState(userData.activityTime);
+  // const [dailyNorma, setDailyNorma] = useState(userData.dailyNorma);
+  // const [willDrink, setWillDrink] = useState(userData.willDrink);
 
   const weightInputRef = useRef(null);
   const activityTimeInputRef = useRef(null);
@@ -170,16 +186,29 @@ const DailyNormaModal = ({
       dailyNorma: parseFloat(dailyNorma * 1000),
     };
     dispatch(updateDailyNorma(requestData));
+
     onClose();
   };
+  //   const handleSave = async () => {
+  //     const updatedUserData = {
+  //         ...userData,
+  //         gender,
+  //         weight,
+  //         activityTime,
+  //         dailyNorma: parseFloat(dailyNorma) * 1000,
+  //         willDrink: parseFloat(willDrink) * 1000,
+  //     };
+
+  //     dispatch(updateDailyNorma(updatedUserData));
+  //     setUserData(updatedUserData);
+  //     onClose();
+  // };
 
   return (
     <ModalOverlay onMouseDown={handleBackdropClick}>
       <Modal className="dark-daily-norma-modal">
         <TopDiv>
-          <ModalHeader className="dark-daily-norma-text">
-            {t('dailyNorma')}
-          </ModalHeader>
+          <ModalHeader className="dark-daily-norma-text">My daily norma</ModalHeader>
           <CloseButton onClick={onClose}>&#10005;</CloseButton>
         </TopDiv>
 
@@ -201,9 +230,7 @@ const DailyNormaModal = ({
         </CaptionBox>
 
         <form>
-          <FormBigText className="dark-daily-norma-text">
-            {t('calculateRate')}
-          </FormBigText>
+          <FormBigText className="dark-daily-norma-text">Calculate your rate:</FormBigText>
 
           <RadioButton>
             <input
@@ -243,14 +270,13 @@ const DailyNormaModal = ({
             ref={weightInputRef}
             defaultValue={weight === 0 ? '' : weight}
             maxLength={4}
-            onKeyDown={e =>
-              ['e', 'E', '+', '-', '='].includes(e.key) && e.preventDefault()
-            }
+            onKeyDown={e => ['e', 'E', '+', '-', '='].includes(e.key) && e.preventDefault()}
           />
 
           <label>
             <InputText className="dark-daily-norma-text">
-              {t('timeForSports')}
+              The time of active participation in sports or other activities with a high physical
+              load in hours:
             </InputText>
           </label>
           <WaterFormInput
@@ -262,22 +288,18 @@ const DailyNormaModal = ({
             ref={activityTimeInputRef}
             defaultValue={activityTime === 0 ? '' : activityTime}
             maxLength={3}
-            onKeyDown={e =>
-              ['e', 'E', '+', '-'].includes(e.key) && e.preventDefault()
-            }
+            onKeyDown={e => ['e', 'E', '+', '-'].includes(e.key) && e.preventDefault()}
           />
 
           <RequiredWaterBox>
             <RequiredText className="dark-daily-norma-text">
-              {t('resultLiters')}
+              The required amount of water in liters per day:
             </RequiredText>
-            <RequiredWater>
-              {dailyNorma} {t('l')}
-            </RequiredWater>
+            <RequiredWater>{dailyNorma} L</RequiredWater>
           </RequiredWaterBox>
 
           <FormBigText className="dark-daily-norma-text">
-            {t('userAmountWater')}
+            Write down how much water you will drink:
           </FormBigText>
           <WaterFormInput
             type="text"
@@ -288,9 +310,7 @@ const DailyNormaModal = ({
             ref={willDrinkInputRef}
             defaultValue={willDrink === 0 ? '' : willDrink}
             maxLength={3}
-            onKeyDown={e =>
-              ['e', 'E', '+', '-'].includes(e.key) && e.preventDefault()
-            }
+            onKeyDown={e => ['e', 'E', '+', '-'].includes(e.key) && e.preventDefault()}
           />
 
           <SaveButton type="button" onClick={handleSave}>
