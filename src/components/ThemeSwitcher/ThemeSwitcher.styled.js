@@ -9,7 +9,7 @@ export const SwitcherBox = styled.div`
   align-items: center;
 
   gap: 15px;
-  @media (min-width: 768px) {
+  @media (min-width: 500px) {
     flex-direction: row;
   }
 `;

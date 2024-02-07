@@ -43,8 +43,12 @@ export const de = {
 
   // Homepage WaterTodayList
   today: 'Heute',
-  haveNotDrunkYet:
-    'Du hast noch kein Wasser getrunken. Vergiss nicht, deine tägliche Norm zu erfüllen!',
+  haveNotDrunkYet: {
+    p1: 'Hoppla',
+    p2: 'Du hast noch kein Wasser getrunken. Vergiss nicht, deine tägliche Norm zu erfüllen!',
+    p3: 'Es tut weh',
+    p4: 'ABER wenn du getrunken hast, füge es schnell hinzu, bevor du es vergisst',
+  },
 
   //SettingUser
   logOut: 'Ausloggen',
@@ -63,8 +67,8 @@ export const de = {
 
   //LogoutModal
   wantToLeave: 'Möchtest du wirklich gehen?',
-  signup: 'Sign Up',
-  signin: 'Sign In',
+  signup: 'Registrieren',
+  signin: 'Anmelden',
 
   // welcome page
   textLeft: {
@@ -109,4 +113,7 @@ export const de = {
     logout: 'Ausloggen',
     settings: 'Einstellungen',
   },
+
+  deleteAccount: 'Konto löschen',
+  sureDeleteAccount: 'Sind Sie sicher, dass Sie Ihr Konto löschen möchten?',
 };

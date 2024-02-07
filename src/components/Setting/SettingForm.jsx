@@ -22,7 +22,7 @@ import { selectAuthUserData } from 'redux/auth/auth.selectors';
 import { updUserInfoThunk } from 'redux/auth/authThunk';
 import { useTranslation } from 'react-i18next';
 
-const SettingForm = ({ onClose }) => {
+const SettingForm = ({ closeSettingModal }) => {
   const { t } = useTranslation();
 
   const dispatch = useDispatch();
@@ -71,12 +71,12 @@ const SettingForm = ({ onClose }) => {
         const { gender, userName, email } = values;
         const userBody = { gender, userName, email };
         dispatch(updUserInfoThunk(userBody));
-        onClose();
+        closeSettingModal();
         return;
       }
 
       dispatch(updUserInfoThunk(values));
-      onClose();
+      closeSettingModal();
     },
   });
 

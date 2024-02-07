@@ -43,8 +43,12 @@ export const es = {
 
   // Homepage WaterTodayList
   today: 'Hoy',
-  haveNotDrunkYet:
-    'Todavía no has bebido agua. ¡No olvides cumplir con tu norma diaria!',
+  haveNotDrunkYet: {
+    p1: '¡Ups!',
+    p2: '¡No has bebido agua todavía! ¡No olvides cumplir con tu norma diaria!',
+    p3: 'Duele',
+    p4: 'PERO si ya bebiste, agrégalo rápidamente antes de que se te olvide',
+  },
 
   //SettingUser
   logOut: 'Cerrar sesión',
@@ -109,4 +113,7 @@ export const es = {
     logout: 'Cerrar sesión',
     settings: 'Configuración',
   },
+
+  deleteAccount: 'Borrar cuenta',
+  sureDeleteAccount: '¿Estás seguro de que quieres eliminar tu cuenta?',
 };

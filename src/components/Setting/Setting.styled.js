@@ -49,7 +49,7 @@ export const Modal = styled.div`
 
   @media (min-width: 768px) {
     padding: 32px 24px;
-    min-width: 704px;
+    max-width: 1008px;
   }
 `;
 export const CaptionBlock = styled.div`
@@ -122,7 +122,9 @@ export const PhotoBlock = styled.div`
     stroke: var(--primery-color-blue);
   }
 `;
-export const SettingFormik = styled.form``;
+export const SettingFormik = styled.form`
+  margin-bottom: 24px;
+`;
 
 export const FormWrapper = styled.div`
   display: flex;
@@ -277,6 +279,8 @@ export const PasswordInputContainer = styled.div`
 
 export const BtnSettingSave = styled.div`
   button {
+    display: flex;
+    justify-content: center;
     width: 100%;
     padding: 8px 30px;
 
@@ -290,7 +294,7 @@ export const BtnSettingSave = styled.div`
     border: none;
 
     @media (min-width: 768px) {
-      width: 100px;
+      width: 160px;
       padding: 10px 30px;
 
       font-size: 18px;
@@ -308,31 +312,35 @@ export const InputUpload = styled.input`
   position: absolute;
 `;
 
-export const DeleteButton = styled.button`
-  display: inline-block;
-  width: 100%;
-  padding: 8px 30px;
-  margin-top: 24px;
-  color: var(--primery-color-white);
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 1.25;
-  background-color: var(--btn-color-red);
-  box-shadow: 0 4px 8px rgba(64, 123, 255, 0.34);
-  border-radius: 10px;
-  border: none;
-  cursor: pointer;
+export const DeleteButtonWrapp = styled.div`
+  display: flex;
+  justify-content: flex-end;
 
-  @media (min-width: 768px) {
-    width: 100px;
-    padding: 10px 30px;
-
+  button {
+    display: inline-block;
+    width: 100%;
+    padding: 8px 0px;
+    color: var(--primery-color-white);
+    font-weight: 500;
     font-size: 18px;
-    line-height: 1.33;
-  }
+    line-height: 1.25;
+    background-color: var(--btn-color-red);
+    box-shadow: 0 4px 8px rgba(64, 123, 255, 0.34);
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    right: 0;
+    @media (min-width: 768px) {
+      width: 160px;
+      padding: 10px 0px;
 
-  @media (min-width: 768px) {
-    display: flex;
-    justify-content: flex-end;
+      font-size: 18px;
+      line-height: 1.33;
+    }
+
+    @media (min-width: 768px) {
+      display: flex;
+      justify-content: center;
+    }
   }
 `;

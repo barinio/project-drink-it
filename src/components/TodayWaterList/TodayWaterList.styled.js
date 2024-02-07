@@ -56,7 +56,7 @@ export const Forget = styled.div`
   text-align: center;
   color: var(--primery-color-blue);
   @media (min-width: 700px) and (max-width: 1199px) {
-    font-size: 30px;
+    font-size: 25px;
   }
 `;
 

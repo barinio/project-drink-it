@@ -43,8 +43,12 @@ export const pt = {
 
   // Homepage WaterTodayList
   today: 'Hoje',
-  haveNotDrunkYet:
-    'Você ainda não bebeu água. Não se esqueça de atender à sua norma diária!',
+  haveNotDrunkYet: {
+    p1: 'Oops',
+    p2: 'Você ainda não bebeu água. Não se esqueça de atender à sua norma diária!',
+    p3: 'Isso dói',
+    p4: 'MAS se você bebeu, adicione rapidamente antes de esquecer',
+  },
 
   //SettingUser
   logOut: 'Sair',
@@ -108,4 +112,7 @@ export const pt = {
     logout: 'Sair',
     settings: 'Configurações',
   },
+
+  deleteAccount: 'Excluir conta',
+  sureDeleteAccount: 'Tem certeza de que deseja excluir sua conta?',
 };

@@ -18,24 +18,27 @@ import {
   Overlay,
 } from 'components/TodayListModal/TodayListModal.styled';
 
-export const ModalDeleteUser = ({ onClose, closeSettingModal }) => {
+export const ModalDeleteUser = ({
+  closeDeleteUserModal,
+  closeSettingModal,
+}) => {
   const { t } = useTranslation();
 
   const dispatch = useDispatch();
 
   const handleDeleteUser = () => {
     dispatch(deleteUserThunk());
-    onClose();
+    closeDeleteUserModal();
     closeSettingModal();
   };
 
   return (
     <>
-      <Overlay onClick={onClose} />
+      <Overlay onClick={closeDeleteUserModal} />
       <ModalContent className="dark-delete-modal">
         <ModalHeader>
-          <h2>{t('deleteEntry')}</h2>
-          <CloseButton onClick={onClose}>
+          <h2>{t('deleteAccount')}</h2>
+          <CloseButton onClick={closeDeleteUserModal}>
             <CloseIcon>
               <use href={`${icons}#icon-outline`}></use>
             </CloseIcon>
@@ -44,7 +47,7 @@ export const ModalDeleteUser = ({ onClose, closeSettingModal }) => {
         <div>
           <BoxModal>
             <TextStyle className="dark-delete-modal-text">
-              {t('sureDeleteEntry')}
+              {t('sureDeleteAccount')}
             </TextStyle>
             <ButtonBox>
               <ButtonStyle
@@ -53,7 +56,9 @@ export const ModalDeleteUser = ({ onClose, closeSettingModal }) => {
               >
                 {t('delete')}
               </ButtonStyle>
-              <ButtonStyle onClick={onClose}>{t('cancel')}</ButtonStyle>
+              <ButtonStyle onClick={closeDeleteUserModal}>
+                {t('cancel')}
+              </ButtonStyle>
             </ButtonBox>
           </BoxModal>
         </div>

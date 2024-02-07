@@ -45,8 +45,12 @@ export const fr = {
 
   // Homepage WaterTodayList
   today: "Aujourd'hui",
-  haveNotDrunkYet:
-    "Vous n'avez pas encore bu d'eau. N'oubliez pas de respecter votre norme quotidienne!",
+  haveNotDrunkYet: {
+    p1: 'Oops',
+    p2: "Vous n'avez pas encore bu d'eau. N'oubliez pas de respecter votre norme quotidienne !",
+    p3: "C'est douloureux",
+    p4: "MAIS si vous avez bu, ajoutez-le rapidement avant d'oublier",
+  },
 
   //SettingUser
   logOut: 'Déconnexion',
@@ -85,7 +89,8 @@ export const fr = {
     listItem4: 'Élimination des substances traitées',
     listItem5: "Assurer la stabilité de l'environnement interne",
     listItem6: "Maintien d'une température corporelle normale'",
-    listItem7: "Maintien d'un système immunitaire capable de résister aux maladies",
+    listItem7:
+      "Maintien d'un système immunitaire capable de résister aux maladies",
   },
 
   forms: {
@@ -101,4 +106,7 @@ export const fr = {
     logout: 'Se déconnecter',
     settings: 'Paramètres',
   },
+
+  deleteAccount: 'Supprimer le compte',
+  sureDeleteAccount: 'Êtes-vous sûr(e) de vouloir supprimer votre compte ?',
 };

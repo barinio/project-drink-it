@@ -8,7 +8,7 @@ import {
   CaptionBlock,
   PhotoBlock,
   InputUpload,
-  DeleteButton,
+  DeleteButtonWrapp,
 } from './Setting.styled';
 
 import icons from '../../img/icons.svg';
@@ -34,9 +34,11 @@ const Setting = ({
 
   useEffect(() => {
     const onEsc = e => {
-      e.key === 'Escape' && isSureDelete
-        ? closeDeleteUserModal()
-        : closeModal();
+      if (e.key === 'Escape' && isSureDelete) {
+        closeDeleteUserModal();
+      } else if (e.key === 'Escape') {
+        closeModal();
+      }
     };
 
     window.addEventListener('keydown', onEsc);
@@ -92,20 +94,22 @@ const Setting = ({
               </div>
             </PhotoBlock>
 
-            <SettingForm onClose={closeDeleteUserModal} />
-            <DeleteButton
-              className="dark-delete-button delete-user"
-              type="button"
-              onClick={openSureDeleteModal}
-            >
-              {t('delete')}
-            </DeleteButton>
+            <SettingForm closeSettingModal={closeModal} />
+            <DeleteButtonWrapp>
+              <button
+                className="dark-delete-button delete-user"
+                type="button"
+                onClick={openSureDeleteModal}
+              >
+                {t('deleteAccount')}
+              </button>
+            </DeleteButtonWrapp>
           </Modal>
         </WrapperModal>
       </Backdrop>
       {isSureDelete && (
         <ModalDeleteUser
-          onClose={onClose}
+          closeDeleteUserModal={closeDeleteUserModal}
           closeSettingModal={closeModal}
           onDeleteUser={onDeleteUser}
         />

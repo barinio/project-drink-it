@@ -31,7 +31,7 @@ const SwitcherLanguage = () => {
   return (
     <>
       <SwitcherWrapper className="swither-language">
-        <Button onClick={handleMenuOpen}>
+        <Button onClick={handleMenuOpen} sx={{ padding: '0' }}>
           <FlagSvg width="26" height="26">
             {i18next.language === LOCALS.UK && (
               <use href={flags + '#icon-ua'} />

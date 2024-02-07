@@ -42,8 +42,12 @@ export const ja = {
 
   // Homepage WaterTodayList
   today: '今日',
-  haveNotDrunkYet:
-    'まだ水を飲んでいません。1日の基準を忘れずに満たしてください！',
+  haveNotDrunkYet: {
+    p1: 'おっとっと',
+    p2: 'あなたはまだ水を飲んでいません。1日の基準を忘れずに満たしてください！',
+    p3: 'とても悲しい',
+    p4: 'しかし、もし飲んだなら、すぐに忘れないうちに追加してください',
+  },
 
   //SettingUser
   logOut: 'ログアウト',
@@ -107,4 +111,7 @@ export const ja = {
     logout: 'ログアウト',
     settings: '設定',
   },
+
+  deleteAccount: 'アカウントを削除する',
+  sureDeleteAccount: 'アカウントを削除してもよろしいですか?',
 };
