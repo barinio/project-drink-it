@@ -39,11 +39,7 @@ export const LogOut = ({ onClose, onLogout }) => {
           <BoxModal>
             <TextStyle>{t('wantToLeave')}</TextStyle>
             <ButtonBox>
-              <ButtonStyle
-                className="dark-logout-button"
-                type="button"
-                onClick={onLogout}
-              >
+              <ButtonStyle className="dark-logout-button" type="button" onClick={onLogout}>
                 {t('logOut')}
               </ButtonStyle>
               <ButtonStyle type="button" onClick={onClose}>

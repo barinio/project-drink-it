@@ -307,3 +307,32 @@ export const InputUpload = styled.input`
   opacity: 0;
   position: absolute;
 `;
+
+export const DeleteButton = styled.button`
+  display: inline-block;
+  width: 100%;
+  padding: 8px 30px;
+  margin-top: 24px;
+  color: var(--primery-color-white);
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.25;
+  background-color: var(--btn-color-red);
+  box-shadow: 0 4px 8px rgba(64, 123, 255, 0.34);
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+
+  @media (min-width: 768px) {
+    width: 100px;
+    padding: 10px 30px;
+
+    font-size: 18px;
+    line-height: 1.33;
+  }
+
+  @media (min-width: 768px) {
+    display: flex;
+    justify-content: flex-end;
+  }
+`;

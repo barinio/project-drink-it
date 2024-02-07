@@ -2,6 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 
 import {
+  requestDeleteUser,
   requestLogin,
   requestLogout,
   requestRefreshUser,
@@ -11,15 +12,18 @@ import {
   updUserInfo,
 } from 'services/api';
 
-export const loginThunk = createAsyncThunk('auth/login', async (body, thunkAPI) => {
-  try {
-    const response = await requestLogin(body);
-    return response;
-  } catch (error) {
-    toast.error(`Sorry, but such an account doesn't exist.`);
-    return thunkAPI.rejectWithValue(error.message);
+export const loginThunk = createAsyncThunk(
+  'auth/login',
+  async (body, thunkAPI) => {
+    try {
+      const response = await requestLogin(body);
+      return response;
+    } catch (error) {
+      toast.error(`Sorry, but such an account doesn't exist.`);
+      return thunkAPI.rejectWithValue(error.message);
+    }
   }
-});
+);
 
 export const signupThunk = createAsyncThunk(
   'auth/signup',
@@ -71,6 +75,7 @@ export const updUserInfoThunk = createAsyncThunk(
     }
   }
 );
+
 export const updAvatarThunk = createAsyncThunk(
   'auth/updAvatar',
   async (avatar, thunkAPI) => {
@@ -86,11 +91,26 @@ export const updAvatarThunk = createAsyncThunk(
   }
 );
 
-export const logoutThunk = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
-  try {
-    await requestLogout();
-    return;
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
+export const logoutThunk = createAsyncThunk(
+  'auth/logout',
+  async (_, thunkAPI) => {
+    try {
+      await requestLogout();
+      return;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
   }
-});
+);
+
+export const deleteUserThunk = createAsyncThunk(
+  'auth/deleteUser',
+  async (_, thunkAPI) => {
+    try {
+      await requestDeleteUser();
+      return;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);

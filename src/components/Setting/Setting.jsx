@@ -5,6 +5,7 @@ import {
   CaptionBlock,
   PhotoBlock,
   InputUpload,
+  DeleteButton,
 } from './Setting.styled';
 
 import icons from '../../img/icons.svg';
@@ -12,7 +13,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectAuthUserData } from 'redux/auth/auth.selectors';
 import SettingForm from './SettingForm';
-import { updAvatarThunk } from 'redux/auth/authThunk';
+import { deleteUserThunk, updAvatarThunk } from 'redux/auth/authThunk';
 import { NotAvatar } from 'components/UserMenu/UserMenu.styled';
 import { useTranslation } from 'react-i18next';
 
@@ -31,6 +32,10 @@ const Setting = ({ closeModal, onBackdrop }) => {
   const changeHandler = e => {
     const avatar = e.target.files[0];
     dispatch(updAvatarThunk(avatar));
+  };
+
+  const onDelete = () => {
+    dispatch(deleteUserThunk());
   };
 
   return (
@@ -74,6 +79,14 @@ const Setting = ({ closeModal, onBackdrop }) => {
             </PhotoBlock>
 
             <SettingForm onClose={closeModal} />
+            {/* */}
+            <DeleteButton
+              className="dark-delete-button"
+              type="button"
+              onClick={onDelete}
+            >
+              {t('logOut')}
+            </DeleteButton>
           </Modal>
         </WrapperModal>
       </Backdrop>

@@ -283,14 +283,17 @@ const SettingForm = ({ onClose }) => {
                   value={formik.values.repeatPassword}
                   style={{
                     color:
-                      formik.touched.repeatPassword && formik.errors.repeatPassword
+                      formik.touched.repeatPassword &&
+                      formik.errors.repeatPassword
                         ? 'var(--btn-color-red)'
                         : 'var(--primery-color-blue)',
                   }}
                 />
-                {formik.touched.repeatPassword && formik.errors.repeatPassword ? (
+                {formik.touched.repeatPassword &&
+                formik.errors.repeatPassword ? (
                   <ErrorMessage>
-                    {formik.touched.repeatPassword && formik.errors.repeatPassword}
+                    {formik.touched.repeatPassword &&
+                      formik.errors.repeatPassword}
                   </ErrorMessage>
                 ) : null}
               </PasswordInputContainer>

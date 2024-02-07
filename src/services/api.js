@@ -8,6 +8,7 @@ const instance = axios.create({
 export const setToken = token => {
   instance.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
+
 // ----------- auth-service -------------------
 
 export const requestSignup = async body => {
@@ -26,6 +27,12 @@ export const requestLogout = async () => {
   const { data } = await instance.post('/api/users/logout');
   return data;
 };
+
+export const requestDeleteUser = async () => {
+  const { data } = await instance.delete('/api/users/delete');
+  return data;
+};
+
 export const requestRefreshUser = async () => {
   const { data } = await instance.get('/api/users/current');
   return data;
@@ -33,15 +40,13 @@ export const requestRefreshUser = async () => {
 
 export const updUserInfo = async ({ body }) => {
   const { data } = await instance.patch(`/api/users/info`, body);
-
   setToken(data.token);
-
   return data;
 };
+
 export const updAvatar = async avatar => {
   const formData = new FormData();
   formData.append('avatar', avatar);
-
   const config = {
     headers: {
       'Content-Type': 'multipart/form-data',
@@ -77,7 +82,10 @@ export const addWaters = async newWater => {
 };
 
 export const editWater = async ({ _id, id, newWater }) => {
-  const { data } = await instance.put(`/api/user/water/${_id}?portionID=${id}`, newWater);
+  const { data } = await instance.put(
+    `/api/user/water/${_id}?portionID=${id}`,
+    newWater
+  );
   return data;
 };
 
@@ -88,6 +96,8 @@ export const deleteWater = async ({ id, _id }) => {
 // -------------------waterMonth----------------------
 
 export const fetchMonthWater = async selectDate => {
-  const { data } = await instance.get(`/api/user/water/month?date=${selectDate}`);
+  const { data } = await instance.get(
+    `/api/user/water/month?date=${selectDate}`
+  );
   return data;
 };
