@@ -34,18 +34,8 @@ const DailyNormaModal = ({
   activityTimeData,
   dailyNormaData,
   willDrinkData,
-  userId,
 }) => {
-  // const DailyNormaModal = ({
-  //   onClose,
-  //   genderData,
-  //   weightData,
-  //   activityTimeData,
-  //   dailyNormaData,
-  //   willDrinkData,
-  //   // userData,
-  //   // setUserData,
-  // }) => {
+  const { t } = useTranslation();
 
   const dispatch = useDispatch();
 
@@ -54,12 +44,6 @@ const DailyNormaModal = ({
   const [activityTime, setActivityTime] = useState(activityTimeData);
   const [dailyNorma, setDailyNorma] = useState(dailyNormaData);
   const [willDrink, setWillDrink] = useState(willDrinkData);
-
-  // const [gender, setGender] = useState(userData.gender);
-  // const [weight, setWeight] = useState(userData.weight);
-  // const [activityTime, setActivityTime] = useState(userData.activityTime);
-  // const [dailyNorma, setDailyNorma] = useState(userData.dailyNorma);
-  // const [willDrink, setWillDrink] = useState(userData.willDrink);
 
   const weightInputRef = useRef(null);
   const activityTimeInputRef = useRef(null);
@@ -189,20 +173,6 @@ const DailyNormaModal = ({
 
     onClose();
   };
-  //   const handleSave = async () => {
-  //     const updatedUserData = {
-  //         ...userData,
-  //         gender,
-  //         weight,
-  //         activityTime,
-  //         dailyNorma: parseFloat(dailyNorma) * 1000,
-  //         willDrink: parseFloat(willDrink) * 1000,
-  //     };
-
-  //     dispatch(updateDailyNorma(updatedUserData));
-  //     setUserData(updatedUserData);
-  //     onClose();
-  // };
 
   return (
     <ModalOverlay onMouseDown={handleBackdropClick}>
