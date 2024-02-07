@@ -189,54 +189,57 @@ export const ItemRight = styled.li`
   }
 `;
 
-export const HomeWrapper = styled.div`
-  background-image: url(${imgMobile});
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  /* height: 100vh; */
-
-  @media screen and (min-width: 480px) {
+export const HomeWrapper = styled.section`
+  @media screen and (min-width: 320px) {
+    /* height: 100vh; */
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 24px;
+    padding-bottom: 40px;
     background-image: url(${imgMobile});
-    /* background-position: bottom; */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
   }
 
   @media screen and (min-width: 768px) {
     /* background-size: contain; */
+    padding-top: 40px;
+    padding-left: 32px;
+    padding-right: 32px;
+    padding-bottom: 50px;
     background-position: bottom;
+    background-size: cover;
     background-image: url(${imgTablet});
   }
 
-  @media screen and (min-width: 769px) and (max-width: 1439px) {
+  /* @media screen and (min-width: 769px) and (max-width: 1439px) {
     background-size: cover;
     background-image: url(${imgTablet});
 
     height: 100vh;
-  }
+  } */
 
   @media screen and (min-width: 1440px) {
     background-image: url(${imgDesktop});
-    background-size: contain;
-
+    background-position: bottom;
+    background-size: cover;
+    min-height: 691px;
+    padding-top: 31px;
+    padding-bottom: 294px;
+    padding-left: 213px;
+    padding-right: 213px;
     /* height: 100vh; */
   }
-  @media screen and (min-width: 1441px) {
+  /* @media screen and (min-width: 1441px) {
     background-size: cover;
 
     height: 100vh;
-  }
+  } */
 `;
 
 export const Home = styled.div`
-  padding-left: 20px;
-  padding-right: 20px;
-  /* padding-top: 24px; */
-  padding-bottom: 40px;
-
   @media screen and (min-width: 768px) {
-    padding-left: 32px;
-    padding-right: 32px;
-    padding-top: 50px;
   }
   @media (min-width: 1200px) {
     padding-left: 112px;
@@ -246,9 +249,6 @@ export const Home = styled.div`
     display: flex;
     gap: 81px;
     justify-content: center;
-
-    padding-top: 31px;
-    padding-bottom: 294px;
   }
 `;
 
