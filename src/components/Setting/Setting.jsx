@@ -1,3 +1,6 @@
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import {
   Backdrop,
   WrapperModal,
@@ -9,32 +12,43 @@ import {
 } from './Setting.styled';
 
 import icons from '../../img/icons.svg';
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { selectAuthUserData } from 'redux/auth/auth.selectors';
 import SettingForm from './SettingForm';
 import { deleteUserThunk, updAvatarThunk } from 'redux/auth/authThunk';
 import { NotAvatar } from 'components/UserMenu/UserMenu.styled';
-import { useTranslation } from 'react-i18next';
 
-const Setting = ({ closeModal, onBackdrop }) => {
+import { ModalDeleteUser } from 'components/ModalSureDeleteUser/ModalSureDeleteUser';
+
+const Setting = ({
+  closeModal,
+  closeDeleteUserModal,
+  onClose,
+  openSureDeleteModal,
+  isSureDelete,
+  onBackdrop,
+}) => {
   const { t } = useTranslation();
 
   const dispatch = useDispatch();
   const user = useSelector(selectAuthUserData);
 
   useEffect(() => {
-    const onEsc = e => e.key === 'Escape' && closeModal();
+    const onEsc = e => {
+      e.key === 'Escape' && isSureDelete
+        ? closeDeleteUserModal()
+        : closeModal();
+    };
+
     window.addEventListener('keydown', onEsc);
     return () => window.removeEventListener('keydown', onEsc);
-  }, [closeModal]);
+  }, [closeModal, closeDeleteUserModal, isSureDelete]);
 
   const changeHandler = e => {
     const avatar = e.target.files[0];
     dispatch(updAvatarThunk(avatar));
   };
 
-  const onDelete = () => {
+  const onDeleteUser = () => {
     dispatch(deleteUserThunk());
   };
 
@@ -78,18 +92,24 @@ const Setting = ({ closeModal, onBackdrop }) => {
               </div>
             </PhotoBlock>
 
-            <SettingForm onClose={closeModal} />
-            {/* */}
+            <SettingForm onClose={closeDeleteUserModal} />
             <DeleteButton
-              className="dark-delete-button"
+              className="dark-delete-button delete-user"
               type="button"
-              onClick={onDelete}
+              onClick={openSureDeleteModal}
             >
               {t('logOut')}
             </DeleteButton>
           </Modal>
         </WrapperModal>
       </Backdrop>
+      {isSureDelete && (
+        <ModalDeleteUser
+          onClose={onClose}
+          closeSettingModal={closeModal}
+          onDeleteUser={onDeleteUser}
+        />
+      )}
     </>
   );
 };

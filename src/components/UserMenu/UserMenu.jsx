@@ -41,6 +41,8 @@ const UserMenu = () => {
   const [isOpenSetting, setIsOpenSetting] = useState(false);
   const [isSureLogOut, setIsSureLogOut] = useState(false);
 
+  const [isSureDeleteUser, setIsSureDeleteUser] = useState(false);
+
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
@@ -53,16 +55,30 @@ const UserMenu = () => {
 
   const handleClose = e => {
     setAnchorEl(null);
-
     if (e.target.classList.contains('setting')) setIsOpenSetting(true);
     if (e.target.classList.contains('logout')) setIsSureLogOut(true);
   };
 
-  const onClose = () => setIsSureLogOut(false);
-  const closeModal = () => setIsOpenSetting(false);
+  const handleDeleteUserClose = e => {
+    setAnchorEl(null);
+    if (e.target.classList.contains('delete-user')) setIsSureDeleteUser(true);
+  };
+
+  const onClose = () => {
+    setIsSureLogOut(false);
+    setIsSureDeleteUser(false);
+  };
+
+  const closeModal = () => {
+    setIsOpenSetting(false);
+  };
+  const closeDeleteUserModal = () => {
+    setIsSureDeleteUser(false);
+  };
 
   useEffect(() => {
-    document.body.style.overflow = isOpenSetting || isSureLogOut ? 'hidden' : '';
+    document.body.style.overflow =
+      isOpenSetting || isSureLogOut ? 'hidden' : '';
   }, [isOpenSetting, isSureLogOut]);
 
   const onBackdrop = e => e.target === e.currentTarget && closeModal();
@@ -124,7 +140,14 @@ const UserMenu = () => {
             </Menu>
           </UserContainer>
           {isOpenSetting && (
-            <Setting closeModal={closeModal} onBackdrop={onBackdrop} />
+            <Setting
+              closeModal={closeModal}
+              closeDeleteUserModal={closeDeleteUserModal}
+              onClose={onClose}
+              isSureDelete={isSureDeleteUser}
+              onBackdrop={onBackdrop}
+              openSureDeleteModal={handleDeleteUserClose}
+            />
           )}
           {isSureLogOut && <LogOut onClose={onClose} onLogout={onLogout} />}
         </>
