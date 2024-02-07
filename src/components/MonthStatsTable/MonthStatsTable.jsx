@@ -48,7 +48,9 @@ const MonthStatsTable = () => {
   }, [dispatch, d, waterlist, dailyNorm, isLoadingList]);
 
   const handleChangeMonth = offset => {
-    setCurrentDate(prevDate => new Date(prevDate.getFullYear(), prevDate.getMonth() + offset));
+    setCurrentDate(
+      prevDate => new Date(prevDate.getFullYear(), prevDate.getMonth() + offset)
+    );
   };
 
   const getMonthBounds = date => {
@@ -71,11 +73,16 @@ const MonthStatsTable = () => {
 
     return eachDayOfInterval({ start, end });
   };
-  const getFormattedDateWithTime = date => formatDate(new Date(date.setHours(0, 0, 0, 0)));
+  const getFormattedDateWithTime = date =>
+    formatDate(new Date(date.setHours(0, 0, 0, 0)));
 
   const renderPopover = data => {
     const dateText = selectedDate.textContent;
-    const dateObj = new Date(currentDate.getFullYear(), currentDate.getMonth(), dateText);
+    const dateObj = new Date(
+      currentDate.getFullYear(),
+      currentDate.getMonth(),
+      dateText
+    );
     const formattedDateWithTime = getFormattedDateWithTime(dateObj);
 
     if (!data || data.length === 0) {
@@ -104,7 +111,10 @@ const MonthStatsTable = () => {
           <ContentPopoverErr>
             <h3 className="datePopover">{format(dateObj, 'd MMMM yyyy')}</h3>
             <p className="errText">No information</p>
-            <button className="closeBtnPopover" onClick={() => setSelectedDate(null)}>
+            <button
+              className="closeBtnPopover"
+              onClick={() => setSelectedDate(null)}
+            >
               <svg width="14" height="14">
                 <use href={icons + '#icon-close-day-details'}></use>{' '}
               </svg>
@@ -115,7 +125,8 @@ const MonthStatsTable = () => {
     }
 
     const waterInfo = data.find(
-      item => getFormattedDateWithTime(new Date(item._id)) === formattedDateWithTime
+      item =>
+        getFormattedDateWithTime(new Date(item._id)) === formattedDateWithTime
     );
     if (waterInfo) {
       return (
@@ -143,17 +154,25 @@ const MonthStatsTable = () => {
           <ContentPopover>
             <p className="datePopover">{format(dateObj, 'd,MMMM')}</p>
             <p className="datePopoverText">
-              Daily norma: <span className="popoverColorText">{waterInfo.dailyNorma / 1000}L</span>
+              {t('dailyNorma')}
+              <span className="popoverColorText">
+                {waterInfo.dailyNorma / 1000}L
+              </span>
             </p>
             <p className="datePopoverText">
               {t('fulfillment')}
-              <span className="popoverColorText">{waterInfo.persent.toFixed(0)}%</span>
+              <span className="popoverColorText">
+                {waterInfo.persent.toFixed(0)}%
+              </span>
             </p>
             <p className="datePopoverText">
               {t('servingsOfWater')}
               <span className="popoverColorText">{waterInfo.perDay}</span>
             </p>
-            <button className="closeBtnPopover" onClick={() => setSelectedDate(null)}>
+            <button
+              className="closeBtnPopover"
+              onClick={() => setSelectedDate(null)}
+            >
               <svg width="14" height="14">
                 <use href={icons + '#icon-close-day-details'}></use>{' '}
               </svg>
@@ -189,32 +208,46 @@ const MonthStatsTable = () => {
       ) : (
         <ul className="month">
           {selectedDate && renderPopover(monthWater)}
-          {getMonthDays(currentDate).map(date => (
-            <li key={format(date, 'yyyy-MM-dd')} className="day">
-              <button
-                className={`calendarDayBtn ${isToday(date) ? 'today' : ''} ${getBorderStyle(
-                  monthWater.find(
-                    item =>
-                      getFormattedDateWithTime(new Date(item._id)) ===
-                      getFormattedDateWithTime(date)
-                  )?.persent
-                )}`}
-                onClick={e => setSelectedDate(e.target)}
-              >
-                {format(date, 'd')}
-              </button>
-              <p className="progressWaterText">
-                {monthWater
-                  .find(
-                    item =>
-                      getFormattedDateWithTime(new Date(item._id)) ===
-                      getFormattedDateWithTime(date)
-                  )
-                  ?.persent.toFixed(0) || 0}
-                %
-              </p>
-            </li>
-          ))}
+          {getMonthDays(currentDate).map(date => {
+            const waterAdded = waterlist.some(water => {
+              return (
+                format(new Date(water.time), 'yyyy-MM-dd') ===
+                format(date, 'yyyy-MM-dd')
+              );
+            });
+
+            return (
+              <li key={format(date, 'yyyy-MM-dd')} className="day">
+                <button
+                  className={`calendarDayBtn ${isToday(date) ? 'today' : ''} 
+                  ${
+                    waterAdded
+                      ? `${getBorderStyle(
+                          monthWater.find(
+                            item =>
+                              getFormattedDateWithTime(new Date(item._id)) ===
+                              getFormattedDateWithTime(date)
+                          )?.persent
+                        )}`
+                      : ''
+                  }`}
+                  onClick={e => setSelectedDate(e.target)}
+                >
+                  {format(date, 'd')}
+                </button>
+                <p className="progressWaterText">
+                  {monthWater
+                    .find(
+                      item =>
+                        getFormattedDateWithTime(new Date(item._id)) ===
+                        getFormattedDateWithTime(date)
+                    )
+                    ?.persent.toFixed(0) || 0}
+                  %
+                </p>
+              </li>
+            );
+          })}
         </ul>
       )}
     </CalendarStyle>
