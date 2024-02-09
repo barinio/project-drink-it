@@ -27,38 +27,25 @@ const SwitcherLanguage = () => {
     i18next.changeLanguage(language);
     handleClose();
   };
-
+  const languageMap = {
+    [LOCALS.UK]: 'ua',
+    [LOCALS.EN]: 'en',
+    [LOCALS.FR]: 'fr',
+    [LOCALS.ES]: 'sp',
+    [LOCALS.IT]: 'it',
+    [LOCALS.DE]: 'de',
+    [LOCALS.PT]: 'pt',
+    [LOCALS.JA]: 'jp',
+    [LOCALS.PL]: 'pl',
+  };
+  const selectedLanguage = languageMap[i18next.language];
   return (
     <>
       <SwitcherWrapper className="swither-language">
         <Button onClick={handleMenuOpen} sx={{ padding: '0' }}>
           <FlagSvg width="26" height="26">
-            {i18next.language === LOCALS.UK && (
-              <use href={flags + '#icon-ua'} />
-            )}
-            {i18next.language === LOCALS.EN && (
-              <use href={flags + '#icon-en'} />
-            )}
-            {i18next.language === LOCALS.FR && (
-              <use href={flags + '#icon-fr'} />
-            )}
-            {i18next.language === LOCALS.ES && (
-              <use href={flags + '#icon-sp'} />
-            )}
-            {i18next.language === LOCALS.IT && (
-              <use href={flags + '#icon-it'} />
-            )}
-            {i18next.language === LOCALS.DE && (
-              <use href={flags + '#icon-de'} />
-            )}
-            {i18next.language === LOCALS.PT && (
-              <use href={flags + '#icon-pt'} />
-            )}
-            {i18next.language === LOCALS.JA && (
-              <use href={flags + '#icon-jp'} />
-            )}
-            {i18next.language === LOCALS.PL && (
-              <use href={flags + '#icon-pl'} />
+            {selectedLanguage && (
+              <use href={flags + `#icon-${selectedLanguage}`} />
             )}
           </FlagSvg>
         </Button>

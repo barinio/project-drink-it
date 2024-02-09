@@ -17,6 +17,7 @@ import {
 import icons from '../img/icons.svg';
 import { NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import WakeUpServer from 'services/WakeUpServer';
 
 const Welcome = () => {
   const { t } = useTranslation();
@@ -25,23 +26,27 @@ const Welcome = () => {
       <HomeWrapper>
         <Home>
           <LeftSide>
-            <TitleLeft className='dark-title-left'>{t('textLeft.title')}</TitleLeft>
+            <TitleLeft className="dark-title-left">
+              {t('textLeft.title')}
+            </TitleLeft>
             <TextH3Left>{t('textLeft.text1')}</TextH3Left>
-            <TextP className='dark-welcome-page-text'>{t('textLeft.text2')}</TextP>
+            <TextP className="dark-welcome-page-text">
+              {t('textLeft.text2')}
+            </TextP>
             <ListLeft>
-              <ItemLeft className='dark-welcome-page-label'>
+              <ItemLeft className="dark-welcome-page-label">
                 <Svg>
                   <use href={icons + '#icon-calendar-days'}></use>
                 </Svg>
                 {t('textLeft.text3')}
               </ItemLeft>
-              <ItemLeft className='dark-welcome-page-label'>
+              <ItemLeft className="dark-welcome-page-label">
                 <Svg>
                   <use href={icons + '#icon-chart-bar'}></use>
                 </Svg>
                 {t('textLeft.text4')}
               </ItemLeft>
-              <ItemLeft className='dark-welcome-page-label'>
+              <ItemLeft className="dark-welcome-page-label">
                 <Svg>
                   <use href={icons + '#icon-wrench-screwdriver'}></use>
                 </Svg>
@@ -53,23 +58,22 @@ const Welcome = () => {
             </NavLink>
           </LeftSide>
           <RightSide>
-            <TitleRight className='dark-title-right'>{t('textRight.listTitle')}</TitleRight>
+            <TitleRight className="dark-title-right">
+              {t('textRight.listTitle')}
+            </TitleRight>
             <ListRight>
               <ItemRight>{t('textRight.listItem1')}</ItemRight>
               <ItemRight>{t('textRight.listItem2')}</ItemRight>
               <ItemRight>{t('textRight.listItem3')}</ItemRight>
               <ItemRight>{t('textRight.listItem4')}</ItemRight>
-              <ItemRight>
-                {t('textRight.listItem5')}
-              </ItemRight>
+              <ItemRight>{t('textRight.listItem5')}</ItemRight>
               <ItemRight>{t('textRight.listItem6')}</ItemRight>
-              <ItemRight>
-                {t('textRight.listItem7')}
-              </ItemRight>
+              <ItemRight>{t('textRight.listItem7')}</ItemRight>
             </ListRight>
           </RightSide>
         </Home>
       </HomeWrapper>
+      <WakeUpServer />
     </>
   );
 };
