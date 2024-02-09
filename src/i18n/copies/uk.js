@@ -30,6 +30,20 @@ export const uk = {
   dailyNorma: 'Денна норма:',
   fulfillment: 'Виконання денної норми:',
   servingsOfWater: 'Скільки порцій води:',
+  monthNames: {
+    January: 'Січень',
+    February: 'Лютий',
+    March: 'Березень',
+    April: 'Квітень',
+    May: 'Травень',
+    June: 'Червень',
+    July: 'Липень',
+    August: 'Серпень',
+    September: 'Вересень',
+    October: 'Жовтень',
+    November: 'Листопад',
+    December: 'Грудень',
+  },
 
   //AddOrEditWaterModals
   addWater: 'Додати воду',

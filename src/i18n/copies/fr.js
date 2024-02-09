@@ -32,6 +32,20 @@ export const fr = {
   dailyNorma: 'Norme quotidienne:',
   fulfillment: 'Exécution de la norme quotidienne :',
   servingsOfWater: "Combien de portions d'eau:",
+  monthNames: {
+    January: 'Janvier',
+    February: 'Février',
+    March: 'Mars',
+    April: 'Avril',
+    May: 'Mai',
+    June: 'Juin',
+    July: 'Juillet',
+    August: 'Août',
+    September: 'Septembre',
+    October: 'Octobre',
+    November: 'Novembre',
+    December: 'Décembre',
+  },
 
   //AddOrEditWaterModals
   addWater: "Ajouter de l'eau",
