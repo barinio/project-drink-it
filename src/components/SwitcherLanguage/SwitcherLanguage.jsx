@@ -44,8 +44,10 @@ const SwitcherLanguage = () => {
       <SwitcherWrapper className="swither-language">
         <Button onClick={handleMenuOpen} sx={{ padding: '0' }}>
           <FlagSvg width="26" height="26">
-            {selectedLanguage && (
+            {selectedLanguage ? (
               <use href={flags + `#icon-${selectedLanguage}`} />
+            ) : (
+              <use href={flags + '#icon-translate-language'} />
             )}
           </FlagSvg>
         </Button>
