@@ -55,9 +55,10 @@ export const HomePageSection = styled.section`
     display: flex;
     flex-direction: row;
     overflow: hidden;
-    justify-content: space-between;
+    justify-content: center;
     padding: 20px 112px 40px 112px;
     max-height: 100%;
+    gap: 32px;
     &::before {
       content: '';
       position: absolute;
