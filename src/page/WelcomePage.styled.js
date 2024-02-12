@@ -196,10 +196,20 @@ export const HomeWrapper = styled.section`
     padding-right: 20px;
     padding-top: 24px;
     padding-bottom: 40px;
-    background-image: url(${imgMobile});
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+    &::before {
+      content: '';
+      position: absolute;
+      display: block;
+      width: 100%;
+      height: 100%;
+      top: 250px;
+      left: 0;
+      z-index: -10;
+      background-image: url(${imgMobile});
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
   }
 
   @media screen and (min-width: 768px) {
@@ -208,9 +218,19 @@ export const HomeWrapper = styled.section`
     padding-left: 32px;
     padding-right: 32px;
     padding-bottom: 50px;
-    background-position: bottom;
-    background-size: cover;
-    background-image: url(${imgTablet});
+    &::before {
+      content: '';
+      position: absolute;
+      display: block;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: -10;
+      background-position: bottom;
+      background-size: cover;
+      background-image: url(${imgTablet});
+    }
   }
 
   /* @media screen and (min-width: 769px) and (max-width: 1439px) {
@@ -221,14 +241,25 @@ export const HomeWrapper = styled.section`
   } */
 
   @media screen and (min-width: 1440px) {
-    background-image: url(${imgDesktop});
-    background-position: bottom;
-    background-size: cover;
+    position: relative;
     min-height: 691px;
     padding-top: 31px;
     padding-bottom: 294px;
     padding-left: 213px;
     padding-right: 213px;
+    &::before {
+      content: '';
+      position: absolute;
+      display: block;
+      width: 100%;
+      height: 90vh;
+      top: 2%;
+      left: 0;
+      z-index: -10;
+      background-image: url(${imgDesktop});
+      background-position: bottom;
+      background-size: cover;
+    }
     /* height: 100vh; */
   }
   /* @media screen and (min-width: 1441px) {
